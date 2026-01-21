@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.remote.api
 
-import com.example.soundquest2.data.remote.dto.SongDto
+import com.example.soundquest2.data.remote.dto.songs.SongDto
 import com.example.soundquest2.domain.model.Era
 import com.example.soundquest2.domain.model.Genre
 import io.github.jan.supabase.postgrest.postgrest

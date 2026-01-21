@@ -1,4 +1,4 @@
-package com.example.soundquest2.data.remote.dto
+package com.example.soundquest2.data.remote.dto.songs
 
 import com.example.soundquest2.domain.model.Era
 import com.example.soundquest2.domain.model.Genre
