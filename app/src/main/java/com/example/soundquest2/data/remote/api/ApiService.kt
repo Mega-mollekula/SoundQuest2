@@ -33,6 +33,8 @@ object ApiService {
             ),
             artist:artists(
                 id,
+                country_code,
+                gender,
                 picture_uri,
                 artist_translations!inner(
                     language,
@@ -81,6 +83,8 @@ object ApiService {
             ),
             artist:artists(
                 id,
+                country_code,
+                gender,
                 picture_uri,
                 artist_translations!inner(
                     language,
@@ -120,6 +124,8 @@ object ApiService {
             ),
             artist:artists(
                 id,
+                country_code,
+                gender,
                 picture_uri,
                 artist_translations!inner(
                     language,

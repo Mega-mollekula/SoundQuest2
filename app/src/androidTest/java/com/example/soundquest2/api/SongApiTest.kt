@@ -24,11 +24,13 @@ class SongApiTest {
         Assert.assertTrue("List of songs is empty", songs.isNotEmpty())
 
         songs.forEach { song ->
-            Log.d("ApiTest", "  Song: ${song.id}")
-            Log.d("ApiTest", "  Clips: ${song.songMedia[0]}")
+            Log.d("ApiTest", "  Song: $song")
+            song.songMedia.forEach {
+                Log.d("ApiTest", "  Clips: $it")
+            }
             Log.d(
                 "ApiTest",
-                "  Artist: ${song.artist.artistTranslations[0].name} (ID: ${song.artist.id})"
+                "  Artist: ${song.artist})"
             )
             Log.d("ApiTest", "  Genre: ${song.genre}")
             Log.d("ApiTest", "  Decade: ${song.era}")
@@ -47,11 +49,13 @@ class SongApiTest {
         Assert.assertTrue("List of songs is empty", songs.isNotEmpty())
 
         songs.forEach { song ->
-            Log.d("ApiTest", "  Song: ${song.id}")
-            Log.d("ApiTest", "  Clips: ${song.songMedia[0]}")
+            Log.d("ApiTest", "  Song: $song")
+            song.songMedia.forEach {
+                Log.d("ApiTest", "  Clips: $it")
+            }
             Log.d(
                 "ApiTest",
-                "  Artist: ${song.artist.artistTranslations[0].name} (ID: ${song.artist.id})"
+                "  Artist: ${song.artist})"
             )
             Log.d("ApiTest", "  Genre: ${song.genre}")
             Log.d("ApiTest", "  Decade: ${song.era}")
@@ -70,13 +74,13 @@ class SongApiTest {
         Assert.assertTrue("List of songs is empty", songs.isNotEmpty())
 
         songs.forEach { song ->
-            Log.d("ApiTest", "  Song: ${song.id}")
+            Log.d("ApiTest", "  Song: $song")
             song.songMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(
                 "ApiTest",
-                "  Artist: ${song.artist.artistTranslations[0].name} (ID: ${song.artist.id})"
+                "  Artist: ${song.artist})"
             )
             Log.d("ApiTest", "  Genre: ${song.genre}")
             Log.d("ApiTest", "  Decade: ${song.era}")
@@ -95,13 +99,13 @@ class SongApiTest {
         Assert.assertTrue("List of songs is empty", songs.isNotEmpty())
 
         songs.forEach { song ->
-            Log.d("ApiTest", "  Song: ${song.id}")
+            Log.d("ApiTest", "  Song: $song")
             song.songMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(
                 "ApiTest",
-                "  Artist: ${song.artist.artistTranslations[0].name} (ID: ${song.artist.id})"
+                "  Artist: ${song.artist})"
             )
             Log.d("ApiTest", "  Genre: ${song.genre}")
             Log.d("ApiTest", "  Decade: ${song.era}")
