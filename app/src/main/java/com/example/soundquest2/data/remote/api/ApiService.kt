@@ -1,5 +1,6 @@
 package com.example.soundquest2.data.remote.api
 
+import com.example.soundquest2.data.remote.dto.films.FilmDto
 import com.example.soundquest2.data.remote.dto.songs.SongDto
 import com.example.soundquest2.domain.model.Era
 import com.example.soundquest2.domain.model.Genre
@@ -145,5 +146,45 @@ object ApiService {
         }.decodeList<SongDto>()
     }
 
+    suspend fun getAllFilms(language: String): List<FilmDto> {
+        val columns = Columns.raw(
+        """
+            id,
+            director,
+            stars,
+            imdb_rating,
+            duration_minutes,
+            release_year,
+            film_type,
+            picture_uri,
+            film_translations!inner(
+                language,
+                title,
+                description
+            ),
+            film_media(
+                duration,
+                audio_path,
+                video_path
+            )
+            """.trimIndent()
+        )
+
+        return postgrest.from("films").select(columns = columns) {
+            filter {
+                eq("film_translations.language", language)
+            }
+        }.decodeList<FilmDto>()
+    }
+
+    suspend fun getRandomFilms(language: String, count: Int = 10): List<FilmDto> {
+        return postgrest.rpc(
+            function = "get_random_films",
+            parameters = buildJsonObject {
+                put("p_language", language)
+                put("p_count", count)
+            }
+        ).decodeList()
+    }
 }
 
