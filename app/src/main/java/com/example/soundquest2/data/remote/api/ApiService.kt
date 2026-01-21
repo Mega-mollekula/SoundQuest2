@@ -1,6 +1,7 @@
 package com.example.soundquest2.data.remote.api
 
 import com.example.soundquest2.data.remote.dto.films.FilmDto
+import com.example.soundquest2.data.remote.dto.games.GameDto
 import com.example.soundquest2.data.remote.dto.songs.SongDto
 import com.example.soundquest2.domain.model.Era
 import com.example.soundquest2.domain.model.Genre
@@ -180,6 +181,45 @@ object ApiService {
     suspend fun getRandomFilms(language: String, count: Int = 10): List<FilmDto> {
         return postgrest.rpc(
             function = "get_random_films",
+            parameters = buildJsonObject {
+                put("p_language", language)
+                put("p_count", count)
+            }
+        ).decodeList()
+    }
+
+    suspend fun getAllGames(language: String): List<GameDto> {
+        val columns = Columns.raw(
+            """
+            id,
+            developer,
+            publisher,
+            release_year,
+            genre,
+            picture_uri,
+            game_translations!inner(
+                language,
+                title,
+                description
+            ),
+            game_media(
+                duration,
+                audio_path,
+                video_path
+            )
+            """.trimIndent()
+        )
+
+        return postgrest.from("games").select(columns = columns) {
+            filter {
+                eq("game_translations.language", language)
+            }
+        }.decodeList<GameDto>()
+    }
+
+    suspend fun getRandomGames(language: String, count: Int = 10): List<GameDto> {
+        return postgrest.rpc(
+            function = "get_random_games",
             parameters = buildJsonObject {
                 put("p_language", language)
                 put("p_count", count)
