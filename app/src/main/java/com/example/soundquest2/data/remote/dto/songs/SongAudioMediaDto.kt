@@ -5,11 +5,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SongMediaDto(
-    val segment: SegmentType,
+data class SongAudioMediaDto (
+    @SerialName("segment")
+    val segmentType: SegmentType,
     val duration: Int,
     @SerialName("audio_path")
-    val audioPath: String,
-    @SerialName("video_path")
-    val videoPath: String
+    val audioPath: String
 )

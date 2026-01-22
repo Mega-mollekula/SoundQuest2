@@ -8,14 +8,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SongDto(
     val id: Long,
-    @SerialName("picture_uri")
-    val pictureUri: String,
     val genre: Genre,
     val era: Era,
+    val title: String,
 
     @SerialName("song_translations")
     val songTranslations: List<SongTranslationDto>,
-    @SerialName("song_media")
-    val songMedia: List<SongMediaDto>,
+    @SerialName("song_audio_media")
+    val songAudioMedia: List<SongAudioMediaDto>,
+    @SerialName("song_visual_media")
+    val songVisualMediaDto: SongVisualMediaDto,
     val artist: ArtistDto
 )

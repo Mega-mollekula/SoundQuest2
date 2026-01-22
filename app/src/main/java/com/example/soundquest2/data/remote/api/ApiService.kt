@@ -19,18 +19,20 @@ object ApiService {
         val columns = Columns.raw(
             """
             id,
-            picture_uri,
             genre,
             era,
+            title,
             song_translations!inner(
                 language,
-                title,
                 info
             ),
-            song_media(
+            song_audio_media(
                 segment,
                 duration,
-                audio_path,
+                audio_path
+            ),
+            song_visual_media:song_visual_media(
+                picture_uri,
                 video_path
             ),
             artist:artists(
@@ -69,18 +71,20 @@ object ApiService {
         val columns = Columns.raw(
             """
             id,
-            picture_uri,
             genre,
             era,
+            title,
             song_translations!inner(
                 language,
-                title,
                 info
             ),
-            song_media(
+            song_audio_media(
                 segment,
                 duration,
-                audio_path,
+                audio_path
+            ),
+            song_visual_media:song_visual_media(
+                picture_uri,
                 video_path
             ),
             artist:artists(
@@ -110,18 +114,20 @@ object ApiService {
         val columns = Columns.raw(
             """
             id,
-            picture_uri,
             genre,
             era,
+            title,
             song_translations!inner(
                 language,
-                title,
                 info
             ),
-            song_media(
+            song_audio_media(
                 segment,
                 duration,
-                audio_path,
+                audio_path
+            ),
+            song_visual_media:song_visual_media(
+                picture_uri,
                 video_path
             ),
             artist:artists(
