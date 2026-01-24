@@ -25,7 +25,7 @@ class SongApiTest {
 
         songs.forEach { song ->
             Log.d("ApiTest", "  Song: $song")
-            song.songAudioMedia.forEach {
+            song.audioMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(
@@ -50,7 +50,7 @@ class SongApiTest {
 
         songs.forEach { song ->
             Log.d("ApiTest", "  Song: $song")
-            song.songAudioMedia.forEach {
+            song.audioMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(
@@ -75,7 +75,7 @@ class SongApiTest {
 
         songs.forEach { song ->
             Log.d("ApiTest", "  Song: $song")
-            song.songAudioMedia.forEach {
+            song.audioMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(
@@ -100,7 +100,7 @@ class SongApiTest {
 
         songs.forEach { song ->
             Log.d("ApiTest", "  Song: $song")
-            song.songAudioMedia.forEach {
+            song.audioMedia.forEach {
                 Log.d("ApiTest", "  Clips: $it")
             }
             Log.d(

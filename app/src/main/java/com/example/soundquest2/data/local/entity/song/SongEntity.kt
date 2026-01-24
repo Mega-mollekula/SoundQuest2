@@ -10,10 +10,9 @@ import com.example.soundquest2.domain.model.Genre
 data class SongEntity(
     @PrimaryKey
     val id: Long,
-    @ColumnInfo(name = "picture_uri")
-    val pictureUri: String,
     val genre: Genre,
     val era: Era,
+    val title: String,
     @ColumnInfo(name = "artist_id")
     val artistId: Long
 )

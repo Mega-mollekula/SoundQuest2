@@ -15,8 +15,8 @@ data class SongDto(
     @SerialName("song_translations")
     val songTranslations: List<SongTranslationDto>,
     @SerialName("song_audio_media")
-    val songAudioMedia: List<SongAudioMediaDto>,
+    val audioMedia: List<SongAudioMediaDto>,
     @SerialName("song_visual_media")
-    val songVisualMediaDto: SongVisualMediaDto,
+    val visualMedia: SongVisualMediaDto,
     val artist: ArtistDto
 )

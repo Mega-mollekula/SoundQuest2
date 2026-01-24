@@ -3,10 +3,10 @@ package com.example.soundquest2.data.local.entity.song.relation
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.example.soundquest2.data.local.entity.song.ArtistEntity
-import com.example.soundquest2.data.local.entity.song.relation.ArtistWithTranslations
+import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongEntity
-import com.example.soundquest2.data.local.entity.song.SongMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
+import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
 
 data class SongWithDetails(
     @Embedded
@@ -29,5 +29,11 @@ data class SongWithDetails(
         parentColumn = "id",
         entityColumn = "song_id"
     )
-    val media: List<SongMediaEntity>
+    val audioMedia: List<SongAudioMediaEntity>,
+
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "song_id"
+    )
+    val visualMedia: SongVisualMediaEntity
 )

@@ -5,16 +5,9 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.soundquest2.domain.model.SegmentType
 
 @Entity(
-    tableName = "song_media",
-    indices = [
-        Index(
-            value = ["song_id", "segment", "audio_path", "video_path"],
-            unique = true
-        )
-    ],
+    tableName = "song_visual_media",
     foreignKeys = [
         ForeignKey(
             entity = SongEntity::class,
@@ -22,21 +15,17 @@ import com.example.soundquest2.domain.model.SegmentType
             childColumns = ["song_id"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    indices = [Index("song_id")]
 )
-data class SongMediaEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+data class SongVisualMediaEntity (
+    @PrimaryKey
     @ColumnInfo(name = "song_id")
     val songId: Long,
-    val segment: SegmentType,
-    val duration: Int,
-    @ColumnInfo(name = "audio_path")
-    val audioPath: String,
+    @ColumnInfo(name = "picture_uri")
+    val pictureUri: String,
     @ColumnInfo(name = "video_path")
-    val videoPath: String,
-    @ColumnInfo(name = "local_audio_path")
-    val localAudioPath: String? = null,
+    val videoPath: String?,
     @ColumnInfo(name = "local_video_path")
     val localVideoPath: String? = null
 )

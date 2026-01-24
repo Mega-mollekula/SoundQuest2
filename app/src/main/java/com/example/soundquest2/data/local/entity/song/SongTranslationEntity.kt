@@ -22,6 +22,5 @@ data class SongTranslationEntity(
     @ColumnInfo(name = "song_id")
     val songId: Long,
     val language: String,
-    val title: String,
     val info: String
 )

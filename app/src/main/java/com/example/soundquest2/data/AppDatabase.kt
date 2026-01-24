@@ -6,20 +6,23 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.soundquest2.data.local.dao.song.ArtistDao
 import com.example.soundquest2.data.local.dao.song.ArtistTranslationsDao
+import com.example.soundquest2.data.local.dao.song.SongAudioMediaDao
 import com.example.soundquest2.data.local.dao.song.SongDao
-import com.example.soundquest2.data.local.dao.song.SongMediaDao
 import com.example.soundquest2.data.local.dao.song.SongTranslationsDao
+import com.example.soundquest2.data.local.dao.song.SongVisualMediaDao
 import com.example.soundquest2.data.local.entity.song.ArtistEntity
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
+import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongEntity
-import com.example.soundquest2.data.local.entity.song.SongMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
+import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
 
 @Database(
     entities = [
         ArtistEntity::class,
         SongEntity::class,
-        SongMediaEntity::class,
+        SongAudioMediaEntity::class,
+        SongVisualMediaEntity::class,
         SongTranslationEntity::class,
         ArtistTranslationEntity::class
     ],
@@ -31,7 +34,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun artistTranslationsDao(): ArtistTranslationsDao
     abstract fun songTranslationsDao(): SongTranslationsDao
     abstract fun artistDao(): ArtistDao
-    abstract fun songMediaDao(): SongMediaDao
+    abstract fun songAudioMediaDao(): SongAudioMediaDao
+    abstract fun songVisualMediaDao(): SongVisualMediaDao
 
     companion object {
         @Volatile

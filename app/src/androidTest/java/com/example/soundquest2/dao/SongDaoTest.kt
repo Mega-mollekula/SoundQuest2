@@ -55,7 +55,8 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle.artistTranslations)
             db.songDao().insertSongs(globalBundle.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
         }
 
         val songsFull = db.songDao().getAllSongsWithDetails()
@@ -65,7 +66,8 @@ class SongDaoTest {
 
         songsFull.forEach { song ->
             Log.d("DaoTest", "  Song: ${song.song}")
-            Log.d("DaoTest", "  Media: ${song.media}")
+            Log.d("DaoTest", "  Media: ${song.visualMedia}")
+            Log.d("DaoTest", "  Media: ${song.audioMedia}")
             Log.d("DaoTest", "  Artist: ${song.artist}")
             Log.d("DaoTest", "  Genre: ${song.song.genre}")
             Log.d("DaoTest", "  Decade: ${song.song.era}")
@@ -85,17 +87,19 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle.artistTranslations)
             db.songDao().insertSongs(globalBundle.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
         }
 
-        val songsFull = db.songDao().getRandomSongs(2)
+        val songsFull = db.songDao().getRandomSongs(3)
 
         assertNotNull(songsFull)
         assertTrue(songsFull.isNotEmpty())
 
         songsFull.forEach { song ->
             Log.d("DaoTest", "  Song: ${song.song}")
-            Log.d("DaoTest", "  Media: ${song.media}")
+            Log.d("DaoTest", "  Media: ${song.visualMedia}")
+            Log.d("DaoTest", "  Media: ${song.audioMedia}")
             Log.d("DaoTest", "  Artist: ${song.artist}")
             Log.d("DaoTest", "  Genre: ${song.song.genre}")
             Log.d("DaoTest", "  Decade: ${song.song.era}")
@@ -115,17 +119,19 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle.artistTranslations)
             db.songDao().insertSongs(globalBundle.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
         }
 
-        val songsFull = db.songDao().getSongsByGenre(Genre.ROCK)
+        val songsFull = db.songDao().getSongsByGenre(genre = Genre.ROCK)
 
         assertNotNull(songsFull)
         assertTrue(songsFull.isNotEmpty())
 
         songsFull.forEach { song ->
             Log.d("DaoTest", "  Song: ${song.song}")
-            Log.d("DaoTest", "  Media: ${song.media}")
+            Log.d("DaoTest", "  Media: ${song.visualMedia}")
+            Log.d("DaoTest", "  Media: ${song.audioMedia}")
             Log.d("DaoTest", "  Artist: ${song.artist}")
             Log.d("DaoTest", "  Genre: ${song.song.genre}")
             Log.d("DaoTest", "  Decade: ${song.song.era}")
@@ -145,17 +151,19 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle.artistTranslations)
             db.songDao().insertSongs(globalBundle.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
         }
 
-        val songsFull = db.songDao().getSongsByEra(Era.ERA_2010S)
+        val songsFull = db.songDao().getSongsByEra(Era.ERA_2000S)
 
         assertNotNull(songsFull)
         assertTrue(songsFull.isNotEmpty())
 
         songsFull.forEach { song ->
             Log.d("DaoTest", "  Song: ${song.song}")
-            Log.d("DaoTest", "  Media: ${song.media}")
+            Log.d("DaoTest", "  Media: ${song.visualMedia}")
+            Log.d("DaoTest", "  Media: ${song.audioMedia}")
             Log.d("DaoTest", "  Artist: ${song.artist}")
             Log.d("DaoTest", "  Genre: ${song.song.genre}")
             Log.d("DaoTest", "  Decade: ${song.song.era}")
@@ -175,7 +183,8 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle.artistTranslations)
             db.songDao().insertSongs(globalBundle.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
         }
 
         val songsDto2: List<SongDto> = ApiService.getAllSongs("en")
@@ -188,7 +197,8 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle2.artistTranslations)
             db.songDao().insertSongs(globalBundle2.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle2.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle2.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle2.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle2.visualMedia)
         }
 
         val songsDto3: List<SongDto> = ApiService.getAllSongs("en")
@@ -201,7 +211,8 @@ class SongDaoTest {
             db.artistTranslationsDao().insertArtistTranslations(globalBundle3.artistTranslations)
             db.songDao().insertSongs(globalBundle3.songs)
             db.songTranslationsDao().insertSongTranslations(globalBundle3.songTranslations)
-            db.songMediaDao().insertSongMedia(globalBundle3.songMedia)
+            db.songAudioMediaDao().insertAudioMedia(globalBundle3.audioMedia)
+            db.songVisualMediaDao().insertVisualMedia(globalBundle3.visualMedia)
         }
 
         val songsFull = db.songDao().getSongsByEra(Era.ERA_2010S)
@@ -211,7 +222,8 @@ class SongDaoTest {
 
         songsFull.forEach { song ->
             Log.d("DaoTest", "  Song: ${song.song}")
-            Log.d("DaoTest", "  Media: ${song.media}")
+            Log.d("DaoTest", "  Media: ${song.visualMedia}")
+            Log.d("DaoTest", "  Media: ${song.audioMedia}")
             Log.d("DaoTest", "  Artist: ${song.artist}")
             Log.d("DaoTest", "  Genre: ${song.song.genre}")
             Log.d("DaoTest", "  Decade: ${song.song.era}")
