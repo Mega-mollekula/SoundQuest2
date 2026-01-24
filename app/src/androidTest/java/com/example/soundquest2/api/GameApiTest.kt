@@ -23,10 +23,7 @@ class GameApiTest {
 
         games.forEach { games ->
             Log.d("ApiTest", "  Game: $games")
-            games.gameMedia.forEach {
-                Log.d("ApiTest", "  Clips: $it")
-            }
-
+            Log.d("ApiTest", "  Media: ${games.gameMedia}")
             Log.d("ApiTest", "  Type: ${games.genre}")
             Log.d("ApiTest", "  Translation: ${games.gameTranslations}")
             Log.d("ApiTest", "-------------------------------------------------")
@@ -45,10 +42,7 @@ class GameApiTest {
 
         games.forEach { games ->
             Log.d("ApiTest", "  Game: $games")
-            games.gameMedia.forEach {
-                Log.d("ApiTest", "  Clips: $it")
-            }
-
+            Log.d("ApiTest", "  Media: ${games.gameMedia}")
             Log.d("ApiTest", "  Type: ${games.genre}")
             Log.d("ApiTest", "  Translation: ${games.gameTranslations}")
             Log.d("ApiTest", "-------------------------------------------------")

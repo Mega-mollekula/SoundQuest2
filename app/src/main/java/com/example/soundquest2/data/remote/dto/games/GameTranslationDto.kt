@@ -5,6 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GameTranslationDto(
     val language: String,
-    val title: String,
     val description: String
 )

@@ -9,5 +9,7 @@ data class GameMediaDto(
     @SerialName("audio_path")
     val audioPath: String,
     @SerialName("video_path")
-    val videoPath: String
+    val videoPath: String,
+    @SerialName("picture_uri")
+    val pictureUri: String
 )

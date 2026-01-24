@@ -202,16 +202,16 @@ object ApiService {
             publisher,
             release_year,
             genre,
-            picture_uri,
+            title,
             game_translations!inner(
                 language,
-                title,
                 description
             ),
-            game_media(
+            game_media:game_media(
                 duration,
                 audio_path,
-                video_path
+                video_path,
+                picture_uri
             )
             """.trimIndent()
         )

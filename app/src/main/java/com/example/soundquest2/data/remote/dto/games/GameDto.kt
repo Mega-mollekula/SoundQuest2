@@ -12,11 +12,10 @@ data class GameDto(
     @SerialName("release_year")
     val releaseYear: Int,
     val genre: GameGenre,
-    @SerialName("picture_uri")
-    val pictureUri: String,
+    val title: String,
 
     @SerialName("game_translations")
     val gameTranslations: List<GameTranslationDto>,
     @SerialName("game_media")
-    val gameMedia: List<GameMediaDto>
+    val gameMedia: GameMediaDto
 )
