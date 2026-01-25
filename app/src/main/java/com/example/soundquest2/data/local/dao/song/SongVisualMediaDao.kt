@@ -12,6 +12,6 @@ interface SongVisualMediaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertVisualMedia(media: List<SongVisualMediaEntity>)
 
-    @Query("UPDATE song_visual_media SET local_video_path = :localVideoPath WHERE song_id = :mediaId")
-    fun updateSongMediaLocalVideoPath(mediaId: Int, localVideoPath: String)
+    @Query("UPDATE song_visual_media SET local_video_path = :localVideoPath WHERE song_id = :songId")
+    fun updateSongMediaLocalVideoPath(songId: Int, localVideoPath: String)
 }
