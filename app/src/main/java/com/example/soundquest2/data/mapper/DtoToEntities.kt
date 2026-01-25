@@ -1,5 +1,10 @@
 package com.example.soundquest2.data.mapper
 
+import com.example.soundquest2.data.local.entity.game.GameEntity
+import com.example.soundquest2.data.local.entity.game.GameMediaEntity
+import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
+import com.example.soundquest2.data.local.entity.game.bundle.GameEntitiesBundle
+import com.example.soundquest2.data.local.entity.game.bundle.GameGlobalEntitiesBundle
 import com.example.soundquest2.data.local.entity.song.ArtistEntity
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
@@ -8,6 +13,7 @@ import com.example.soundquest2.data.local.entity.song.SongEntity
 import com.example.soundquest2.data.local.entity.song.bundle.SongGlobalBundle
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
+import com.example.soundquest2.data.remote.dto.games.GameDto
 import com.example.soundquest2.data.remote.dto.songs.SongDto
 
 fun SongDto.toEntities(): SongEntitiesBundle {
@@ -64,5 +70,40 @@ fun List<SongEntitiesBundle>.toGlobalSongBundle(): SongGlobalBundle {
         songTranslations = flatMap { it.songTranslations },
         audioMedia = flatMap { it.audioMedia },
         visualMedia = map {it.visualMedia}
+    )
+}
+
+fun GameDto.toEntities(): GameEntitiesBundle {
+    return GameEntitiesBundle(
+        game = GameEntity(
+            id = id,
+            developer = developer,
+            publisher = publisher,
+            releaseYear = releaseYear,
+            genre = genre,
+            title = title
+        ),
+        translations = gameTranslations.map{
+            GameTranslationEntity(
+                gameId = id,
+                language = it.language,
+                description = it.description
+            )
+        },
+        media = GameMediaEntity(
+            gameId = id,
+            duration = gameMedia.duration,
+            audioPath = gameMedia.audioPath,
+            videoPath = gameMedia.videoPath,
+            pictureUri = gameMedia.pictureUri
+        )
+    )
+}
+
+fun List<GameEntitiesBundle>.toGlobalGameBundle(): GameGlobalEntitiesBundle {
+    return GameGlobalEntitiesBundle(
+        games = map {it.game},
+        translations = flatMap {it.translations},
+        media = map {it.media}
     )
 }

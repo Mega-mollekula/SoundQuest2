@@ -4,12 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.soundquest2.data.local.dao.game.GameDao
+import com.example.soundquest2.data.local.dao.game.GameMediaDao
+import com.example.soundquest2.data.local.dao.game.GameTranslationsDao
 import com.example.soundquest2.data.local.dao.song.ArtistDao
 import com.example.soundquest2.data.local.dao.song.ArtistTranslationsDao
 import com.example.soundquest2.data.local.dao.song.SongAudioMediaDao
 import com.example.soundquest2.data.local.dao.song.SongDao
 import com.example.soundquest2.data.local.dao.song.SongTranslationsDao
 import com.example.soundquest2.data.local.dao.song.SongVisualMediaDao
+import com.example.soundquest2.data.local.entity.game.GameEntity
+import com.example.soundquest2.data.local.entity.game.GameMediaEntity
+import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
 import com.example.soundquest2.data.local.entity.song.ArtistEntity
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
@@ -24,7 +30,10 @@ import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
         SongAudioMediaEntity::class,
         SongVisualMediaEntity::class,
         SongTranslationEntity::class,
-        ArtistTranslationEntity::class
+        ArtistTranslationEntity::class,
+        GameEntity::class,
+        GameTranslationEntity::class,
+        GameMediaEntity::class
     ],
     version = 1
 )
@@ -36,6 +45,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun artistDao(): ArtistDao
     abstract fun songAudioMediaDao(): SongAudioMediaDao
     abstract fun songVisualMediaDao(): SongVisualMediaDao
+
+    abstract fun gameDao(): GameDao
+    abstract fun gameTranslationDao(): GameTranslationsDao
+    abstract fun gameMediaDao(): GameMediaDao
 
     companion object {
         @Volatile
