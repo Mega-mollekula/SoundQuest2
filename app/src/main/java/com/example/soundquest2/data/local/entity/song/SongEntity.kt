@@ -2,11 +2,24 @@ package com.example.soundquest2.data.local.entity.song
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.soundquest2.domain.model.Era
 import com.example.soundquest2.domain.model.Genre
 
-@Entity(tableName = "songs")
+@Entity(
+    tableName = "songs",
+    foreignKeys = [
+        ForeignKey(
+            entity = ArtistEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["artist_id"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index("artist_id", unique = true)]
+)
 data class SongEntity(
     @PrimaryKey
     val id: Long,
