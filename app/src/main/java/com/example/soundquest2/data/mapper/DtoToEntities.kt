@@ -1,5 +1,10 @@
 package com.example.soundquest2.data.mapper
 
+import com.example.soundquest2.data.local.entity.film.FilmEntity
+import com.example.soundquest2.data.local.entity.film.FilmMediaEntity
+import com.example.soundquest2.data.local.entity.film.FilmTranslationEntity
+import com.example.soundquest2.data.local.entity.film.bundle.FilmEntitiesBundle
+import com.example.soundquest2.data.local.entity.film.bundle.FilmGlobalEntitiesBundle
 import com.example.soundquest2.data.local.entity.game.GameEntity
 import com.example.soundquest2.data.local.entity.game.GameMediaEntity
 import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
@@ -13,6 +18,7 @@ import com.example.soundquest2.data.local.entity.song.SongEntity
 import com.example.soundquest2.data.local.entity.song.bundle.SongGlobalBundle
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
+import com.example.soundquest2.data.remote.dto.films.FilmDto
 import com.example.soundquest2.data.remote.dto.games.GameDto
 import com.example.soundquest2.data.remote.dto.songs.SongDto
 
@@ -103,6 +109,43 @@ fun GameDto.toEntities(): GameEntitiesBundle {
 fun List<GameEntitiesBundle>.toGlobalGameBundle(): GameGlobalEntitiesBundle {
     return GameGlobalEntitiesBundle(
         games = map {it.game},
+        translations = flatMap {it.translations},
+        media = map {it.media}
+    )
+}
+
+fun FilmDto.toEntities(): FilmEntitiesBundle {
+    return FilmEntitiesBundle(
+        film = FilmEntity(
+            id = id,
+            director = director,
+            stars = stars,
+            imdbRating = imdbRating,
+            durationMinutes = durationMinutes,
+            releaseYear = releaseYear,
+            filmType = filmType,
+            title = title
+        ),
+        translations = filmTranslations.map {
+            FilmTranslationEntity(
+                filmId = id,
+                language = it.language,
+                description = it.description
+            )
+        },
+        media = FilmMediaEntity(
+            filmId = id,
+            duration = filmMedia.duration,
+            audioPath = filmMedia.audioPath,
+            videoPath = filmMedia.videoPath,
+            pictureUri = filmMedia.pictureUri
+        )
+    )
+}
+
+fun List<FilmEntitiesBundle>.toGlobalFilmBundle(): FilmGlobalEntitiesBundle {
+    return FilmGlobalEntitiesBundle(
+        films = map {it.film},
         translations = flatMap {it.translations},
         media = map {it.media}
     )
