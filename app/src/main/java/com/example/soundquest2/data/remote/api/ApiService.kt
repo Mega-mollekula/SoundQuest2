@@ -163,16 +163,16 @@ object ApiService {
             duration_minutes,
             release_year,
             film_type,
-            picture_uri,
+            title,
             film_translations!inner(
                 language,
-                title,
                 description
             ),
             film_media(
                 duration,
                 audio_path,
-                video_path
+                video_path,
+                picture_uri
             )
             """.trimIndent()
         )

@@ -23,10 +23,7 @@ class FilmApiTest {
 
         films.forEach { films ->
             Log.d("ApiTest", "  Film: $films")
-            films.filmMedia.forEach {
-                Log.d("ApiTest", "  Clips: $it")
-            }
-
+            Log.d("ApiTest", "  Media: ${films.filmMedia}")
             Log.d("ApiTest", "  Type: ${films.filmType}")
             Log.d("ApiTest", "  Translation: ${films.filmTranslations}")
             Log.d("ApiTest", "-------------------------------------------------")
@@ -45,10 +42,7 @@ class FilmApiTest {
 
         films.forEach { films ->
             Log.d("ApiTest", "  Film: $films")
-            films.filmMedia.forEach {
-                Log.d("ApiTest", "  Clips: $it")
-            }
-
+            Log.d("ApiTest", "  Media: ${films.filmMedia}")
             Log.d("ApiTest", "  Type: ${films.filmType}")
             Log.d("ApiTest", "  Translation: ${films.filmTranslations}")
             Log.d("ApiTest", "-------------------------------------------------")

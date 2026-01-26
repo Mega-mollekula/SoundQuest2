@@ -17,11 +17,10 @@ data class FilmDto(
     val releaseYear: Int,
     @SerialName("film_type")
     val filmType: FilmType,
-    @SerialName("picture_uri")
-    val pictureUri: String,
+    val title: String,
 
     @SerialName("film_translations")
     val filmTranslations: List<FilmTranslationDto>,
     @SerialName("film_media")
-    val filmMedia: List<FilmMediaDto>
+    val filmMedia: FilmMediaDto
 )
