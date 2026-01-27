@@ -25,7 +25,10 @@ class DownloadableSongVideo(
         return try {
             if (!destination.exists()) {
                 val ok = apiService.downloadVideoMedia(videoPath, destination)
-                if (!ok) return DownloadResult.Failed(null)
+                if (!ok) {
+                    Log.d("DownloadError", "Error to download $videoPath")
+                    return DownloadResult.Failed(null)
+                }
             }
 
             daos.songVisualMediaDao.updateLocalVideoPath(

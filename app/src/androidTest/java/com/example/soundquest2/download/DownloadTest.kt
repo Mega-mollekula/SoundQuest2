@@ -12,8 +12,12 @@ import com.example.soundquest2.data.local.download.MediaDaos
 import com.example.soundquest2.data.local.download.UnifiedMediaDownloader
 import com.example.soundquest2.data.local.storage.AndroidFileProvider
 import com.example.soundquest2.data.mapper.toEntities
+import com.example.soundquest2.data.mapper.toGlobalFilmBundle
+import com.example.soundquest2.data.mapper.toGlobalGameBundle
 import com.example.soundquest2.data.mapper.toGlobalSongBundle
 import com.example.soundquest2.data.remote.api.ApiService
+import com.example.soundquest2.data.remote.dto.films.FilmDto
+import com.example.soundquest2.data.remote.dto.games.GameDto
 import com.example.soundquest2.domain.repository.FileProvider
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -24,7 +28,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class SongDownloadTest {
+class DownloadTest {
 
     private lateinit var context: Context
     private lateinit var db: AppDatabase
@@ -76,6 +80,28 @@ class SongDownloadTest {
                 db.songAudioMediaDao().insertAudioMedia(globalBundle.audioMedia)
                 db.songVisualMediaDao().insertVisualMedia(globalBundle.visualMedia)
             }
+        }
+
+        val gamesDto: List<GameDto> = ApiService.getAllGames("ru")
+        val bundles2 = gamesDto.map { it.toEntities() }
+
+        val globalBundle2 = bundles2.toGlobalGameBundle()
+
+        db.withTransaction {
+            db.gameDao().insertGames(globalBundle2.games)
+            db.gameTranslationDao().insertGameTranslations(globalBundle2.translations)
+            db.gameMediaDao().insertGameMedia(globalBundle2.media)
+        }
+
+        val filmsDto: List<FilmDto> = ApiService.getAllFilms("ru")
+        val bundles3 = filmsDto.map { it.toEntities() }
+
+        val globalBundle3 = bundles3.toGlobalFilmBundle()
+
+        db.withTransaction {
+            db.filmDao().insertFilms(globalBundle3.films)
+            db.filmTranslationDao().insertFilmTranslations(globalBundle3.translations)
+            db.filmMediaDao().insertFilmMedia(globalBundle3.media)
         }
 
         val progressEvents = mutableListOf<DownloadProgress>()

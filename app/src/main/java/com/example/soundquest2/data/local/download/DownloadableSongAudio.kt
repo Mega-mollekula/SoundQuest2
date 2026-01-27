@@ -27,7 +27,10 @@ class DownloadableSongAudio(
         return try {
             if (!destination.exists()) {
                 val ok = apiService.downloadAudioMedia(audioPath, destination)
-                if (!ok) return DownloadResult.Failed(null)
+                if (!ok) {
+                    Log.d("DownloadError", "Error to download $audioPath")
+                    return DownloadResult.Failed(null)
+                }
             }
 
             daos.songAudioMediaDao.updateLocalAudioPath(
