@@ -18,7 +18,7 @@ import com.example.soundquest2.domain.model.Genre
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("artist_id", unique = true)]
+    indices = [Index("artist_id")]
 )
 data class SongEntity(
     @PrimaryKey
