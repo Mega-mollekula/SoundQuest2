@@ -13,8 +13,14 @@ interface GameMediaDao {
     suspend fun insertGameMedia(media: List<GameMediaEntity>)
 
     @Query("UPDATE game_media SET local_video_path = :localVideoPath WHERE game_id = :mediaId")
-    suspend fun updateLocalVideoPath(mediaId: Int, localVideoPath: String)
+    suspend fun updateLocalVideoPath(mediaId: Long, localVideoPath: String)
 
     @Query("UPDATE game_media SET local_audio_path = :localAudioPath WHERE game_id = :gameId")
-    suspend fun updateLocalAudioPath(gameId: Int, localAudioPath: String)
+    suspend fun updateLocalAudioPath(gameId: Long, localAudioPath: String)
+
+    @Query("SELECT * FROM game_media WHERE local_audio_path IS NULL")
+    suspend fun getGameMediaWithoutLocalAudioPath(): List<GameMediaEntity>
+
+    @Query("SELECT * FROM game_media WHERE local_video_path IS NULL")
+    suspend fun getGameMediaWithoutLocalVideoPath(): List<GameMediaEntity>
 }

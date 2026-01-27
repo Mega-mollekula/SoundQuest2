@@ -8,8 +8,11 @@ import com.example.soundquest2.domain.model.Genre
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.storage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import java.io.File
 
 object ApiService {
     private val postgrest = SupabaseClient.client.postgrest
@@ -231,6 +234,30 @@ object ApiService {
                 put("p_count", count)
             }
         ).decodeList()
+    }
+
+    suspend fun downloadAudioMedia(filePath: String, destination: File): Boolean = withContext(Dispatchers.IO) {
+        try {
+            val bucket = storage.from("audio")
+            val data = bucket.downloadAuthenticated(filePath)
+            destination.writeBytes(data)
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    suspend fun downloadVideoMedia(filePath: String, destination: File): Boolean = withContext(Dispatchers.IO) {
+        try {
+            val bucket = storage.from("video")
+            val data = bucket.downloadAuthenticated(filePath)
+            destination.writeBytes(data)
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
     }
 }
 

@@ -13,5 +13,8 @@ interface SongVisualMediaDao {
     suspend fun insertVisualMedia(media: List<SongVisualMediaEntity>)
 
     @Query("UPDATE song_visual_media SET local_video_path = :localVideoPath WHERE song_id = :songId")
-    fun updateSongMediaLocalVideoPath(songId: Int, localVideoPath: String)
+    fun updateLocalVideoPath(songId: Long, localVideoPath: String)
+
+    @Query("SELECT * FROM song_visual_media WHERE local_video_path IS NULL")
+    suspend fun getVisualMediaWithoutLocalVideoPath(): List<SongVisualMediaEntity>
 }

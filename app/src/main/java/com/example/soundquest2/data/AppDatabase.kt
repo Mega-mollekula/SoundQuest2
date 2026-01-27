@@ -44,7 +44,7 @@ import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
         FilmTranslationEntity::class,
         FilmMediaEntity::class
     ],
-    version = 1
+    version = 3
 )
 
 abstract class AppDatabase : RoomDatabase() {

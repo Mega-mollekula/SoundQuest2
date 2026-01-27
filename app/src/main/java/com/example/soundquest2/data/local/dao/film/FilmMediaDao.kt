@@ -13,8 +13,14 @@ interface FilmMediaDao {
     suspend fun insertFilmMedia(media: List<FilmMediaEntity>)
 
     @Query("UPDATE film_media SET local_video_path = :localVideoPath WHERE film_id = :mediaId")
-    suspend fun updateLocalVideoPath(mediaId: Int, localVideoPath: String)
+    suspend fun updateLocalVideoPath(mediaId: Long, localVideoPath: String)
 
     @Query("UPDATE film_media SET local_audio_path = :localAudioPath WHERE film_id = :filmId")
-    suspend fun updateLocalAudioPath(filmId: Int, localAudioPath: String)
+    suspend fun updateLocalAudioPath(filmId: Long, localAudioPath: String)
+
+    @Query("SELECT * FROM film_media WHERE local_audio_path IS NULL")
+    suspend fun getFilmMediaWithoutLocalAudioPath(): List<FilmMediaEntity>
+
+    @Query("SELECT * FROM film_media WHERE local_video_path IS NULL")
+    suspend fun getFilmMediaWithoutLocalVideoPath(): List<FilmMediaEntity>
 }
