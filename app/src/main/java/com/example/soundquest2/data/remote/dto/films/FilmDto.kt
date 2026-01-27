@@ -17,7 +17,6 @@ data class FilmDto(
     val releaseYear: Int,
     @SerialName("film_type")
     val filmType: FilmType,
-    val title: String,
 
     @SerialName("film_translations")
     val filmTranslations: List<FilmTranslationDto>,

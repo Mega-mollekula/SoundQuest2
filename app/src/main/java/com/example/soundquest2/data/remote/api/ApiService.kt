@@ -166,10 +166,10 @@ object ApiService {
             duration_minutes,
             release_year,
             film_type,
-            title,
             film_translations!inner(
                 language,
-                description
+                description,
+                title
             ),
             film_media(
                 duration,

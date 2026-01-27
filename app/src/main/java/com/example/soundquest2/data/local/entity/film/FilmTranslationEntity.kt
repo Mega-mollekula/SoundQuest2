@@ -22,5 +22,6 @@ data class FilmTranslationEntity(
     @ColumnInfo("film_id")
     val filmId: Long,
     val language: String,
-    val description: String
+    val description: String,
+    val title: String
 )

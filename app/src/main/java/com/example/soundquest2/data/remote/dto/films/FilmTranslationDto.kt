@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FilmTranslationDto(
     val language: String,
-    val description: String
+    val description: String,
+    val title: String
 )

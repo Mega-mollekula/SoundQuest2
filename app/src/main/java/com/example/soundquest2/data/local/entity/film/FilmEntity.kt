@@ -19,5 +19,4 @@ data class FilmEntity (
     val releaseYear: Int,
     @ColumnInfo("film_type")
     val filmType: FilmType,
-    val title: String,
 )

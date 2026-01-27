@@ -124,13 +124,13 @@ fun FilmDto.toEntities(): FilmEntitiesBundle {
             durationMinutes = durationMinutes,
             releaseYear = releaseYear,
             filmType = filmType,
-            title = title
         ),
         translations = filmTranslations.map {
             FilmTranslationEntity(
                 filmId = id,
                 language = it.language,
-                description = it.description
+                description = it.description,
+                title = it.title
             )
         },
         media = FilmMediaEntity(
