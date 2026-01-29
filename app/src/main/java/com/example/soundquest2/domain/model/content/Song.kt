@@ -1,8 +1,8 @@
 package com.example.soundquest2.domain.model.content
 
-import com.example.soundquest2.domain.model.ContentType
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.ContentType
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 import com.example.soundquest2.domain.model.song.Artist
 import com.example.soundquest2.domain.model.song.SongAudioMedia
 import com.example.soundquest2.domain.model.song.SongTranslation

@@ -1,7 +1,7 @@
 package com.example.soundquest2.domain.model.content
 
-import com.example.soundquest2.domain.model.ContentType
-import com.example.soundquest2.domain.model.FilmType
+import com.example.soundquest2.domain.model.enums.ContentType
+import com.example.soundquest2.domain.model.enums.FilmType
 import com.example.soundquest2.domain.model.film.FilmMedia
 import com.example.soundquest2.domain.model.film.FilmTranslation
 

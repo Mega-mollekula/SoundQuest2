@@ -1,6 +1,6 @@
 package com.example.soundquest2.domain.model.song
 
-import com.example.soundquest2.domain.model.Gender
+import com.example.soundquest2.domain.model.enums.Gender
 
 data class Artist(
     val countryCode: String,

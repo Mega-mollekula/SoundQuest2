@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.remote.dto.games
 
-import com.example.soundquest2.domain.model.GameGenre
+import com.example.soundquest2.domain.model.enums.GameGenre
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

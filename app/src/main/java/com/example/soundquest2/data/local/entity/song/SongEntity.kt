@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 
 @Entity(
     tableName = "songs",

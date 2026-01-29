@@ -2,8 +2,8 @@ package com.example.soundquest2.domain.repository
 
 import com.example.soundquest2.domain.model.content.Song
 import com.example.soundquest2.core.errors.Result
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 
 interface SongRepository {
     suspend fun getAllSongs(forceRefresh: Boolean = false, language: String = "ru"): Result<List<Song>>

@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.soundquest2.domain.model.SegmentType
+import com.example.soundquest2.domain.model.enums.SegmentType
 
 @Entity(
     tableName = "song_audio_media",

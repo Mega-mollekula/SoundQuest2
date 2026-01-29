@@ -7,8 +7,8 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.example.soundquest2.data.local.entity.song.SongEntity
 import com.example.soundquest2.data.local.entity.song.relation.SongWithDetails
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 
 @Dao
 interface SongDao {

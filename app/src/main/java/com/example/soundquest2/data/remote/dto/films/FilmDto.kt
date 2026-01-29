@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.remote.dto.films
 
-import com.example.soundquest2.domain.model.FilmType
+import com.example.soundquest2.domain.model.enums.FilmType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

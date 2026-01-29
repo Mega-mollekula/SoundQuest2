@@ -2,7 +2,7 @@ package com.example.soundquest2.data.local.download
 
 import android.util.Log
 import com.example.soundquest2.data.remote.api.ApiService
-import com.example.soundquest2.domain.model.SegmentType
+import com.example.soundquest2.domain.model.enums.SegmentType
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
 

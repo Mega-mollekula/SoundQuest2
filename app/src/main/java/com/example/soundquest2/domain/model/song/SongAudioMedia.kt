@@ -1,6 +1,6 @@
 package com.example.soundquest2.domain.model.song
 
-import com.example.soundquest2.domain.model.SegmentType
+import com.example.soundquest2.domain.model.enums.SegmentType
 
 data class SongAudioMedia (
     val segmentType: SegmentType,

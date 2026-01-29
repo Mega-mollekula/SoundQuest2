@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.remote.dto.songs
 
-import com.example.soundquest2.domain.model.SegmentType
+import com.example.soundquest2.domain.model.enums.SegmentType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

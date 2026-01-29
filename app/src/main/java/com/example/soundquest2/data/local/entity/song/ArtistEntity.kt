@@ -3,7 +3,7 @@ package com.example.soundquest2.data.local.entity.song
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.soundquest2.domain.model.Gender
+import com.example.soundquest2.domain.model.enums.Gender
 
 @Entity(tableName = "artists")
 data class ArtistEntity(

@@ -3,8 +3,8 @@ package com.example.soundquest2.data.remote.api
 import com.example.soundquest2.data.remote.dto.films.FilmDto
 import com.example.soundquest2.data.remote.dto.games.GameDto
 import com.example.soundquest2.data.remote.dto.songs.SongDto
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.storage

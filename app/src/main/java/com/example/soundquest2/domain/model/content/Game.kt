@@ -1,7 +1,7 @@
 package com.example.soundquest2.domain.model.content
 
-import com.example.soundquest2.domain.model.ContentType
-import com.example.soundquest2.domain.model.GameGenre
+import com.example.soundquest2.domain.model.enums.ContentType
+import com.example.soundquest2.domain.model.enums.GameGenre
 import com.example.soundquest2.domain.model.game.GameMedia
 import com.example.soundquest2.domain.model.game.GameTranslation
 

@@ -11,8 +11,8 @@ import com.example.soundquest2.data.mapper.toEntities
 import com.example.soundquest2.data.mapper.toGlobalSongBundle
 import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.data.remote.dto.songs.SongDto
-import com.example.soundquest2.domain.model.Era
-import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.enums.Era
+import com.example.soundquest2.domain.model.enums.Genre
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.After
