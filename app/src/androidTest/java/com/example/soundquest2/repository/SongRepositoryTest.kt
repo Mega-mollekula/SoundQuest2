@@ -21,7 +21,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.File
 import com.example.soundquest2.core.errors.Result
 import com.example.soundquest2.data.local.download.DownloadProgress
 import kotlinx.coroutines.flow.toList
@@ -103,6 +102,4 @@ class SongRepositoryTest {
         }
 
     }
-
-
 }
