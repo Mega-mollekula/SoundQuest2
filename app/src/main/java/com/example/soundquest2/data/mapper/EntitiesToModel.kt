@@ -3,6 +3,9 @@ package com.example.soundquest2.data.mapper
 import com.example.soundquest2.data.local.entity.film.FilmMediaEntity
 import com.example.soundquest2.data.local.entity.film.FilmTranslationEntity
 import com.example.soundquest2.data.local.entity.film.relation.FilmWithDetails
+import com.example.soundquest2.data.local.entity.game.GameMediaEntity
+import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
+import com.example.soundquest2.data.local.entity.game.relation.GameWithDetails
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
@@ -12,6 +15,9 @@ import com.example.soundquest2.data.local.entity.song.relation.SongWithDetails
 import com.example.soundquest2.domain.model.film.Film
 import com.example.soundquest2.domain.model.film.FilmMedia
 import com.example.soundquest2.domain.model.film.FilmTranslation
+import com.example.soundquest2.domain.model.game.Game
+import com.example.soundquest2.domain.model.game.GameMedia
+import com.example.soundquest2.domain.model.game.GameTranslation
 import com.example.soundquest2.domain.model.song.Artist
 import com.example.soundquest2.domain.model.song.ArtistTranslation
 import com.example.soundquest2.domain.model.song.Song
@@ -105,5 +111,37 @@ fun FilmWithDetails.toModel(): Film {
 }
 
 fun List<FilmWithDetails>.toFilmModels(): List<Film> {
+    return this.map { it.toModel() }
+}
+
+fun GameTranslationEntity.toModel(): GameTranslation {
+    return GameTranslation(
+        language = language,
+        description = description
+    )
+}
+
+fun GameMediaEntity.toModel(): GameMedia {
+    return GameMedia(
+        duration = duration,
+        localAudioPath = localAudioPath,
+        localVideoPath = localVideoPath,
+        pictureUri = pictureUri
+    )
+}
+
+fun GameWithDetails.toModel(): Game {
+    return Game(
+        developer = game.developer,
+        publisher = game.publisher,
+        releaseYear = game.releaseYear,
+        genre = game.genre,
+        title = game.title,
+        gameTranslations = translations.map {it.toModel()},
+        gameMedia = gameMedia.toModel()
+    )
+}
+
+fun List<GameWithDetails>.toGameModels(): List<Game> {
     return this.map { it.toModel() }
 }
