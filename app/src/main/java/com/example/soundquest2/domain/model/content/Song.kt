@@ -1,0 +1,20 @@
+package com.example.soundquest2.domain.model.content
+
+import com.example.soundquest2.domain.model.ContentType
+import com.example.soundquest2.domain.model.Era
+import com.example.soundquest2.domain.model.Genre
+import com.example.soundquest2.domain.model.song.Artist
+import com.example.soundquest2.domain.model.song.SongAudioMedia
+import com.example.soundquest2.domain.model.song.SongTranslation
+import com.example.soundquest2.domain.model.song.SongVisualMedia
+
+data class Song (
+    val genre: Genre,
+    val era: Era,
+    val title: String,
+    val songTranslations: List<SongTranslation>,
+    val audioMedia: List<SongAudioMedia>,
+    val visualMedia: SongVisualMedia,
+    val artist: Artist,
+    override val contentType: ContentType = ContentType.SONG
+) : MediaContent

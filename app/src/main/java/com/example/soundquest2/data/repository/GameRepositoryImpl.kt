@@ -9,7 +9,7 @@ import com.example.soundquest2.core.errors.Result
 import com.example.soundquest2.data.mapper.toEntities
 import com.example.soundquest2.data.mapper.toGameModels
 import com.example.soundquest2.data.mapper.toGlobalGameBundle
-import com.example.soundquest2.domain.model.game.Game
+import com.example.soundquest2.domain.model.content.Game
 
 class GameRepositoryImpl(
     private val apiService: ApiService,

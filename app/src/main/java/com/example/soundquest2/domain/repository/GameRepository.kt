@@ -1,6 +1,6 @@
 package com.example.soundquest2.domain.repository
 
-import com.example.soundquest2.domain.model.game.Game
+import com.example.soundquest2.domain.model.content.Game
 import com.example.soundquest2.core.errors.Result
 
 interface GameRepository {

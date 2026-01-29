@@ -7,7 +7,7 @@ import com.example.soundquest2.data.mapper.toEntities
 import com.example.soundquest2.data.mapper.toGlobalSongBundle
 import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.domain.model.Genre
-import com.example.soundquest2.domain.model.song.Song
+import com.example.soundquest2.domain.model.content.Song
 import com.example.soundquest2.domain.repository.SongRepository
 import com.example.soundquest2.core.errors.Result
 import com.example.soundquest2.data.mapper.toSongModels
