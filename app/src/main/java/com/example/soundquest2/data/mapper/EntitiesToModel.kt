@@ -46,14 +46,14 @@ fun SongAudioMediaEntity.toSongAudioModel(): SongAudioMedia {
     return SongAudioMedia(
         segmentType = segment,
         duration = duration,
-        localAudioPath = localAudioPath!!
+        localAudioPath = localAudioPath
     )
 }
 
 fun SongVisualMediaEntity.toSongVisualModel(): SongVisualMedia {
     return SongVisualMedia(
         pictureUri = pictureUri,
-        localVideoPath = localVideoPath!!
+        localVideoPath = localVideoPath
     )
 }
 
