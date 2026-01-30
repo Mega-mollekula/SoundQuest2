@@ -6,12 +6,16 @@ import com.example.soundquest2.data.local.entity.film.relation.FilmWithDetails
 import com.example.soundquest2.data.local.entity.game.GameMediaEntity
 import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
 import com.example.soundquest2.data.local.entity.game.relation.GameWithDetails
+import com.example.soundquest2.data.local.entity.result.GameModeType
+import com.example.soundquest2.data.local.entity.result.GameResultEntity
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
 import com.example.soundquest2.data.local.entity.song.SongTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
 import com.example.soundquest2.data.local.entity.song.relation.ArtistWithTranslations
 import com.example.soundquest2.data.local.entity.song.relation.SongWithDetails
+import com.example.soundquest2.domain.model.GameMode
+import com.example.soundquest2.domain.model.GameResult
 import com.example.soundquest2.domain.model.content.Film
 import com.example.soundquest2.domain.model.film.FilmMedia
 import com.example.soundquest2.domain.model.film.FilmTranslation
@@ -145,3 +149,23 @@ fun GameWithDetails.toModel(): Game {
 fun List<GameWithDetails>.toGameModels(): List<Game> {
     return this.map { it.toModel() }
 }
+
+fun GameModeType.toGameModeModel(): GameMode {
+    return when(this) {
+        GameModeType.GUESS_SONG -> GameMode.GuessSong
+        GameModeType.GUESS_FILM -> GameMode.GuessFilm
+        GameModeType.GUESS_GAME -> GameMode.GuessGame
+        GameModeType.FAST_START -> GameMode.FastStart
+    }
+}
+
+fun GameResultEntity.toResultModel(): GameResult {
+    return GameResult(
+        createdAt = this.createdAt,
+        gameMode = this.gameMode.toGameModeModel(),
+        guessedSongsCount = guessedSongsCount,
+        roundsCount = roundsCount
+    )
+}
+
+fun List<GameResultEntity>.toResultModels(): List<GameResult> = this.map{ it.toResultModel()}
