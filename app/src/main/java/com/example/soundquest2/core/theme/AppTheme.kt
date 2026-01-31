@@ -1,4 +1,4 @@
-package com.example.soundquest2.domain.model.enums
+package com.example.soundquest2.core.theme
 
 enum class AppTheme {
     LIGHT,
