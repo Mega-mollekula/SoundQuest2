@@ -13,10 +13,10 @@ class LoadMediaUseCase(
     private val gameAudioRepository: GameRepository,
     private val filmAudioRepository: FilmRepository
 ) {
-    suspend operator fun invoke(forceRefresh: Boolean, gameMode: GameMode, language: String): Result<List<MediaContent>> {
+    suspend operator fun invoke(forceRefresh: Boolean, gameMode: GameMode, language: String, count: Int = 10): Result<List<MediaContent>> {
         return when (gameMode) {
             is GameMode.GuessSong -> {
-                songRepository.getRandomSongs(forceRefresh, language)
+                songRepository.getRandomSongs(forceRefresh, language, count)
             }
 
             is GameMode.GuessSongWithParams -> {
@@ -34,27 +34,28 @@ class LoadMediaUseCase(
             }
 
             is GameMode.GuessFilm -> {
-                filmAudioRepository.getRandomFilms(forceRefresh, language = language)
+                filmAudioRepository.getRandomFilms(forceRefresh, count, language)
             }
 
             is GameMode.GuessGame -> {
-                gameAudioRepository.getRandomGames(forceRefresh, language = language)
+                gameAudioRepository.getRandomGames(forceRefresh, count, language)
             }
 
             is GameMode.FastStart -> {
-                loadFastStart(forceRefresh, language) // with balance
+                loadFastStart(forceRefresh, language, count) // with balance
             }
         }
     }
 
     private suspend fun loadFastStart(
         forceRefresh: Boolean,
-        language: String
+        language: String,
+        count: Int = 10
     ): Result<List<MediaContent>> {
 
-        val songsResult = songRepository.getRandomSongs(forceRefresh, language)
-        val filmsResult = filmAudioRepository.getRandomFilms(forceRefresh, language = language)
-        val gamesResult = gameAudioRepository.getRandomGames(forceRefresh, language = language)
+        val songsResult = songRepository.getRandomSongs(forceRefresh, language, count)
+        val filmsResult = filmAudioRepository.getRandomFilms(forceRefresh, count, language)
+        val gamesResult = gameAudioRepository.getRandomGames(forceRefresh, count, language)
 
         val error = listOf(songsResult, filmsResult, gamesResult).filterIsInstance<Result.Error>().firstOrNull()?.error
 
