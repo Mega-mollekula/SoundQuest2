@@ -1,47 +1,52 @@
 package com.example.soundquest2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.soundquest2.ui.theme.SoundQuest2Theme
+import androidx.compose.runtime.remember
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
+import com.example.soundquest2.core.theme.AppTheme
+import com.example.soundquest2.core.theme.ThemeController
+import com.example.soundquest2.core.theme.ThemeResolver
+import com.example.soundquest2.data.local.storage.ThemeStorage
+import com.example.soundquest2.ui.theme.SoundQuestThemeProvider
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+val Context.themeDataStore by preferencesDataStore(name = "theme_store")
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var controller: ThemeController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val storage = ThemeStorage(themeDataStore)
+        controller = ThemeController(storage)
+        val resolver = ThemeResolver()
+
+        val theme = runBlocking {
+            controller.getCurrentTheme()
+        }
+
         setContent {
-            SoundQuest2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            val properties = remember(theme) {
+                resolver.resolve(theme)
+            }
+
+            SoundQuestThemeProvider(properties) {
+                //AppNavGraph()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SoundQuest2Theme {
-        Greeting("Android")
+    private fun onThemeSelected(theme: AppTheme) {
+        lifecycleScope.launch {
+            controller.changeTheme(theme)
+            recreate()
+        }
     }
 }
