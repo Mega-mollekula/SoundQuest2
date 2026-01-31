@@ -3,6 +3,7 @@ package com.example.soundquest2.domain.model.content
 import com.example.soundquest2.domain.model.enums.ContentType
 import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.Genre
+import com.example.soundquest2.domain.model.enums.SegmentType
 import com.example.soundquest2.domain.model.song.Artist
 import com.example.soundquest2.domain.model.song.SongAudioMedia
 import com.example.soundquest2.domain.model.song.SongTranslation
@@ -17,4 +18,9 @@ data class Song (
     val visualMedia: SongVisualMedia,
     val artist: Artist,
     override val contentType: ContentType = ContentType.SONG
-) : MediaContent
+) : MediaContent {
+
+    private fun getAudioByType(segmentType: SegmentType): SongAudioMedia {
+        return audioMedia.filter { it.segmentType == segmentType }.random()
+    }
+}
