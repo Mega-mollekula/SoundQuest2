@@ -20,7 +20,7 @@ data class Song (
     override val contentType: ContentType = ContentType.SONG
 ) : MediaContent {
 
-    private fun getAudioByType(segmentType: SegmentType): SongAudioMedia {
+    fun getAudioByType(segmentType: SegmentType): SongAudioMedia {
         return audioMedia.filter { it.segmentType == segmentType }.random()
     }
 }
