@@ -1,0 +1,105 @@
+<resources>
+
+    <!-- common -->
+    <string name="app_name">SoundQuest</string>
+    <string name="welcome">Welcome!</string>
+
+    <!-- facts -->
+    <string name="fact_1_title">First Album Recorded in Space</string>
+    <string name="fact_1_desc">Astronaut Chris Hadfield became the first person to record a music video in open space — aboard the ISS, he performed a cover of David Bowie’s “Space Oddity”. Even more surprisingly, he later released a full album, *“Space Sessions: Songs from a Tin Can”*, partially recorded in zero gravity.</string>
+    <string name="fact_2_title">Song for Free</string>
+    <string name="fact_2_desc">In 2007, Radiohead released the album “In Rainbows” on a “pay what you want” basis — including $0. Many downloaded it for free, but the average payment was $6. This revolutionized the industry and marked the beginning of the era of digital trust between artists and fans.</string>
+    <string name="fact_3_title">Banned for Optimism</string>
+    <string name="fact_3_desc">In 1985, Soviet authorities banned the song “We Are the World” (USA for Africa), claiming lyrics “over-idealize humanity” and allegedly “undermine class vigilance”. Meanwhile, in the USSR, copies were secretly distributed on X-ray film — known as “bone records”.</string>
+    <string name="fact_4_title">Melody That Treats Parkinson’s Disease</string>
+    <string name="fact_4_desc">Studies show that rhythmic music helps Parkinson’s patients regain gait and coordination. The brain synchronizes with the rhythm — effectively “rebooting” motor functions. In some clinics, music therapy is even used as part of treatment.</string>
+
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="russian">Russian</string>
+    <string name="english">English</string>
+
+    <string name="menu_eras">Hits of Eras</string>
+    <string name="menu_genres">Genres of Music</string>
+    <string name="menu_fast_start">Fast Start</string>
+    <string name="menu_stats">Statistics</string>
+
+    <string name="back">Back</string>
+    <string name="change_theme">Change theme</string>
+    <string name="change_language">Change language</string>
+
+    <string name="select_theme">Select theme</string>
+    <string name="theme_light">Light theme</string>
+    <string name="theme_dark">Dark theme</string>
+    <string name="theme_green">Custom theme</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="select_language">Select language</string>
+
+    <string name="error_icon_desc">Error icon</string>
+    <string name="error_title">Uups, error!</string>
+    <string name="retry">Retry</string>
+
+    <string name="correct">Correct!</string>
+    <string name="incorrect">Incorrect!</string>
+    <string name="correct_answer">Correct answer: %1$s</string>
+    <string name="chosen_answer">You have chosen: %1$s</string>
+    <string name="no_information">No information</string>
+    <string name="next">Next</string>
+    <string name="fact_title">Interesting fact:</string>
+
+    <string name="round">Round %1$d / %2$d</string>
+    <string name="restart_content_desc">Restart</string>
+
+    <!-- GameResultScreen -->
+    <string name="your_result">Your\nResult</string>
+    <string name="score">Score</string>
+    <string name="genre">Genre</string>
+    <string name="era">Era</string>
+    <string name="finished_at">Finished At</string>
+
+    <string name="error">Error</string>
+    <string name="any">Any</string>
+    <string name="exit">Exit</string>
+    <string name="restart">Restart</string>
+
+    <!-- DecadeSelectionScreen -->
+    <string name="eras_title">Eras</string>
+    <string name="era_old">Old school</string>
+    <string name="era_revolution">Revolution era</string>
+    <string name="era_evolution">Evolution era</string>
+    <string name="era_innovation">Innovation era</string>
+
+    <!-- GenreSelectionScreen -->
+    <string name="genres_title">Genres</string>
+    <string name="genre_rock">Rock</string>
+    <string name="genre_pop">Pop</string>
+    <string name="genre_classic">Classic</string>
+    <string name="genre_rap">Rap</string>
+
+    <string name="guessed_songs">Guessed Songs:</string>
+    <string name="results">Results:</string>
+
+    <string name="fast_start">Fast start</string>
+    <string name="guess_film">Guess film</string>
+    <string name="guess_game">Guess game</string>
+    <string name="guess_song">Guess song</string>
+
+    <string name="error_unknown">Unknown Error!</string>
+    <string name="error_no_internet">No Internet!</string>
+    <string name="error_server">Connection lost!</string>
+    <string name="error_database">Error with database!</string>
+    <string name="error_storage">Error with storage</string>
+
+    <string name="game_mode">Game mode</string>
+
+    <string name="error_empty_content">No available content, try again later!</string>
+
+    <string name="completed">Completed!</string>
+    <string name="downloaded_count">Downloaded: %1$d</string>
+    <string name="skipped_count">Skipped: %1$d</string>
+    <string name="failed_count">Failed: %1$d</string>
+    <string name="continue_button">Continue</string>
+    <string name="try_again_button">Try again</string>
+    <string name="exit_button">Exit</string>
+</resources>
