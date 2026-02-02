@@ -6,8 +6,31 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.soundquest2.ui.component.Inter
+
+fun appTextStyleBuilder(
+    color: Color,
+    fontSize: TextUnit,
+    lineHeight: TextUnit = fontSize,
+    fontWeight: FontWeight = FontWeight.Bold,
+    shadowColor: Color? = null
+) =  TextStyle (
+    fontFamily = Inter,
+    fontWeight = fontWeight,
+    fontSize = fontSize,
+    lineHeight = lineHeight,
+    letterSpacing = 0.sp,
+    color = color,
+    shadow = shadowColor?.let {
+        Shadow(
+            it,
+            offset = Offset(0f, 2f),
+            blurRadius = 8f
+        )
+    }
+)
 
 fun titleLarge (color: Color): TextStyle = TextStyle(
     fontFamily = Inter,
