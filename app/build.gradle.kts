@@ -77,4 +77,11 @@ dependencies {
 
     // Data store
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation(libs.lottie.compose)
+
+    implementation("androidx.compose.material:material-icons-extended:1.7.0")
+
+    // Navigation (Compose)
+    implementation(libs.androidx.navigation.compose)
 }
