@@ -97,7 +97,7 @@ class UnifiedMediaDownloader(
                     add(
                         DownloadableSongVideo(
                             it.songId,
-                            it.videoPath,
+                            it.videoPath!!,
                             videoDir
                         )
                     )
@@ -106,12 +106,13 @@ class UnifiedMediaDownloader(
 
         val total = allMedia.size
         if (total == 0) {
-            send(DownloadProgress.Completed(0, 0, 0))
+            send(DownloadProgress.Completed(0, 0, 0, 0))
             return@channelFlow
         }
 
         val completed = AtomicInteger(0)
         val failed = AtomicInteger(0)
+        val skipped = AtomicInteger(0)
         val semaphore = Semaphore(parallelism)
 
         coroutineScope {
@@ -120,10 +121,10 @@ class UnifiedMediaDownloader(
                     semaphore.withPermit {
                         val result = try {
                             media.download(apiService, daos)
-                        } catch (e: CancellationException) {
+                        } catch (e: CancellationException) { // обработка отдельно, вдруг буду делать обертку
                             throw e
                         } catch (e: Exception) {
-                            DownloadResult.Failed(e)
+                            throw e
                         }
 
                         when (result) {
@@ -131,13 +132,14 @@ class UnifiedMediaDownloader(
 
                             is DownloadResult.Failed -> failed.incrementAndGet()
 
-                            is DownloadResult.Skipped -> Unit
+                            is DownloadResult.Skipped -> skipped.incrementAndGet()
                         }
 
                         send(
                             DownloadProgress.InProgress(
                                 completed = completed.get(),
                                 failed = failed.get(),
+                                skipped = skipped.get(),
                                 total = total
                             )
                         )
@@ -150,6 +152,7 @@ class UnifiedMediaDownloader(
             DownloadProgress.Completed(
                 completed = completed.get(),
                 failed = failed.get(),
+                skipped = skipped.get(),
                 total = total
             )
         )
