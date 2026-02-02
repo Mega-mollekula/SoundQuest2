@@ -10,7 +10,6 @@ sealed class AppError {
     object NetworkUnavailable : AppError()
 
     object DatabaseError : AppError()
-    object FileSystemError : AppError()
 
     data class NoContent(
         val description: String
