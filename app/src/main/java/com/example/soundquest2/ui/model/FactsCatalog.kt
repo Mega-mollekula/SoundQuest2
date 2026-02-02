@@ -1,28 +1,24 @@
-package com.example.soundquest2.ui.facts
+package com.example.soundquest2.ui.model
 
 import com.example.soundquest2.R
 
 object FactsCatalog {
 
     val facts = listOf(
-        InterestingFact(
+        UiFact(
             imageRes = R.drawable.fact_1,
-            titleRes = R.string.fact_1_title,
             descriptionRes = R.string.fact_1_desc
         ),
-        InterestingFact(
+        UiFact(
             imageRes = R.drawable.fact_2,
-            titleRes = R.string.fact_2_title,
             descriptionRes = R.string.fact_2_desc
         ),
-        InterestingFact(
+        UiFact(
             imageRes = R.drawable.fact_3,
-            titleRes = R.string.fact_3_title,
             descriptionRes = R.string.fact_3_desc
         ),
-        InterestingFact(
+        UiFact(
             imageRes = R.drawable.fact_4,
-            titleRes = R.string.fact_4_title,
             descriptionRes = R.string.fact_4_desc
         )
     )
