@@ -19,6 +19,9 @@ class DownloadableFilmVideo(
         val destination = File(videoDir, "${filmId}_film_video.mp4")
 
         return try {
+            if (destination.exists()) {
+                return DownloadResult.Skipped
+            }
             if (!destination.exists()) {
                 val ok = apiService.downloadVideoMedia(videoPath, destination)
                 if (!ok) {

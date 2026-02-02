@@ -19,6 +19,9 @@ class DownloadableGameAudio(
         val destination = File(audioDir, "${gameId}_game_audio.mp3")
 
         return try {
+            if (destination.exists()) {
+                return DownloadResult.Skipped
+            }
             if (!destination.exists()) {
                 val ok = apiService.downloadAudioMedia(audioPath, destination)
                 if (!ok) {

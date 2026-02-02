@@ -19,12 +19,12 @@ class DownloadableSongAudio(
         daos: MediaDaos
     ): DownloadResult {
 
-        val destination = File(
-            audioDir,
-            "${songId}_${segment.name}.mp3"
-        )
+        val destination = File(audioDir, "${songId}_${segment.name}.mp3")
 
         return try {
+            if (destination.exists()) {
+                return DownloadResult.Skipped
+            }
             if (!destination.exists()) {
                 val ok = apiService.downloadAudioMedia(audioPath, destination)
                 if (!ok) {

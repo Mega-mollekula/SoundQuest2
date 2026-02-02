@@ -7,7 +7,7 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class DownloadableSongVideo(
     private val songId: Long,
-    private val videoPath: String?,
+    private val videoPath: String,
     private val videoDir: File
 ) : DownloadableMedia() {
 
@@ -16,13 +16,12 @@ class DownloadableSongVideo(
         daos: MediaDaos
     ): DownloadResult {
 
-        if (videoPath.isNullOrBlank()) {
-            return DownloadResult.Skipped
-        }
-
         val destination = File(videoDir, "${songId}_song_video.mp4")
 
         return try {
+            if (destination.exists()) {
+                return DownloadResult.Skipped
+            }
             if (!destination.exists()) {
                 val ok = apiService.downloadVideoMedia(videoPath, destination)
                 if (!ok) {
