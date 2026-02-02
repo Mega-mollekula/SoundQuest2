@@ -1,4 +1,4 @@
-package com.example.soundquest.presentation.ui.screen.main
+package com.example.soundquest2.ui.screen.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
