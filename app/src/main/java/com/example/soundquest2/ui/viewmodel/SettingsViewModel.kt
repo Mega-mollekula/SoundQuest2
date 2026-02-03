@@ -6,41 +6,40 @@ import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.data.local.storage.ThemeStorage
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(
     private val themeStorage: ThemeStorage,
-    private val languageStorage: LanguageStorage
+    private val languageStorage: LanguageStorage,
+    initialTheme: AppTheme,
+    initialLanguage: AppLanguage
 ) : ViewModel() {
 
-    val theme: StateFlow<AppTheme> =
-        themeStorage.themeFlow
-            .stateIn(
-                viewModelScope,
-                SharingStarted.Eagerly,
-                AppTheme.LIGHT
-            )
+    private val _theme = MutableStateFlow(initialTheme)
+    val theme: StateFlow<AppTheme> = _theme.asStateFlow()
 
-    val language: StateFlow<AppLanguage> =
-        languageStorage.languageFlow
-            .stateIn(
-                viewModelScope,
-                SharingStarted.Eagerly,
-                AppLanguage.RU
-            )
+    private val _language = MutableStateFlow(initialLanguage)
+    val language: StateFlow<AppLanguage> = _language.asStateFlow()
 
-    fun changeTheme(theme: AppTheme) {
+    fun changeTheme(newTheme: AppTheme) {
         viewModelScope.launch {
-            themeStorage.setTheme(theme)
+            themeStorage.setTheme(newTheme)
+            _theme.update {
+                newTheme
+            }
         }
     }
 
-    fun changeLanguage(language: AppLanguage) {
+    fun changeLanguage(newLanguage: AppLanguage) {
         viewModelScope.launch {
-            languageStorage.setLanguage(language)
+            languageStorage.setLanguage(newLanguage)
+            _language.update {
+                newLanguage
+            }
         }
     }
 }
