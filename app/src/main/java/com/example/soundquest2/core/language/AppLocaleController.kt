@@ -8,8 +8,8 @@ class AppLocaleController(
     private val context: Context,
 ) {
 
-    fun applyLanguage(languageCode: String) {
-        val locale = Locale(languageCode)
+    fun apply(language: AppLanguage) {
+        val locale = Locale(language.code)
         Locale.setDefault(locale)
 
         val config = Configuration(context.resources.configuration)
