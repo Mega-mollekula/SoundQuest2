@@ -6,6 +6,8 @@ sealed interface DownloadUiState {
 
     object Idle : DownloadUiState
 
+    object Preparing : DownloadUiState
+
     data class Downloading(
         val completed: Int,
         val total: Int,

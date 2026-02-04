@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -161,6 +162,14 @@ fun MediaDownloadScreen(
                         }
                     }
 
+                    is DownloadUiState.Preparing -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(100.dp),
+                            color = Color.White,
+                            trackColor = Color.White.copy(alpha = 0.3f),
+                            strokeWidth = 10.dp
+                        )
+                    }
 
                     is DownloadUiState.Downloading -> {
 
@@ -261,9 +270,7 @@ fun MediaDownloadScreenDownloadingPreview() {
         onRetry = {},
         onExit = {},
         onCompleted = {},
-        uiState = DownloadUiState.Completed (
-            2, 4, 5, 3
-        )
+        uiState = DownloadUiState.Preparing
     )
 }
 

@@ -27,6 +27,8 @@ class MediaDownloadViewModel(
 
         if (_uiState.value is DownloadUiState.Downloading) return
 
+        _uiState.update { DownloadUiState.Preparing }
+
         viewModelScope.launch {
             //getting metadata before downloading
             when(val result = loadAudio(forceRefresh = true, gameMode, language, count)) {
