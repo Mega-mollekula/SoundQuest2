@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import com.example.soundquest2.ui.theme.AppTheme
 @Composable
 fun MainIcon(
     @DrawableRes iconId: Int,
+    onClick: () -> Unit
 ) {
     val shape = RoundedCornerShape(10.dp)
     Box(
@@ -37,7 +39,10 @@ fun MainIcon(
             .border(
                 width = 0.5.dp,
                 color = MaterialTheme.colorScheme.outline, shape = shape
-            ),
+            )
+            .clickable{
+                onClick()
+            },
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -59,7 +64,7 @@ fun MainIconPreview() {
                 .background(Color.Black)
                 .padding(16.dp)
         ) {
-            MainIcon(R.drawable.market_icon)
+            MainIcon(R.drawable.market_icon, {})
         }
     }
 }

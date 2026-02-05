@@ -25,7 +25,14 @@ import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onSoundTrackClick: () -> Unit,
+    onSongsClick: () -> Unit,
+    onFastStartClick: () -> Unit,
+    onAchievementsClick: () -> Unit,
+    onMarketClick: () -> Unit,
+    onSettingsClick: () -> Unit
+) {
     Box(modifier = Modifier.fillMaxSize()) {
 
         MainBackground(LocalAppImages.current.bg)
@@ -49,11 +56,17 @@ fun MainScreen() {
                     color = Color.White
                 )
 
-                MainButton(stringResource(R.string.soundtracks)) {}
+                MainButton(stringResource(R.string.soundtracks)) {
+                    onSoundTrackClick()
+                }
 
-                MainButton(stringResource(R.string.songs)) {}
+                MainButton(stringResource(R.string.songs)) {
+                    onSongsClick()
+                }
 
-                MainButton(stringResource(R.string.fast_start)) {}
+                MainButton(stringResource(R.string.fast_start)) {
+                    onFastStartClick()
+                }
 
                 Row(
                     modifier = Modifier
@@ -61,11 +74,17 @@ fun MainScreen() {
                         .padding(horizontal = 55.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    MainIcon(R.drawable.achivments_icon)
+                    MainIcon(R.drawable.achivments_icon) {
+                        onAchievementsClick()
+                    }
 
-                    MainIcon(R.drawable.market_icon)
+                    MainIcon(R.drawable.market_icon) {
+                        onMarketClick()
+                    }
 
-                    MainIcon(R.drawable.settings_icon)
+                    MainIcon(R.drawable.settings_icon) {
+                        onSettingsClick
+                    }
                 }
             }
         }
@@ -80,7 +99,14 @@ fun MainScreen() {
 @Composable
 fun HomeScreenLightPreviewLight() {
     AppTheme(darkTheme = false) {
-        MainScreen()
+        MainScreen(
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+        )
     }
 }
 @Preview(
@@ -91,6 +117,13 @@ fun HomeScreenLightPreviewLight() {
 @Composable
 fun HomeScreenLightPreviewDark() {
     AppTheme(darkTheme = true) {
-        MainScreen()
+        MainScreen(
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+        )
     }
 }
