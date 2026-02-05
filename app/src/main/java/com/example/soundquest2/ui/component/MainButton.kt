@@ -1,0 +1,86 @@
+package com.example.soundquest2.ui.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.soundquest2.ui.theme.AppTheme
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.res.stringResource
+import com.example.soundquest2.R
+
+@Composable
+fun MainButton(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    val shape = RoundedCornerShape(10.dp)
+
+    Box(
+        modifier = modifier
+            .size(width = 332.dp, height = 75.dp)
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .clip(shape)
+        ) {
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.6f))
+            )
+
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .border(
+                        width = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outline,
+                        shape = shape
+                    )
+            )
+        }
+
+        Text(
+            text = text,
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = MaterialTheme.typography.labelMedium
+        )
+    }
+}
+
+
+@Preview(
+    showBackground = true,
+    locale = "ru"
+)
+@Composable
+fun MainButtonPreview() {
+    AppTheme(false) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+                .padding(16.dp)
+        ) {
+            MainButton(text = stringResource(R.string.fast_start)) {}
+        }
+    }
+}
