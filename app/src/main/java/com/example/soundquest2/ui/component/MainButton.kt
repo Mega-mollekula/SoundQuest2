@@ -33,30 +33,16 @@ fun MainButton(
     Box(
         modifier = modifier
             .size(width = 332.dp, height = 75.dp)
-            .clickable(onClick = onClick),
+            .clip(shape)
+            .clickable(onClick = onClick)
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.6f))
+            .border(
+                width = 0.5.dp,
+                color = MaterialTheme.colorScheme.outline,
+                shape = shape
+            ),
         contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .clip(shape)
-        ) {
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.6f))
-            )
-
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .border(
-                        width = 0.5.dp,
-                        color = MaterialTheme.colorScheme.outline,
-                        shape = shape
-                    )
-            )
-        }
 
         Text(
             text = text,
@@ -73,7 +59,7 @@ fun MainButton(
 )
 @Composable
 fun MainButtonPreview() {
-    AppTheme(false) {
+    AppTheme(true) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
