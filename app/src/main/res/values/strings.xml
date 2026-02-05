@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SoundQuest</string>
+    <string name="app_name">Sound Quest</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="settings">Настройки</string>
     <string name="language">Язык</string>
@@ -16,52 +16,7 @@
     <string name="fact_3_desc">В 1985 году советские власти запретили песню «We Are the World» (USA for Africa), потому что её текст «слишком идеально описывает человечество» и якобы «подрывает классовую бдительность». При этом в СССР тайно распространяли записи на костях рентгеновских снимков — так называемые «пластинки на костях».</string>
     <string name="fact_4_title">Мелодия, которая лечит болезнь Паркинсона</string>
     <string name="fact_4_desc">Исследования показали, что ритмичная музыка помогает пациентам с болезнью Паркинсона восстановить походку и координацию. Мозг синхронизируется с ритмом и буквально «перезагружает» двигательные функции. В некоторых клиниках даже используют музыкальную терапию как часть лечения.</string>
-    <string name="menu_eras">Хиты эпох</string>
-    <string name="menu_genres">Жанры музыки</string>
-    <string name="menu_fast_start">Быстрый старт</string>
-    <string name="menu_stats">Статистика</string>
-    <string name="select_theme">Выбрать тему</string>
-    <string name="theme_light">Светлая тема</string>
-    <string name="theme_dark">Темная тема</string>
-    <string name="theme_green">Кастомная тема</string>
-    <string name="cancel">Отменить</string>
-    <string name="select_language">Выберите язык</string>
-    <string name="error_icon_desc">Иконка ошибки</string>
-    <string name="error_title">Ошибка</string>
-    <string name="retry">Повторить</string>
-    <string name="correct">Верно!</string>
-    <string name="incorrect">Неверно!</string>
-    <string name="correct_answer">Правильный ответ: %1$s</string>
-    <string name="chosen_answer">Вы выбрали: %1$s</string>
-    <string name="no_information">Нет информации</string>
-    <string name="next">Далее</string>
-    <string name="fact_title">Интересный факт:</string>
-    <string name="round">Раунд %1$d / %2$d</string>
-    <string name="restart_content_desc">Перезапуск</string>
-    <string name="your_result">Ваш\nрезультат</string>
-    <string name="score">Счёт</string>
-    <string name="genre">Жанр</string>
-    <string name="era">Эпоха</string>
-    <string name="finished_at">Завершено</string>
-    <string name="exit">Выход</string>
-    <string name="error">Ошибка</string>
-    <string name="any">Любой</string>
-    <string name="genres_title">Жанры</string>
-    <string name="genre_rock">Рок</string>
-    <string name="genre_pop">Поп</string>
-    <string name="genre_classic">Классическая</string>
-    <string name="genre_rap">Рэп</string>
-    <string name="eras_title">Эпохи</string>
-    <string name="era_old">Старая школа</string>
-    <string name="era_revolution">Эпоха революций</string>
-    <string name="era_evolution">Эпоха эволюций</string>
-    <string name="era_innovation">Эпоха инноваций</string>
-    <string name="guessed_songs">Угаданные песни:</string>
-    <string name="results">Результаты:</string>
-    <string name="fast_start">Быстрый старт</string>
-    <string name="guess_film">Угадай фильм</string>
-    <string name="guess_game">Угадай игру</string>
-    <string name="guess_song">Угадай песню</string>
+
     <string name="error_unknown">Неизвестная ошибка!</string>
     <string name="error_no_internet">Нет интернета!</string>
     <string name="error_server">Ошибка с сервером!</string>
@@ -76,4 +31,11 @@
     <string name="continue_button">Продолжить</string>
     <string name="try_again_button">Попробовать снова</string>
     <string name="exit_button">Выйти</string>
+
+    <!-- MainScreen -->
+    <string name="fast_start">Быстрая игра</string>
+    <string name="songs">Песни</string>
+    <string name="soundtracks">Саундтреки</string>
+
+    <string name="error_title">Ошибка</string>
 </resources>
