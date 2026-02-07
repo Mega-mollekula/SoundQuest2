@@ -30,12 +30,14 @@
     <string name="failed_count">Ошибок: %1$d</string>
     <string name="continue_button">Продолжить</string>
     <string name="try_again_button">Попробовать снова</string>
-    <string name="exit_button">Выйти</string>
+    <string name="exit">Выйти</string>
 
     <!-- MainScreen -->
     <string name="fast_start">Быстрая игра</string>
     <string name="songs">Песни</string>
     <string name="soundtracks">Саундтреки</string>
+
+    <string name="round_progress">Раунд %1$d/%2$d</string>
 
     <string name="error_title">Ошибка</string>
 </resources>
