@@ -1,0 +1,158 @@
+package com.example.soundquest2.ui.screen.game
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.media3.exoplayer.ExoPlayer
+import com.example.soundquest2.R
+import com.example.soundquest2.core.language.AppLanguage
+import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.component.ActionButton
+import com.example.soundquest2.ui.component.ResultInfoCard
+import com.example.soundquest2.ui.component.VideoBackground
+import com.example.soundquest2.ui.component.details.FilmDetailsMenu
+import com.example.soundquest2.ui.component.details.GameDetailsMenu
+import com.example.soundquest2.ui.component.details.SongDetailsMenu
+import com.example.soundquest2.ui.model.UiFilm
+import com.example.soundquest2.ui.model.UiGame
+import com.example.soundquest2.ui.model.UiSong
+import com.example.soundquest2.ui.state.GameUiState
+import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.toUi
+import com.example.soundquest2.ui.util.generateRandomSong
+
+@Composable
+fun ResultScreen(
+    videoPlayer: VideoPlayer,
+    state: GameUiState.Result,
+    onContinue: () -> Unit,
+    onFavouriteClick: () -> Unit,
+    language: AppLanguage
+) {
+    var isDetailsExpanded by remember { mutableStateOf(false) }
+
+    val media = state.correct.toUi(language.code)
+
+    Box(modifier = Modifier.fillMaxSize()) {
+
+        VideoBackground(videoPlayer, state, language)
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.TopEnd
+        ) {
+            ActionButton(
+                stringResource(R.string.continue_button),
+                onAction = onContinue
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 50.dp)
+        ) {
+            ResultInfoCard(
+                title = media.title,
+                onFavouriteClick = onFavouriteClick,
+                onExpandClick = { isDetailsExpanded = true },
+                isCorrect = state.isCorrect
+            )
+        }
+
+        AnimatedVisibility(
+            visible = isDetailsExpanded,
+            enter = slideInVertically { it },
+            exit = slideOutVertically { it }
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.95f))
+            ) {
+
+                when (media) {
+                    is UiFilm -> FilmDetailsMenu(media)
+                    is UiGame -> GameDetailsMenu(media)
+                    is UiSong -> SongDetailsMenu(media)
+                }
+
+                IconButton(
+                    onClick = { isDetailsExpanded = false },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowDown,
+                        contentDescription = "Collapse details",
+                        tint = Color.White,
+                        modifier = Modifier.size(64.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview(
+    name = "Dark",
+    showBackground = true,
+    locale = "en"
+)
+@Composable
+fun ResultScreenPreviewDark() {
+    AppTheme(darkTheme = true) {
+
+        val song = generateRandomSong()
+
+        val state = GameUiState.Result(
+            isCorrect = true,
+            selected = song,
+            correct = song
+        )
+
+        ResultScreen(
+            videoPlayer = PreviewVideoPlayer(),
+            state = state,
+            onContinue = {},
+            onFavouriteClick = {},
+            language = AppLanguage.EN
+        )
+    }
+}
+
+class PreviewVideoPlayer : VideoPlayer {
+
+    override val exoPlayer: ExoPlayer
+        get() = error("ExoPlayer is not available in Preview")
+
+    override fun prepare(items: List<String>) = Unit
+    override fun play(index: Int) = Unit
+    override fun stop() = Unit
+    override fun release() = Unit
+}
+
+
