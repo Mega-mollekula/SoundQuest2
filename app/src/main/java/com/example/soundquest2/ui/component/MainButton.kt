@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,7 +65,7 @@ fun MainButtonPreview() {
                 .background(Color.Black)
                 .padding(16.dp)
         ) {
-            MainButton(text = stringResource(R.string.fast_start)) {}
+            MainButton(text = stringResource(R.string.game_mode_fast_start)) {}
         }
     }
 }
