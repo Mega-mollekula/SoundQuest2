@@ -13,15 +13,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,11 +34,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.soundquest2.R
+import com.example.soundquest2.core.errors.AppError
+import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
-import com.example.soundquest2.ui.theme.style.appTextStyleBuilder
+import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.util.toUiError
 import kotlinx.coroutines.delay
 
@@ -52,7 +52,7 @@ fun MediaDownloadScreen(
     onExit: () -> Unit
 ) {
     val facts = FactsCatalog.facts
-    var currentFactIndex by remember { mutableStateOf(0) }
+    var currentFactIndex by remember { mutableIntStateOf(0) }
     val alpha = remember { Animatable(1f) }
 
     // Cycle facts every 7 seconds with fade-out / fade-in
@@ -82,7 +82,6 @@ fun MediaDownloadScreen(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        // Background image
         Image(
             painter = painterResource(id = fact.imageRes),
             contentDescription = null,
@@ -92,7 +91,6 @@ fun MediaDownloadScreen(
                 .graphicsLayer { this.alpha = alpha.value }
         )
 
-        // Gradient overlay
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -138,26 +136,24 @@ fun MediaDownloadScreen(
                                         stringResource(R.string.downloaded_count, uiState.completed),
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center,
-                                style = appTextStyleBuilder(
-                                    Color.Green,
-                                    25.sp,
-                                    lineHeight = 33.sp,
-                                    shadowColor = Color.Black
-                                )
+                                style = AppTypography.labelMedium,
+                                color = Color.Green
                             )
 
                             Text(
                                 text = stringResource(R.string.skipped_count, uiState.skipped),
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center,
-                                style = appTextStyleBuilder(Color.Gray, 25.sp, shadowColor = Color.Black)
+                                style = AppTypography.labelMedium,
+                                color = Color.Gray
                             )
 
                             Text(
                                 text = stringResource(R.string.failed_count, uiState.failed),
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center,
-                                style = appTextStyleBuilder(Color.Red, 25.sp, shadowColor = Color.Black)
+                                style = AppTypography.labelMedium,
+                                color = Color.Red
                             )
                         }
                     }
@@ -191,7 +187,8 @@ fun MediaDownloadScreen(
                             text = "${uiState.completed + uiState.skipped} / ${uiState.total}",
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
-                            style = appTextStyleBuilder(Color.White, 20.sp, shadowColor = Color.Black)
+                            style = AppTypography.labelSmall,
+                            color = Color.White
                         )
                     }
 
@@ -206,14 +203,16 @@ fun MediaDownloadScreen(
                             text = stringResource(uiState.error.toUiError().titleRes),
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
-                            style = appTextStyleBuilder(Color.Red, 50.sp, shadowColor = Color.Black)
+                            style = AppTypography.titleLarge,
+                            color = Color.Red
                         )
 
                         Text(
                             text = stringResource(uiState.error.toUiError().messageRes),
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
-                            style = appTextStyleBuilder(Color.Red, 30.sp, shadowColor = Color.Black)
+                            style = AppTypography.titleMedium,
+                            color = Color.Red
                         )
                     }
 
@@ -225,9 +224,9 @@ fun MediaDownloadScreen(
 
             when (uiState) {
                 is DownloadUiState.Completed -> {
-                    DownloadButton(
-                        onCompleted,
-                        stringResource(R.string.continue_button)
+                    MainButton(
+                        onClick = onCompleted,
+                        text = stringResource(R.string.continue_button)
                     )
                 }
 
@@ -236,13 +235,13 @@ fun MediaDownloadScreen(
                         modifier = Modifier.fillMaxWidth(),
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        DownloadButton(
-                            onRetry,
-                            stringResource(R.string.try_again_button)
+                        MainButton(
+                            onClick = onRetry,
+                            text = stringResource(R.string.try_again_button)
                         )
-                        DownloadButton(
-                            onExit,
-                            stringResource(R.string.exit_button)
+                        MainButton(
+                            onClick = onExit,
+                            text = stringResource(R.string.exit)
                         )
                     }
                 }
@@ -251,7 +250,8 @@ fun MediaDownloadScreen(
                     Column() {
                         Text(
                             text = stringResource(id = fact.descriptionRes),
-                            style = appTextStyleBuilder(Color.White, 20.sp, 28.sp, shadowColor = Color.Black)
+                            style = AppTypography.labelSmall,
+                            color = Color.White
                         )
                     }
                 }
@@ -263,38 +263,19 @@ fun MediaDownloadScreen(
 @Preview(
     name = "Downloading",
     showBackground = true,
+    locale = "en"
 )
 @Composable
 fun MediaDownloadScreenDownloadingPreview() {
-    MediaDownloadScreen(
-        onRetry = {},
-        onExit = {},
-        onCompleted = {},
-        uiState = DownloadUiState.Preparing
-    )
-}
-
-@Composable
-fun DownloadButton(
-    onClick: () -> Unit,
-    label: String
-) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp),
-        shape = RoundedCornerShape(28.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.White,
-            contentColor = Color.Black
-        ),
-    ) {
-        Text(
-            text = label,
-            style = appTextStyleBuilder(
-                color = Color.Black,
-                fontSize = 20.sp,
+    AppTheme(darkTheme = true) {
+        MediaDownloadScreen(
+            onRetry = {},
+            onExit = {},
+            onCompleted = {},
+            uiState = DownloadUiState.Error(
+                error = AppError.Unknown(
+                    cause = Exception("Unknown error")
+                )
             )
         )
     }
