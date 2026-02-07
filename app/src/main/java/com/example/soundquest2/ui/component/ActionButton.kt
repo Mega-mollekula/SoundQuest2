@@ -22,7 +22,7 @@ import com.example.soundquest2.R
 import com.example.soundquest2.ui.theme.AppTheme
 
 @Composable
-fun BackButton(
+fun ActionButton(
     modifier: Modifier = Modifier,
     onExit: () -> Unit
 ) {
@@ -63,7 +63,7 @@ fun BackButtonPreview() {
                 .background(Color.Black)
                 .padding(16.dp)
         ) {
-            BackButton() {}
+            ActionButton() {}
         }
     }
 }
