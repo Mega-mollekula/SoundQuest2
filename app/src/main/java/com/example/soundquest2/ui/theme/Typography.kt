@@ -41,8 +41,8 @@ val AppTypography = Typography(
     labelSmall = TextStyle(
         fontFamily = Jost,
         fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 16.sp,
+        fontSize = 20.sp,
+        lineHeight = 20.sp,
         letterSpacing = 0.sp
     ),
 )
