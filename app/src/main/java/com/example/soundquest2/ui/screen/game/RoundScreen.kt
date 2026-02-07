@@ -26,6 +26,7 @@ import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.component.MainIcon
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 import com.example.soundquest2.ui.toUi
 import com.example.soundquest2.ui.util.generateRandomSong
@@ -62,7 +63,7 @@ fun RoundScreen(
                         state.roundNumber,
                         state.totalRounds
                     ),
-                    style = MaterialTheme.typography.titleMedium,
+                    style = AppTypography.titleMedium,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
 
