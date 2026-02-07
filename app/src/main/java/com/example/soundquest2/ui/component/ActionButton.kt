@@ -23,17 +23,18 @@ import com.example.soundquest2.ui.theme.AppTheme
 
 @Composable
 fun ActionButton(
+    text: String,
     modifier: Modifier = Modifier,
-    onExit: () -> Unit
+    onAction: () -> Unit
 ) {
 
     val shape = RoundedCornerShape(10.dp)
 
     Box(
         modifier = modifier
-            .size(width = 90.dp, height = 45.dp)
+            .size(width = 100.dp, height = 45.dp)
             .clip(shape)
-            .clickable(onClick = onExit)
+            .clickable(onClick = onAction)
             .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.6f))
             .border(
                 width = 0.5.dp,
@@ -43,7 +44,7 @@ fun ActionButton(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = stringResource(R.string.exit),
+            text = text,
             color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.labelSmall
         )
@@ -63,7 +64,7 @@ fun BackButtonPreview() {
                 .background(Color.Black)
                 .padding(16.dp)
         ) {
-            ActionButton() {}
+            ActionButton(stringResource(R.string.exit)) {}
         }
     }
 }
