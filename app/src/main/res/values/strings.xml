@@ -5,9 +5,6 @@
     <string name="language">Язык</string>
     <string name="russian">Русский</string>
     <string name="english">Английский</string>
-    <string name="back">Назад</string>
-    <string name="change_theme">Сменить тему</string>
-    <string name="change_language">Сменить язык</string>
     <string name="fact_1_title">Первый альбом, записанный в космосе</string>
     <string name="fact_1_desc">Астронавт Крис Хэдфилд стал первым человеком, записавшим музыкальный клип в открытом космосе — на борту МКС он исполнил кавер на «Space Oddity» Дэвида Боуи. Но ещё более удивительно: позже он выпустил целый альбом *«Space Sessions: Songs from a Tin Can»*, частично записанный в невесомости.</string>
     <string name="fact_2_title">Песня не за деньги</string>
