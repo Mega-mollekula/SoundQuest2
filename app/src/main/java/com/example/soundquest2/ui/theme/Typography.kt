@@ -42,7 +42,7 @@ val AppTypography = Typography(
         fontFamily = Jost,
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
-        lineHeight = 20.sp,
+        lineHeight = 25.sp,
         letterSpacing = 0.sp
     ),
 )

@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -35,7 +34,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.core.errors.AppError
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
@@ -132,7 +130,7 @@ fun MediaDownloadScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text =  stringResource(R.string.completed) + "\n" +
+                                text =  stringResource(R.string.completed) + "\n\n" +
                                         stringResource(R.string.downloaded_count, uiState.completed),
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center,
@@ -170,7 +168,7 @@ fun MediaDownloadScreen(
                     is DownloadUiState.Downloading -> {
 
                         val progress = if (uiState.total > 0) {
-                            (uiState.completed.toFloat() + uiState.skipped.toFloat()) / uiState.total
+                            (uiState.completed.toFloat() + uiState.skipped.toFloat() + uiState.failed) / uiState.total
                         }
                         else 0f
 
@@ -184,7 +182,7 @@ fun MediaDownloadScreen(
                         )
 
                         Text(
-                            text = "${uiState.completed + uiState.skipped} / ${uiState.total}",
+                            text = "${uiState.completed + uiState.skipped + uiState.failed} / ${uiState.total}",
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
                             style = AppTypography.labelSmall,
@@ -272,10 +270,11 @@ fun MediaDownloadScreenDownloadingPreview() {
             onRetry = {},
             onExit = {},
             onCompleted = {},
-            uiState = DownloadUiState.Error(
-                error = AppError.Unknown(
-                    cause = Exception("Unknown error")
-                )
+            uiState = DownloadUiState.Downloading(
+                3,
+                10,
+                3,
+                2
             )
         )
     }
