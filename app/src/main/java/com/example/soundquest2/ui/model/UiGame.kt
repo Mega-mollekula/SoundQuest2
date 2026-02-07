@@ -8,6 +8,7 @@ data class UiGame(
     val publisher: String,
     val releaseYear: Int,
     val genre: GameGenre,
+    override val pictureUri: String,
     override val title: String,
     val description: String,
     override val mediaType: ContentType = ContentType.GAME

@@ -9,7 +9,7 @@ data class UiSong(
     val era: Era,
     override val title: String,
     val info: String,
-    val pictureUri: String,
+    override val pictureUri: String,
     val artist: UiArtist,
     override val mediaType: ContentType = ContentType.SONG
 ) : UiMedia

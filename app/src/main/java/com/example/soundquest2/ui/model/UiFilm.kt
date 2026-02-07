@@ -11,6 +11,7 @@ data class UiFilm(
     val releaseYear: Int,
     val filmType: FilmType,
     val description: String,
+    override val pictureUri: String,
     override val title: String,
     override val mediaType: ContentType = ContentType.FILM
 ) : UiMedia
