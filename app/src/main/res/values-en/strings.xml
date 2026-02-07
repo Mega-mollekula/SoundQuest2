@@ -38,11 +38,70 @@
     <string name="exit">Exit</string>
 
     <!-- MainScreen -->
-    <string name="fast_start">Fast start</string>
     <string name="songs">Songs</string>
     <string name="soundtracks">Soundtracks</string>
 
     <string name="round_progress">Round %1$d/%2$d</string>
 
     <string name="error_title">Error</string>
+
+    <!-- Game modes -->
+    <string name="game_mode_fast_start">Fast start</string>
+    <string name="game_mode_guess_film">Guess the movie</string>
+    <string name="game_mode_guess_game">Guess the game</string>
+    <string name="game_mode_guess_song">Guess the song</string>
+
+    <!-- Era -->
+    <string name="era_80s">80s</string>
+    <string name="era_90s">90s</string>
+    <string name="era_2000s">2000s</string>
+    <string name="era_2010s">2010s</string>
+    <string name="era_2020s">2020s</string>
+
+    <!-- Song genres -->
+    <string name="genre_rock">Rock</string>
+    <string name="genre_pop">Pop</string>
+    <string name="genre_classic">Classical</string>
+    <string name="genre_rap">Rap</string>
+    <string name="genre_other">Other</string>
+
+    <!-- Film types -->
+    <string name="film_type_action">Action</string>
+    <string name="film_type_drama">Drama</string>
+    <string name="film_type_comedy">Comedy</string>
+    <string name="film_type_thriller">Thriller</string>
+    <string name="film_type_horror">Horror</string>
+    <string name="film_type_fantasy">Fantasy</string>
+    <string name="film_type_science_fiction">Science fiction</string>
+    <string name="film_type_adventure">Adventure</string>
+
+    <!-- Game genres -->
+    <string name="game_genre_action">Action</string>
+    <string name="game_genre_rpg">RPG</string>
+    <string name="game_genre_adventure">Adventure</string>
+    <string name="game_genre_strategy">Strategy</string>
+    <string name="game_genre_shooter">Shooter</string>
+    <string name="game_genre_simulation">Simulation</string>
+    <string name="game_genre_sports">Sports</string>
+    <string name="game_genre_puzzle">Puzzle</string>
+    <string name="game_genre_runner">Runner</string>
+
+    <!-- Film -->
+    <string name="label_director">Director</string>
+    <string name="label_stars">Stars</string>
+    <string name="label_imdb_rating">IMDb %1$.1f / 10</string>
+    <string name="label_rating">Rating</string>
+
+    <!-- Game -->
+    <string name="label_developer">Developer</string>
+    <string name="label_publisher">Publisher</string>
+
+    <!-- Song -->
+    <string name="label_artist">Artist</string>
+    <string name="label_genre">Genre</string>
+    <string name="label_era">Era</string>
+
+    <!-- Result -->
+    <string name="result_correct">Correct</string>
+    <string name="result_incorrect">Incorrect</string>
 </resources>

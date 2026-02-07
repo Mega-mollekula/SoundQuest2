@@ -28,16 +28,75 @@
     <string name="downloaded_count">Загружено: %1$d</string>
     <string name="skipped_count">Пропущено: %1$d</string>
     <string name="failed_count">Ошибок: %1$d</string>
-    <string name="continue_button">Продолжить</string>
+    <string name="continue_button">Дальше</string>
     <string name="try_again_button">Попробовать снова</string>
     <string name="exit">Выйти</string>
 
     <!-- MainScreen -->
-    <string name="fast_start">Быстрая игра</string>
     <string name="songs">Песни</string>
     <string name="soundtracks">Саундтреки</string>
 
     <string name="round_progress">Раунд %1$d/%2$d</string>
 
     <string name="error_title">Ошибка</string>
+
+    <!-- Game modes -->
+    <string name="game_mode_fast_start">Быстрый старт</string>
+    <string name="game_mode_guess_film">Угадай фильм</string>
+    <string name="game_mode_guess_game">Угадай игру</string>
+    <string name="game_mode_guess_song">Угадай песню</string>
+
+    <!-- Era -->
+    <string name="era_80s">80-е</string>
+    <string name="era_90s">90-е</string>
+    <string name="era_2000s">2000-е</string>
+    <string name="era_2010s">2010-е</string>
+    <string name="era_2020s">2020-е</string>
+
+    <!-- Song genres -->
+    <string name="genre_rock">Рок</string>
+    <string name="genre_pop">Поп</string>
+    <string name="genre_classic">Классика</string>
+    <string name="genre_rap">Рэп</string>
+    <string name="genre_other">Другое</string>
+
+    <!-- Film types -->
+    <string name="film_type_action">Боевик</string>
+    <string name="film_type_drama">Драма</string>
+    <string name="film_type_comedy">Комедия</string>
+    <string name="film_type_thriller">Триллер</string>
+    <string name="film_type_horror">Ужасы</string>
+    <string name="film_type_fantasy">Фэнтези</string>
+    <string name="film_type_science_fiction">Научная фантастика</string>
+    <string name="film_type_adventure">Приключения</string>
+
+    <!-- Game genres -->
+    <string name="game_genre_action">Экшен</string>
+    <string name="game_genre_rpg">RPG</string>
+    <string name="game_genre_adventure">Приключения</string>
+    <string name="game_genre_strategy">Стратегия</string>
+    <string name="game_genre_shooter">Шутер</string>
+    <string name="game_genre_simulation">Симулятор</string>
+    <string name="game_genre_sports">Спорт</string>
+    <string name="game_genre_puzzle">Головоломка</string>
+    <string name="game_genre_runner">Раннер</string>
+
+    <!-- Film -->
+    <string name="label_director">Режиссёр</string>
+    <string name="label_stars">Актёры</string>
+    <string name="label_imdb_rating">IMDb %1$.1f / 10</string>
+    <string name="label_rating">Рейтинг</string>
+
+    <!-- Game -->
+    <string name="label_developer">Разработчик</string>
+    <string name="label_publisher">Издатель</string>
+
+    <!-- Song -->
+    <string name="label_artist">Исполнитель</string>
+    <string name="label_genre">Жанр</string>
+    <string name="label_era">Эпоха</string>
+
+    <!-- Result -->
+    <string name="result_correct">Верно</string>
+    <string name="result_incorrect">Неверно</string>
 </resources>
