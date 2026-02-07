@@ -14,4 +14,9 @@ data class Game(
     val gameTranslations: List<GameTranslation>,
     val gameMedia: GameMedia,
     override val contentType: ContentType = ContentType.GAME
-) : MediaContent
+) : MediaContent {
+
+    override fun hasVideoPath(): Boolean {
+        return gameMedia.localVideoPath != null
+    }
+}

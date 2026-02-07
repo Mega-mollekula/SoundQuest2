@@ -15,4 +15,9 @@ data class Film(
     val filmTranslations: List<FilmTranslation>,
     val filmMedia: FilmMedia,
     override val contentType: ContentType = ContentType.FILM
-) : MediaContent
+) : MediaContent {
+
+    override fun hasVideoPath(): Boolean {
+        return filmMedia.localVideoPath != null
+    }
+}
