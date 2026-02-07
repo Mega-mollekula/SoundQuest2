@@ -105,7 +105,8 @@ fun Game.toGameUi(languageCode: String): UiGame {
         releaseYear = releaseYear,
         genre = genre,
         description = translation.description,
-        title = title
+        title = title,
+        pictureUri = gameMedia.pictureUri
     )
 }
 
@@ -120,7 +121,8 @@ fun Film.toFilmUi(languageCode: String): UiFilm {
         releaseYear = releaseYear,
         filmType = filmType,
         description = translation.description,
-        title = translation.title
+        title = translation.title,
+        pictureUri = filmMedia.pictureUri
     )
 }
 
