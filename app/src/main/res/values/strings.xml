@@ -3,6 +3,7 @@
     <string name="welcome">Добро пожаловать!</string>
     <string name="settings">Настройки</string>
     <string name="language">Язык</string>
+    <string name="theme">Тема</string>
     <string name="russian">Русский</string>
     <string name="english">Английский</string>
     <string name="fact_1_title">Первый альбом, записанный в космосе</string>
