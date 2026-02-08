@@ -3,6 +3,7 @@
     <!-- common -->
     <string name="app_name">Sound Quest</string>
     <string name="welcome">Welcome!</string>
+    <string name="back">Back</string>
 
     <!-- facts -->
     <string name="fact_1_title">First Album Recorded in Space</string>
