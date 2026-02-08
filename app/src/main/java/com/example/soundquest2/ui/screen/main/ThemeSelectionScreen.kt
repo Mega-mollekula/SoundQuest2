@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.theme.AppTheme
@@ -27,6 +29,7 @@ import com.example.soundquest2.ui.theme.LocalAppImages
 fun ThemeSelectionScreen(
     onLightThemeClick: () -> Unit,
     onDarkThemeClick: () -> Unit,
+    onExit: () -> Unit,
 ) {
 
     Box(
@@ -42,6 +45,12 @@ fun ThemeSelectionScreen(
                 .background(Color.Black.copy(alpha = 0.5f)),
             contentAlignment = Alignment.Center
         ) {
+
+            ActionButton(
+                modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
+                text = stringResource(R.string.back),
+                onAction = onExit
+            )
 
             Column(
                 modifier = Modifier.fillMaxWidth().offset(y = -60.dp),
@@ -76,7 +85,7 @@ fun ThemeSelectionScreen(
 fun ThemeSelectionScreenLight() {
     AppTheme(darkTheme = false) {
         ThemeSelectionScreen(
-            {}, {}
+            {}, {}, {}
         )
     }
 }
@@ -89,7 +98,7 @@ fun ThemeSelectionScreenLight() {
 fun ThemeSelectionScreenDark() {
     AppTheme(darkTheme = true) {
         ThemeSelectionScreen(
-            {}, {}
+            {}, {}, {}
         )
     }
 }
