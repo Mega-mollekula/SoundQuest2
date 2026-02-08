@@ -105,4 +105,10 @@
     <!-- Result -->
     <string name="result_correct">Correct</string>
     <string name="result_incorrect">Incorrect</string>
+
+    <string name="choose_theme">Choose theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+
+    <string name="choose_language">Choose language</string>
 </resources>

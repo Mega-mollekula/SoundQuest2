@@ -97,4 +97,10 @@
     <!-- Result -->
     <string name="result_correct">Верно</string>
     <string name="result_incorrect">Неверно</string>
+
+    <string name="choose_theme">Выбор темы</string>
+    <string name="light">Светлая</string>
+    <string name="dark">Темная</string>
+
+    <string name="choose_language">Выбор языка</string>
 </resources>
