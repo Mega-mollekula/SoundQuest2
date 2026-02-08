@@ -46,8 +46,8 @@
     <string name="game_mode_guess_song">Угадай песню</string>
 
     <!-- Era -->
-    <string name="era_80s">80-е</string>
-    <string name="era_90s">90-е</string>
+    <string name="era_80s">1980-е</string>
+    <string name="era_90s">1990-е</string>
     <string name="era_2000s">2000-е</string>
     <string name="era_2010s">2010-е</string>
     <string name="era_2020s">2020-е</string>
@@ -104,4 +104,9 @@
     <string name="dark">Темная</string>
 
     <string name="choose_language">Выбор языка</string>
+
+    <string name="select_parameters">Выберите параметры</string>
+    <string name="select_decade">Выберите десятилетие</string>
+    <string name="select_genre">Выберите жанр</string>
+    <string name="start">Старт</string>
 </resources>
