@@ -24,8 +24,7 @@ fun GameMode.localizedName(): String {
         GameMode.GuessGame ->
             stringResource(R.string.game_mode_guess_game)
 
-        GameMode.GuessSong,
-        is GameMode.GuessSongWithParams ->
+        is GameMode.GuessSong ->
             stringResource(R.string.game_mode_guess_song)
     }
 }
