@@ -16,10 +16,6 @@ class LoadMediaUseCase(
     suspend operator fun invoke(forceRefresh: Boolean, gameMode: GameMode, language: String, count: Int = 10): Result<List<MediaContent>> {
         return when (gameMode) {
             is GameMode.GuessSong -> {
-                songRepository.getRandomSongs(forceRefresh, language, count)
-            }
-
-            is GameMode.GuessSongWithParams -> {
                 when {
                     gameMode.genre != null -> {
                         songRepository.getSongsByGenre(gameMode.genre, forceRefresh, language)
