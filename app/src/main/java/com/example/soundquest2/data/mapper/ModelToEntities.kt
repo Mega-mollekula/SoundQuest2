@@ -16,14 +16,12 @@ fun GameResult.toResultEntity(): GameResultEntity {
 
 fun GameMode.toEnum(): GameModeType {
     return when (this) {
-        GameMode.GuessSong -> GameModeType.GUESS_SONG
+        is GameMode.GuessSong -> GameModeType.GUESS_SONG
 
         GameMode.GuessFilm -> GameModeType.GUESS_FILM
 
         GameMode.GuessGame -> GameModeType.GUESS_GAME
 
         GameMode.FastStart -> GameModeType.FAST_START
-
-        is GameMode.GuessSongWithParams -> GameModeType.GUESS_SONG
     }
 }
