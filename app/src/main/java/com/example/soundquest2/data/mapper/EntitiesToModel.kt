@@ -152,7 +152,7 @@ fun List<GameWithDetails>.toGameModels(): List<Game> {
 
 fun GameModeType.toGameModeModel(): GameMode {
     return when(this) {
-        GameModeType.GUESS_SONG -> GameMode.GuessSong
+        GameModeType.GUESS_SONG -> GameMode.GuessSong()
         GameModeType.GUESS_FILM -> GameMode.GuessFilm
         GameModeType.GUESS_GAME -> GameMode.GuessGame
         GameModeType.FAST_START -> GameMode.FastStart
