@@ -42,7 +42,7 @@ import com.example.soundquest2.ui.toUi
 import com.example.soundquest2.ui.util.generateRandomSong
 
 @Composable
-fun ResultScreen(
+fun RoundResultScreen(
     videoPlayer: VideoPlayer,
     state: GameUiState.Result,
     onContinue: () -> Unit,
@@ -134,7 +134,7 @@ fun ResultScreenPreviewDark() {
             correct = song
         )
 
-        ResultScreen(
+        RoundResultScreen(
             videoPlayer = PreviewVideoPlayer(),
             state = state,
             onContinue = {},
