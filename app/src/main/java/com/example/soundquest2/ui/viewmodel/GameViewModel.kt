@@ -2,6 +2,7 @@ package com.example.soundquest2.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.content.MediaContent
@@ -16,7 +17,7 @@ import com.example.soundquest2.ui.toUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,21 +28,24 @@ class GameViewModel(
     private val checkAnswer: CheckAnswerUseCase,
     private val nextRound: NextRoundUseCase,
     private val resetGame: ResetGameUseCase,
-    private val languageCode: String
+    private val languageFlow: StateFlow<AppLanguage>
 ) : ViewModel() {
 
 
     private val _state = MutableStateFlow(GameState())
-    val uiState: StateFlow<GameUiState> = _state.map { it.toUiState(languageCode) }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
-        GameUiState.Idle
-    )
+    val uiState: StateFlow<GameUiState> =
+        combine(_state, languageFlow) { gameState, language ->
+            gameState.toUiState(language.code)
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            GameUiState.Idle
+        )
 
     fun onIntent(intent: GameIntent) {
         when (intent) {
 
-            GameIntent.Start -> startGame(languageCode)
+            GameIntent.Start -> startGame()
 
             is GameIntent.SetMode -> setMode(intent.gameMode)
 
@@ -61,10 +65,11 @@ class GameViewModel(
         }
     }
 
-    private fun startGame(language: String) {
+    private fun startGame() {
+        val currentLanguage = languageFlow.value
         viewModelScope.launch {
             _state.update {
-                startGame(it, language, count = 10)
+                startGame(it, currentLanguage, count = 10)
             }
         }
     }

@@ -2,15 +2,16 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.domain.model.enums.GamePhase
 
 class StartGameUseCase(
     private val loadMedia: LoadMediaUseCase,
     private val generateRoundsUseCase: GenerateRoundsUseCase
 ) {
-    suspend operator fun invoke(gameState: GameState, language: String, count: Int = 10): GameState {
+    suspend operator fun invoke(gameState: GameState, appLanguage: AppLanguage, count: Int = 10): GameState {
 
-        when (val result = loadMedia(false, gameState.gameMode, language, count)) {
+        when (val result = loadMedia(false, gameState.gameMode, appLanguage.code, count)) {
 
             is Result.Success -> {
                 val items = result.data
