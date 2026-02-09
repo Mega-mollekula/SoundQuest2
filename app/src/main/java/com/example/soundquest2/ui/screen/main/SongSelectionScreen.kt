@@ -22,12 +22,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.Genre
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.DropdownSelector
 import com.example.soundquest2.ui.component.MainBackground
+import com.example.soundquest2.ui.intent.SongSelectionIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
@@ -35,9 +35,7 @@ import com.example.soundquest2.ui.util.localizedName
 
 @Composable
 fun SongSelectionScreen(
-    startDownload: (gameMode: GameMode, language: String, count: Int) -> Unit,
-    navigateToDownloadScreen: () -> Unit,
-    onExit: () -> Unit,
+    onIntent: (SongSelectionIntent) -> Unit
 ) {
 
     var selectedEra by remember { mutableStateOf<Era?>(null) }
@@ -50,7 +48,6 @@ fun SongSelectionScreen(
 
         MainBackground(LocalAppImages.current.bg)
 
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -61,7 +58,9 @@ fun SongSelectionScreen(
             ActionButton(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
-                onAction = onExit
+                onAction = {
+                    onIntent(SongSelectionIntent.ExitClicked)
+                }
             )
 
             Column(
@@ -94,16 +93,12 @@ fun SongSelectionScreen(
                 ActionButton(
                     text = stringResource(R.string.start),
                     onAction = {
-                        val gameMode = GameMode.GuessSong(
-                            era = selectedEra,
-                            genre = selectedGenre
+                        onIntent(
+                            SongSelectionIntent.StartClicked(
+                                era = selectedEra,
+                                genre = selectedGenre
+                            )
                         )
-                        startDownload(
-                            gameMode,
-                            "en",
-                            10
-                        )
-                        navigateToDownloadScreen()
                     }
                 )
             }
@@ -120,9 +115,7 @@ fun SongSelectionScreen(
 fun SongSelectionScreenLight() {
     AppTheme(darkTheme = false) {
         SongSelectionScreen(
-            startDownload = { _, _, _ -> },
-            navigateToDownloadScreen = {},
-            onExit = {},
+            {}
         )
     }
 }
@@ -136,9 +129,7 @@ fun SongSelectionScreenLight() {
 fun SongSelectionScreenDark() {
     AppTheme(darkTheme = true) {
         SongSelectionScreen(
-            startDownload = { _, _, _ -> },
-            navigateToDownloadScreen = {},
-            onExit = {},
+            {}
         )
     }
 }
