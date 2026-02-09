@@ -1,6 +1,7 @@
 package com.example.soundquest2.data.local.download
 
 import com.example.soundquest2.data.remote.api.ApiService
+import com.example.soundquest2.domain.repository.MediaDownloader
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -20,14 +21,14 @@ class UnifiedMediaDownloader(
     private val audioDir: File,
     private val videoDir: File,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+) : MediaDownloader {
 
     init {
         audioDir.mkdirs()
         videoDir.mkdirs()
     }
 
-    fun downloadAll(parallelism: Int = 3): Flow<DownloadProgress> = channelFlow {
+    override fun downloadAll(parallelism: Int): Flow<DownloadProgress> = channelFlow {
 
         val allMedia = buildList<DownloadableMedia> {
 
