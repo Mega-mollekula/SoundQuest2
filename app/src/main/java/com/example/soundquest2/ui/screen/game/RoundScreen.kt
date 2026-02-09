@@ -20,10 +20,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.core.language.AppLanguage
-import com.example.soundquest2.domain.model.content.MediaContent
+import com.example.soundquest2.domain.model.enums.HintType
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.component.MainIcon
+import com.example.soundquest2.ui.intent.RoundIntent
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
@@ -34,10 +35,8 @@ import com.example.soundquest2.ui.util.generateRandomSong
 @Composable
 fun RoundScreen(
     state: GameUiState.Round,
-    onSelectAnswer: (MediaContent) -> Unit,
-    onAgainButton: () -> Unit,
+    onIntent: (RoundIntent) -> Unit,
     language: AppLanguage,
-    onHintClick: () -> Unit, //пока что затычка
 ) {
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -69,7 +68,9 @@ fun RoundScreen(
 
                 MainIcon(
                     R.drawable.again_icon,
-                    onClick = onAgainButton
+                    onClick = {
+                        onIntent(RoundIntent.AgainClicked)
+                    }
                 )
 
                 state.options.forEach { content ->
@@ -78,7 +79,7 @@ fun RoundScreen(
                         text = uiContent.title,
                         modifier = Modifier.height(60.dp),
                         onClick = {
-                            onSelectAnswer(content)
+                            onIntent(RoundIntent.AnswerSelected(content))
                         }
                     )
                 }
@@ -90,15 +91,15 @@ fun RoundScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     MainIcon(R.drawable.hint_50_50) {
-                        onHintClick()
+                        onIntent(RoundIntent.HintClicked(HintType.FiftyFifty))
                     }
 
                     MainIcon(R.drawable.hint_author) {
-                        onHintClick()
+                        onIntent(RoundIntent.HintClicked(HintType.AuthorOrStudio))
                     }
 
                     MainIcon(R.drawable.hint_random) {
-                        onHintClick()
+                        onIntent(RoundIntent.HintClicked(HintType.Random))
                     }
                 }
             }
@@ -125,9 +126,31 @@ fun RoundScreenPreviewDark() {
                 )
             ),
             {},
+            AppLanguage.EN,
+        )
+    }
+}
+
+@Preview(
+    name = "Light",
+    showBackground = true,
+    locale = "ru"
+)
+@Composable
+fun RoundScreenPreviewLight() {
+    AppTheme(darkTheme = false) {
+        RoundScreen(
+            state = GameUiState.Round(
+                1, 5,
+                options = listOf(
+                    generateRandomSong(),
+                    generateRandomSong(),
+                    generateRandomSong(),
+                    generateRandomSong()
+                )
+            ),
             {},
             AppLanguage.RU,
-            {}
         )
     }
 }
