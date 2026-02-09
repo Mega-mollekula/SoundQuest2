@@ -69,7 +69,7 @@ class GameViewModel(
         val currentLanguage = languageFlow.value
         viewModelScope.launch {
             _state.update {
-                startGame(it, currentLanguage, count = 10)
+                startGame(it, currentLanguage.code, count = 10)
             }
         }
     }
