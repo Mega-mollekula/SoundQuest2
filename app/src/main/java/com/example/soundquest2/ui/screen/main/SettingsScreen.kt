@@ -21,15 +21,14 @@ import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.SettingsIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun SettingsScreen(
-    onThemeClick: () -> Unit,
-    onLanguageClick: () -> Unit,
-    onExit: () -> Unit,
+    onIntent: (SettingsIntent) -> Unit
 ) {
 
     Box(
@@ -50,7 +49,7 @@ fun SettingsScreen(
             ActionButton(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
-                onAction = onExit
+                onAction = { onIntent(SettingsIntent.ExitClicked) }
             )
 
             Column(
@@ -66,12 +65,12 @@ fun SettingsScreen(
 
                 MainButton(
                     text = stringResource(R.string.theme),
-                    onClick = onThemeClick
+                    onClick = { onIntent(SettingsIntent.ThemeClicked) }
                 )
 
                 MainButton(
                     text = stringResource(R.string.language),
-                    onClick = onLanguageClick
+                    onClick = { onIntent(SettingsIntent.LanguageClicked) }
                 )
             }
         }
@@ -86,7 +85,7 @@ fun SettingsScreen(
 fun SettingsScreenPreview() {
     AppTheme(darkTheme = false) {
         SettingsScreen(
-            {}, {}, {}
+            {}
         )
     }
 }
@@ -99,7 +98,7 @@ fun SettingsScreenPreview() {
 fun SettingsScreenPreviewDark() {
     AppTheme(darkTheme = true) {
         SettingsScreen(
-            {}, {}, {}
+            {},
         )
     }
 }
