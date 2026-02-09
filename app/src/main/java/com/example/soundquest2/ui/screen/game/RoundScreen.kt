@@ -19,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.domain.model.enums.HintType
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
@@ -36,7 +35,6 @@ import com.example.soundquest2.ui.util.generateRandomSong
 fun RoundScreen(
     state: GameUiState.Round,
     onIntent: (RoundIntent) -> Unit,
-    language: AppLanguage,
 ) {
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -74,9 +72,8 @@ fun RoundScreen(
                 )
 
                 state.options.forEach { content ->
-                    val uiContent = content.toUi(language.code)
                     MainButton(
-                        text = uiContent.title,
+                        text = content.title,
                         modifier = Modifier.height(60.dp),
                         onClick = {
                             onIntent(RoundIntent.AnswerSelected(content))
@@ -110,7 +107,7 @@ fun RoundScreen(
 @Preview(
     name = "Dark",
     showBackground = true,
-    locale = "en"
+    locale = "ru"
 )
 @Composable
 fun RoundScreenPreviewDark() {
@@ -119,22 +116,21 @@ fun RoundScreenPreviewDark() {
             state = GameUiState.Round(
                 1, 5,
                 options = listOf(
-                    generateRandomSong(),
-                    generateRandomSong(),
-                    generateRandomSong(),
-                    generateRandomSong()
+                    generateRandomSong().toUi("ru"),
+                    generateRandomSong().toUi("ru"),
+                    generateRandomSong().toUi("ru"),
+                    generateRandomSong().toUi("ru")
                 )
             ),
             {},
-            AppLanguage.EN,
         )
     }
 }
 
 @Preview(
-    name = "Light",
+    name = "Dark",
     showBackground = true,
-    locale = "ru"
+    locale = "en"
 )
 @Composable
 fun RoundScreenPreviewLight() {
@@ -143,14 +139,13 @@ fun RoundScreenPreviewLight() {
             state = GameUiState.Round(
                 1, 5,
                 options = listOf(
-                    generateRandomSong(),
-                    generateRandomSong(),
-                    generateRandomSong(),
-                    generateRandomSong()
+                    generateRandomSong().toUi("en"),
+                    generateRandomSong().toUi("en"),
+                    generateRandomSong().toUi("en"),
+                    generateRandomSong().toUi("en")
                 )
             ),
             {},
-            AppLanguage.RU,
         )
     }
 }
