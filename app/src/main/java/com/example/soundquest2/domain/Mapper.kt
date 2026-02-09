@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.errors
+package com.example.soundquest2.domain
 
 import android.database.sqlite.SQLiteException
 import com.example.soundquest2.domain.model.AppError
