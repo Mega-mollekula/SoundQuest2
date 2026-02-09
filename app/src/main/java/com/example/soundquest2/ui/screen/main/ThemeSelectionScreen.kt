@@ -21,15 +21,14 @@ import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.ThemeSelectionIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun ThemeSelectionScreen(
-    onLightThemeClick: () -> Unit,
-    onDarkThemeClick: () -> Unit,
-    onExit: () -> Unit,
+    onIntent: (ThemeSelectionIntent) -> Unit
 ) {
 
     Box(
@@ -49,7 +48,7 @@ fun ThemeSelectionScreen(
             ActionButton(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
-                onAction = onExit
+                onAction = { onIntent(ThemeSelectionIntent.ExitClicked) }
             )
 
             Column(
@@ -65,12 +64,12 @@ fun ThemeSelectionScreen(
 
                 MainButton(
                     text = stringResource(R.string.light),
-                    onClick = onLightThemeClick
+                    onClick = { onIntent(ThemeSelectionIntent.LightSelected) }
                 )
 
                 MainButton(
                     text = stringResource(R.string.dark),
-                    onClick = onDarkThemeClick
+                    onClick = { onIntent(ThemeSelectionIntent.DarkSelected) }
                 )
             }
         }
@@ -85,7 +84,7 @@ fun ThemeSelectionScreen(
 fun ThemeSelectionScreenLight() {
     AppTheme(darkTheme = false) {
         ThemeSelectionScreen(
-            {}, {}, {}
+            {}
         )
     }
 }
@@ -98,7 +97,7 @@ fun ThemeSelectionScreenLight() {
 fun ThemeSelectionScreenDark() {
     AppTheme(darkTheme = true) {
         ThemeSelectionScreen(
-            {}, {}, {}
+            {}
         )
     }
 }
