@@ -13,5 +13,6 @@ data class UiFilm(
     val description: String,
     override val pictureUri: String,
     override val title: String,
-    override val mediaType: ContentType = ContentType.FILM
+    override val mediaType: ContentType = ContentType.FILM,
+    override val localVideoPath: String? = null
 ) : UiMedia

@@ -6,4 +6,5 @@ sealed interface UiMedia {
     val mediaType: ContentType
     val title: String
     val pictureUri: String
+    val localVideoPath: String?
 }

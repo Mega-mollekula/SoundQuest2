@@ -11,5 +11,6 @@ data class UiSong(
     val info: String,
     override val pictureUri: String,
     val artist: UiArtist,
-    override val mediaType: ContentType = ContentType.SONG
+    override val mediaType: ContentType = ContentType.SONG,
+    override val localVideoPath: String? = null
 ) : UiMedia

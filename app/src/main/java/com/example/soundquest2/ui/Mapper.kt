@@ -91,7 +91,8 @@ fun Song.toSongUi(languageCode: String): UiSong {
         title = title,
         info = translation.info,
         pictureUri = visualMedia.pictureUri,
-        artist = artist.toArtistUi(languageCode)
+        artist = artist.toArtistUi(languageCode),
+        localVideoPath = visualMedia.localVideoPath
     )
 }
 
@@ -105,7 +106,8 @@ fun Game.toGameUi(languageCode: String): UiGame {
         genre = genre,
         description = translation.description,
         title = title,
-        pictureUri = gameMedia.pictureUri
+        pictureUri = gameMedia.pictureUri,
+        localVideoPath = gameMedia.localVideoPath
     )
 }
 
@@ -121,7 +123,8 @@ fun Film.toFilmUi(languageCode: String): UiFilm {
         filmType = filmType,
         description = translation.description,
         title = translation.title,
-        pictureUri = filmMedia.pictureUri
+        pictureUri = filmMedia.pictureUri,
+        localVideoPath = filmMedia.localVideoPath
     )
 }
 

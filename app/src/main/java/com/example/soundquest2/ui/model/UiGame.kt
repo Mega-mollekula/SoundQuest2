@@ -11,5 +11,6 @@ data class UiGame(
     override val pictureUri: String,
     override val title: String,
     val description: String,
-    override val mediaType: ContentType = ContentType.GAME
+    override val mediaType: ContentType = ContentType.GAME,
+    override val localVideoPath: String? = null
 ) : UiMedia
