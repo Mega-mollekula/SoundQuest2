@@ -1,6 +1,6 @@
 package com.example.soundquest2.domain.repository
 
-import com.example.soundquest2.data.local.download.DownloadProgress
+import com.example.soundquest2.domain.model.DownloadProgress
 import kotlinx.coroutines.flow.Flow
 
 interface MediaDownloader {

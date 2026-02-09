@@ -1,15 +1,15 @@
 package com.example.soundquest2.domain.usecase
 
-import com.example.soundquest2.data.local.download.DownloadProgress
-import com.example.soundquest2.data.local.download.UnifiedMediaDownloader
+import com.example.soundquest2.domain.model.DownloadProgress
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import com.example.soundquest2.domain.model.Result
+import com.example.soundquest2.domain.repository.MediaDownloader
 import com.example.soundquest2.domain.toAppError
 import kotlinx.coroutines.flow.catch
 
 class DownloadMediaUseCase(
-    private val downloader: UnifiedMediaDownloader
+    private val downloader: MediaDownloader
 ) {
     operator fun invoke(
         parallelism: Int = 3

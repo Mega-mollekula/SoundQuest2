@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.soundquest2.domain.model.AppError
 import com.example.soundquest2.domain.model.Result
-import com.example.soundquest2.data.local.download.DownloadProgress
+import com.example.soundquest2.domain.model.DownloadProgress
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.usecase.DownloadMediaUseCase
 import com.example.soundquest2.domain.usecase.LoadMediaUseCase

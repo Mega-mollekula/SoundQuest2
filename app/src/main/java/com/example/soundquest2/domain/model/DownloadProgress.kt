@@ -1,4 +1,4 @@
-package com.example.soundquest2.data.local.download
+package com.example.soundquest2.domain.model
 
 sealed class DownloadProgress {
 

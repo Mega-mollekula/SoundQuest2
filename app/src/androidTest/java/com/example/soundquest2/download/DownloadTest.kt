@@ -7,7 +7,7 @@ import androidx.room.withTransaction
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.soundquest2.data.AppDatabase
-import com.example.soundquest2.data.local.download.DownloadProgress
+import com.example.soundquest2.domain.model.DownloadProgress
 import com.example.soundquest2.data.local.download.MediaDaos
 import com.example.soundquest2.data.local.download.UnifiedMediaDownloader
 import com.example.soundquest2.data.local.storage.AndroidFileProvider

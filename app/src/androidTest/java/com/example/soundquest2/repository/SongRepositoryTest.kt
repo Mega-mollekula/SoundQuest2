@@ -22,7 +22,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import com.example.soundquest2.domain.model.Result
-import com.example.soundquest2.data.local.download.DownloadProgress
+import com.example.soundquest2.domain.model.DownloadProgress
 import kotlinx.coroutines.flow.toList
 
 @RunWith(AndroidJUnit4::class)
