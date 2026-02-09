@@ -21,15 +21,14 @@ import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.LanguageSelectionIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun LanguageSelectionScreen(
-    onRusLanguageClick: () -> Unit,
-    onEnLanguageClick: () -> Unit,
-    onExit: () -> Unit
+    onIntent: (LanguageSelectionIntent) -> Unit
 ) {
 
     Box(
@@ -49,7 +48,7 @@ fun LanguageSelectionScreen(
             ActionButton(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
-                onAction = onExit
+                onAction = { onIntent(LanguageSelectionIntent.ExitClicked) }
             )
 
             Column(
@@ -65,12 +64,12 @@ fun LanguageSelectionScreen(
 
                 MainButton(
                     text = "Русский",
-                    onClick = onRusLanguageClick
+                    onClick = { onIntent(LanguageSelectionIntent.RussianSelected) }
                 )
 
                 MainButton(
                     text = "English",
-                    onClick = onEnLanguageClick
+                    onClick = { onIntent(LanguageSelectionIntent.EnglishSelected) }
                 )
             }
         }
@@ -85,7 +84,7 @@ fun LanguageSelectionScreen(
 fun LanguageSelectionScreenLight() {
     AppTheme(darkTheme = false) {
         LanguageSelectionScreen(
-            {}, {}, {}
+            {}
         )
     }
 }
@@ -98,7 +97,7 @@ fun LanguageSelectionScreenLight() {
 fun LanguageSelectionScreenDark() {
     AppTheme(darkTheme = true) {
         LanguageSelectionScreen(
-            {}, {}, {}
+            {}
         )
     }
 }
