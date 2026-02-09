@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
 import com.example.soundquest2.ui.theme.AppTheme
@@ -45,15 +46,13 @@ import kotlinx.coroutines.delay
 @Composable
 fun MediaDownloadScreen(
     uiState: DownloadUiState,
-    onCompleted: () -> Unit,
-    onRetry: () -> Unit,
-    onExit: () -> Unit
+    onIntent: (MediaDownloadIntent) -> Unit
 ) {
     val facts = FactsCatalog.facts
     var currentFactIndex by remember { mutableIntStateOf(0) }
     val alpha = remember { Animatable(1f) }
 
-    // Cycle facts every 7 seconds with fade-out / fade-in
+    // Cycle facts every 7 seconds
     LaunchedEffect(Unit) {
         while (true) {
             delay(7_000)
@@ -223,7 +222,7 @@ fun MediaDownloadScreen(
             when (uiState) {
                 is DownloadUiState.Completed -> {
                     MainButton(
-                        onClick = onCompleted,
+                        onClick = { onIntent(MediaDownloadIntent.CompletedClicked) },
                         text = stringResource(R.string.continue_button)
                     )
                 }
@@ -234,11 +233,11 @@ fun MediaDownloadScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         MainButton(
-                            onClick = onRetry,
+                            onClick = { onIntent(MediaDownloadIntent.RetryClicked) },
                             text = stringResource(R.string.try_again_button)
                         )
                         MainButton(
-                            onClick = onExit,
+                            onClick = { onIntent(MediaDownloadIntent.ExitClicked) },
                             text = stringResource(R.string.exit)
                         )
                     }
@@ -267,9 +266,27 @@ fun MediaDownloadScreen(
 fun MediaDownloadScreenDownloadingPreview() {
     AppTheme(darkTheme = true) {
         MediaDownloadScreen(
-            onRetry = {},
-            onExit = {},
-            onCompleted = {},
+            onIntent = {},
+            uiState = DownloadUiState.Downloading(
+                3,
+                10,
+                3,
+                2
+            )
+        )
+    }
+}
+
+@Preview(
+    name = "Downloading",
+    showBackground = true,
+    locale = "ru"
+)
+@Composable
+fun MediaDownloadScreenDownloadingPreviewRu() {
+    AppTheme(darkTheme = true) {
+        MediaDownloadScreen(
+            onIntent = {},
             uiState = DownloadUiState.Downloading(
                 3,
                 10,
