@@ -37,7 +37,7 @@ fun MediaDetailRow(
             style = AppTypography.labelSmall,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.End,
-            modifier = Modifier.weight(2f)
+            modifier = Modifier.weight(1f)
         )
     }
 }
