@@ -1,6 +1,8 @@
 package com.example.soundquest2.ui
 
-import com.example.soundquest2.core.errors.AppError
+import android.util.Log
+import com.example.soundquest2.R
+import com.example.soundquest2.domain.model.AppError
 import com.example.soundquest2.domain.model.GameResult
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.content.Film
@@ -10,6 +12,7 @@ import com.example.soundquest2.domain.model.content.Song
 import com.example.soundquest2.domain.model.enums.GamePhase
 import com.example.soundquest2.domain.model.song.Artist
 import com.example.soundquest2.ui.model.UiArtist
+import com.example.soundquest2.ui.model.UiError
 import com.example.soundquest2.ui.model.UiFilm
 import com.example.soundquest2.ui.model.UiGame
 import com.example.soundquest2.ui.model.UiMedia
@@ -136,3 +139,51 @@ fun MediaContent.toUi(languageCode: String) : UiMedia {
         is Film -> this.toFilmUi(languageCode)
     }
 }
+
+fun AppError.toUiError(): UiError =
+    when (this) {
+
+        is AppError.NetworkUnavailable ->
+            UiError(
+                titleRes = R.string.error_title,
+                messageRes = R.string.error_no_internet,
+                iconRes = R.drawable.error_no_internet,
+                canRetry = true
+            )
+
+        is AppError.HttpError ->
+            UiError(
+                titleRes = R.string.error_title,
+                messageRes = R.string.error_server,
+                iconRes = R.drawable.error_server,
+                canRetry = true
+            )
+
+        is AppError.DatabaseError ->
+            UiError(
+                titleRes = R.string.error_title,
+                messageRes = R.string.error_database,
+                iconRes = R.drawable.error_database,
+                canRetry = false
+            )
+
+        is AppError.Unknown -> {
+            Log.e("APP_ERROR", "Unknown error", cause)
+
+            UiError(
+                titleRes = R.string.error_title,
+                messageRes = R.string.error_unknown,
+                iconRes = R.drawable.error_icon,
+                canRetry = true
+            )
+        }
+
+        is AppError.NoContent -> {
+            UiError(
+                titleRes = R.string.error_title,
+                messageRes = R.string.error_empty_content,
+                iconRes = R.drawable.error_icon,
+                canRetry = true
+            )
+        }
+    }

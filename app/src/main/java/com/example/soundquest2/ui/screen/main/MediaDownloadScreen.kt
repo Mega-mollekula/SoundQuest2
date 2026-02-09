@@ -40,7 +40,7 @@ import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
-import com.example.soundquest2.ui.util.toUiError
+import com.example.soundquest2.ui.toUiError
 import kotlinx.coroutines.delay
 
 @Composable
