@@ -25,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media3.exoplayer.ExoPlayer
 import com.example.soundquest2.R
-import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.ResultInfoCard
@@ -39,7 +38,7 @@ import com.example.soundquest2.ui.model.UiGame
 import com.example.soundquest2.ui.model.UiSong
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.theme.AppTheme
-import com.example.soundquest2.ui.toUi
+import com.example.soundquest2.ui.toSongUi
 import com.example.soundquest2.ui.util.generateRandomSong
 
 @Composable
@@ -47,15 +46,12 @@ fun RoundResultScreen(
     videoPlayer: VideoPlayer,
     state: GameUiState.Result,
     onIntent: (RoundResultIntent) -> Unit,
-    language: AppLanguage
 ) {
     var isDetailsExpanded by remember { mutableStateOf(false) }
 
-    val media = state.correct.toUi(language.code)
-
     Box(modifier = Modifier.fillMaxSize()) {
 
-        VideoBackground(videoPlayer, state, language)
+        VideoBackground(videoPlayer, state)
 
         Box(
             modifier = Modifier
@@ -77,7 +73,7 @@ fun RoundResultScreen(
                 .padding(bottom = 50.dp)
         ) {
             ResultInfoCard(
-                title = media.title,
+                title = state.correct.title,
                 onFavouriteClick = {
                     onIntent(RoundResultIntent.FavouriteClicked)
                 },
@@ -97,10 +93,10 @@ fun RoundResultScreen(
                     .background(Color.Black.copy(alpha = 0.95f))
             ) {
 
-                when (media) {
-                    is UiFilm -> FilmDetailsMenu(media)
-                    is UiGame -> GameDetailsMenu(media)
-                    is UiSong -> SongDetailsMenu(media)
+                when (state.correct) {
+                    is UiFilm -> FilmDetailsMenu(state.correct)
+                    is UiGame -> GameDetailsMenu(state.correct)
+                    is UiSong -> SongDetailsMenu(state.correct)
                 }
 
                 IconButton(
@@ -134,15 +130,14 @@ fun ResultScreenPreviewDark() {
 
         val state = GameUiState.Result(
             isCorrect = true,
-            selected = song,
-            correct = song
+            selected = song.toSongUi("ru"),
+            correct = song.toSongUi("ru")
         )
 
         RoundResultScreen(
             videoPlayer = PreviewVideoPlayer(),
             state = state,
             {},
-            language = AppLanguage.EN
         )
     }
 }

@@ -19,14 +19,12 @@ import coil.compose.AsyncImage
 import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.ui.state.GameUiState
-import com.example.soundquest2.ui.toUi
 
 @OptIn(UnstableApi::class)
 @Composable
 fun VideoBackground(
     videoPlayer: VideoPlayer,
     state: GameUiState.Result,
-    language: AppLanguage
 ) {
     val gradient = Brush.verticalGradient(
         colors = listOf(
@@ -38,7 +36,7 @@ fun VideoBackground(
     Box(modifier = Modifier.fillMaxSize()) {
 
 
-        if (!state.correct.hasVideoPath()) { //для тестирования сделал выражение отрицательным
+        if (state.correct.localVideoPath.isNullOrEmpty()) { //для тестирования сделал выражение отрицательным
 
 //            AndroidView(
 //                modifier = Modifier.fillMaxSize(),
@@ -53,9 +51,8 @@ fun VideoBackground(
         }
 
         else {
-            val uiModel = state.correct.toUi(language.code)
             AsyncImage(
-                model = uiModel.pictureUri,
+                model = state.correct.pictureUri,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds,
