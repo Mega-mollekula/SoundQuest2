@@ -20,18 +20,14 @@ import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainIcon
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.MainIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun MainScreen(
-    onSoundTrackClick: () -> Unit,
-    onSongsClick: () -> Unit,
-    onFastStartClick: () -> Unit,
-    onAchievementsClick: () -> Unit,
-    onMarketClick: () -> Unit,
-    onSettingsClick: () -> Unit
+    onIntent: (MainIntent) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -57,15 +53,15 @@ fun MainScreen(
                 )
 
                 MainButton(stringResource(R.string.soundtracks)) {
-                    onSoundTrackClick()
+                    onIntent(MainIntent.SoundtracksClicked)
                 }
 
                 MainButton(stringResource(R.string.songs)) {
-                    onSongsClick()
+                    onIntent(MainIntent.SongsClicked)
                 }
 
                 MainButton(stringResource(R.string.game_mode_fast_start)) {
-                    onFastStartClick()
+                    onIntent(MainIntent.FastStartClicked)
                 }
 
                 Row(
@@ -75,15 +71,15 @@ fun MainScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     MainIcon(R.drawable.achivments_icon) {
-                        onAchievementsClick()
+                        onIntent(MainIntent.AchievementsClicked)
                     }
 
                     MainIcon(R.drawable.market_icon) {
-                        onMarketClick()
+                        onIntent(MainIntent.MarketClicked)
                     }
 
                     MainIcon(R.drawable.settings_icon) {
-                        onSettingsClick
+                        onIntent(MainIntent.SettingsClicked)
                     }
                 }
             }
@@ -101,11 +97,6 @@ fun HomeScreenLightPreviewLight() {
     AppTheme(darkTheme = false) {
         MainScreen(
             {},
-            {},
-            {},
-            {},
-            {},
-            {}
         )
     }
 }
@@ -119,11 +110,6 @@ fun HomeScreenLightPreviewDark() {
     AppTheme(darkTheme = true) {
         MainScreen(
             {},
-            {},
-            {},
-            {},
-            {},
-            {}
         )
     }
 }
