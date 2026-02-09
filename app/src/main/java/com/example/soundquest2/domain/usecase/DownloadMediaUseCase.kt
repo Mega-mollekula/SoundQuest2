@@ -5,6 +5,7 @@ import com.example.soundquest2.data.local.download.UnifiedMediaDownloader
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import com.example.soundquest2.core.errors.*
+import com.example.soundquest2.domain.model.Result
 import kotlinx.coroutines.flow.catch
 
 class DownloadMediaUseCase(

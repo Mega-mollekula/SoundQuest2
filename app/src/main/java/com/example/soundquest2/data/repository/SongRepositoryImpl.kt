@@ -9,7 +9,7 @@ import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.domain.model.enums.Genre
 import com.example.soundquest2.domain.model.content.Song
 import com.example.soundquest2.domain.repository.SongRepository
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.data.mapper.toSongModels
 import com.example.soundquest2.domain.model.enums.Era
 

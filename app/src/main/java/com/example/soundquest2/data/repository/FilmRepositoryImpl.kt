@@ -5,7 +5,7 @@ import com.example.soundquest2.data.AppDatabase
 import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.domain.model.content.Film
 import com.example.soundquest2.domain.repository.FilmRepository
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.data.local.entity.film.bundle.FilmGlobalEntitiesBundle
 import com.example.soundquest2.data.mapper.toEntities
 import com.example.soundquest2.data.mapper.toFilmModels

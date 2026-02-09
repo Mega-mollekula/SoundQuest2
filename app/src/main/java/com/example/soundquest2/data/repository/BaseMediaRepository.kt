@@ -2,7 +2,7 @@ package com.example.soundquest2.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.core.errors.toAppError
 
 abstract class BaseMediaRepository {

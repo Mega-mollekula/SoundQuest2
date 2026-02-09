@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.errors
+package com.example.soundquest2.domain.model
 
 sealed class AppError {
 

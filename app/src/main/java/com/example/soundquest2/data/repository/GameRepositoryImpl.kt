@@ -5,7 +5,7 @@ import com.example.soundquest2.data.AppDatabase
 import com.example.soundquest2.data.local.entity.game.bundle.GameGlobalEntitiesBundle
 import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.domain.repository.GameRepository
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.data.mapper.toEntities
 import com.example.soundquest2.data.mapper.toGameModels
 import com.example.soundquest2.data.mapper.toGlobalGameBundle

@@ -5,7 +5,7 @@ import com.example.soundquest2.domain.model.content.MediaContent
 import com.example.soundquest2.domain.repository.FilmRepository
 import com.example.soundquest2.domain.repository.GameRepository
 import com.example.soundquest2.domain.repository.SongRepository
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.domain.util.MediaContentBalancer
 
 class LoadMediaUseCase(

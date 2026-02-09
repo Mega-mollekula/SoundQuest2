@@ -1,6 +1,5 @@
 package com.example.soundquest2.domain.model
 
-import com.example.soundquest2.core.errors.AppError
 import com.example.soundquest2.domain.model.content.MediaContent
 import com.example.soundquest2.domain.model.enums.GamePhase
 

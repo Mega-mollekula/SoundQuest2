@@ -1,6 +1,7 @@
 package com.example.soundquest2.core.errors
 
 import android.database.sqlite.SQLiteException
+import com.example.soundquest2.domain.model.AppError
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ServerResponseException
 import kotlinx.io.IOException

@@ -1,6 +1,6 @@
 package com.example.soundquest2.ui.state
 
-import com.example.soundquest2.core.errors.AppError
+import com.example.soundquest2.domain.model.AppError
 
 sealed interface DownloadUiState {
 

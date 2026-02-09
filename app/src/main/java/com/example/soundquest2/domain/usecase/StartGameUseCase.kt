@@ -1,7 +1,7 @@
 package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameState
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.domain.model.enums.GamePhase
 

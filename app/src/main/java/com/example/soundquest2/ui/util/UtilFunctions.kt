@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.example.soundquest2.R
-import com.example.soundquest2.core.errors.AppError
+import com.example.soundquest2.domain.model.AppError
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.FilmType
@@ -79,51 +79,3 @@ fun GameGenre.localizedName(): String {
         GameGenre.RUNNER -> stringResource(R.string.game_genre_runner)
     }
 }
-
-fun AppError.toUiError(): UiError =
-    when (this) {
-
-        is AppError.NetworkUnavailable ->
-            UiError(
-                titleRes = R.string.error_title,
-                messageRes = R.string.error_no_internet,
-                iconRes = R.drawable.error_no_internet,
-                canRetry = true
-            )
-
-        is AppError.HttpError ->
-            UiError(
-                titleRes = R.string.error_title,
-                messageRes = R.string.error_server,
-                iconRes = R.drawable.error_server,
-                canRetry = true
-            )
-
-        is AppError.DatabaseError ->
-            UiError(
-                titleRes = R.string.error_title,
-                messageRes = R.string.error_database,
-                iconRes = R.drawable.error_database,
-                canRetry = false
-            )
-
-        is AppError.Unknown -> {
-            Log.e("APP_ERROR", "Unknown error", cause)
-
-            UiError(
-                titleRes = R.string.error_title,
-                messageRes = R.string.error_unknown,
-                iconRes = R.drawable.error_icon,
-                canRetry = true
-            )
-        }
-
-        is AppError.NoContent -> {
-            UiError(
-                titleRes = R.string.error_title,
-                messageRes = R.string.error_empty_content,
-                iconRes = R.drawable.error_icon,
-                canRetry = true
-            )
-        }
-    }

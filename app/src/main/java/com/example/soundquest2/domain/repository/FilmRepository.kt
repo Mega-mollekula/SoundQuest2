@@ -1,7 +1,7 @@
 package com.example.soundquest2.domain.repository
 
 import com.example.soundquest2.domain.model.content.Film
-import com.example.soundquest2.core.errors.Result
+import com.example.soundquest2.domain.model.Result
 
 interface FilmRepository {
     suspend fun getAllFilms(forceRefresh: Boolean, language: String = "ru"): Result<List<Film>>
