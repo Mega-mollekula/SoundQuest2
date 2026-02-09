@@ -17,7 +17,7 @@ import com.example.soundquest2.ui.model.UiSong
 import com.example.soundquest2.ui.state.GameUiState
 import java.lang.Exception
 
-fun GameState.toUiState(): GameUiState {
+fun GameState.toUiState(languageCode: String): GameUiState {
     return when (gamePhase) {
 
         GamePhase.IDLE -> GameUiState.Idle
@@ -25,7 +25,7 @@ fun GameState.toUiState(): GameUiState {
         GamePhase.ROUND -> {
             val round = currentRound
                 ?: return GameUiState.Error(
-                    error = error ?: AppError.Unknown(
+                    error ?: AppError.Unknown(
                         IllegalStateException("ROUND phase but currentRound == null")
                     )
                 )
@@ -33,22 +33,22 @@ fun GameState.toUiState(): GameUiState {
             GameUiState.Round(
                 roundNumber = currentRoundIndex + 1,
                 totalRounds = totalRounds,
-                options = round.options,
+                options = round.options.map { it.toUi(languageCode) }
             )
         }
 
         GamePhase.RESULT -> {
             val round = currentRound
                 ?: return GameUiState.Error(
-                    error = error ?: AppError.Unknown(
-                        IllegalStateException("ROUND phase but currentRound == null")
+                    error ?: AppError.Unknown(
+                        IllegalStateException("RESULT phase but currentRound == null")
                     )
                 )
 
             GameUiState.Result(
                 isCorrect = isAnswerCorrect ?: false,
-                selected = selectedAnswer ?: round.correct,
-                correct = round.correct
+                selected = (selectedAnswer ?: round.correct).toUi(languageCode),
+                correct = round.correct.toUi(languageCode)
             )
         }
 
@@ -64,12 +64,11 @@ fun GameState.toUiState(): GameUiState {
 
         GamePhase.ERROR ->
             GameUiState.Error(
-                error = error ?: AppError.Unknown(
-                    cause = Exception("Unknown error")
-                )
+                error ?: AppError.Unknown(Exception("Unknown error"))
             )
     }
 }
+
 
 fun Artist.toArtistUi(languageCode: String): UiArtist {
     val translation = translations.find { it.language == languageCode } ?: translations.first()
