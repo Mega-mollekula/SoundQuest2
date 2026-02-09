@@ -27,12 +27,12 @@ class GameViewModel(
     private val checkAnswer: CheckAnswerUseCase,
     private val nextRound: NextRoundUseCase,
     private val resetGame: ResetGameUseCase,
-    private val language: String
+    private val languageCode: String
 ) : ViewModel() {
 
 
     private val _state = MutableStateFlow(GameState())
-    val uiState: StateFlow<GameUiState> = _state.map { it.toUiState() }.stateIn(
+    val uiState: StateFlow<GameUiState> = _state.map { it.toUiState(languageCode) }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),
         GameUiState.Idle
@@ -41,7 +41,7 @@ class GameViewModel(
     fun onIntent(intent: GameIntent) {
         when (intent) {
 
-            GameIntent.Start -> startGame(language)
+            GameIntent.Start -> startGame(languageCode)
 
             is GameIntent.SetMode -> setMode(intent.gameMode)
 
