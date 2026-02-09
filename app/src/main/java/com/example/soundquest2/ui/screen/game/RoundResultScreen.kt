@@ -33,6 +33,7 @@ import com.example.soundquest2.ui.component.VideoBackground
 import com.example.soundquest2.ui.component.details.FilmDetailsMenu
 import com.example.soundquest2.ui.component.details.GameDetailsMenu
 import com.example.soundquest2.ui.component.details.SongDetailsMenu
+import com.example.soundquest2.ui.intent.RoundResultIntent
 import com.example.soundquest2.ui.model.UiFilm
 import com.example.soundquest2.ui.model.UiGame
 import com.example.soundquest2.ui.model.UiSong
@@ -45,8 +46,7 @@ import com.example.soundquest2.ui.util.generateRandomSong
 fun RoundResultScreen(
     videoPlayer: VideoPlayer,
     state: GameUiState.Result,
-    onContinue: () -> Unit,
-    onFavouriteClick: () -> Unit,
+    onIntent: (RoundResultIntent) -> Unit,
     language: AppLanguage
 ) {
     var isDetailsExpanded by remember { mutableStateOf(false) }
@@ -65,7 +65,9 @@ fun RoundResultScreen(
         ) {
             ActionButton(
                 stringResource(R.string.continue_button),
-                onAction = onContinue
+                onAction = {
+                    onIntent(RoundResultIntent.ContinueClicked)
+                }
             )
         }
 
@@ -76,7 +78,9 @@ fun RoundResultScreen(
         ) {
             ResultInfoCard(
                 title = media.title,
-                onFavouriteClick = onFavouriteClick,
+                onFavouriteClick = {
+                    onIntent(RoundResultIntent.FavouriteClicked)
+                },
                 onExpandClick = { isDetailsExpanded = true },
                 isCorrect = state.isCorrect
             )
@@ -120,7 +124,7 @@ fun RoundResultScreen(
 @Preview(
     name = "Dark",
     showBackground = true,
-    locale = "en"
+    locale = "ru"
 )
 @Composable
 fun ResultScreenPreviewDark() {
@@ -137,8 +141,7 @@ fun ResultScreenPreviewDark() {
         RoundResultScreen(
             videoPlayer = PreviewVideoPlayer(),
             state = state,
-            onContinue = {},
-            onFavouriteClick = {},
+            {},
             language = AppLanguage.EN
         )
     }
