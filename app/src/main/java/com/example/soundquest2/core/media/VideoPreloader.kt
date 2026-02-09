@@ -1,6 +1,6 @@
 package com.example.soundquest2.core.media
 
-class MediaPreloader(
+class VideoPreloader(
     private val videoPlayer: VideoPlayer
 ) {
     fun preloadVideos(paths: List<String>) {
