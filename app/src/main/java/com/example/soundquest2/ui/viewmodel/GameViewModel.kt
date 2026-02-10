@@ -6,7 +6,10 @@ import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.content.MediaContent
+import com.example.soundquest2.domain.model.enums.GamePhase
 import com.example.soundquest2.domain.usecase.CheckAnswerUseCase
+import com.example.soundquest2.domain.usecase.FinishGameUseCase
+import com.example.soundquest2.domain.usecase.InsertResultUseCase
 import com.example.soundquest2.domain.usecase.NextRoundUseCase
 import com.example.soundquest2.domain.usecase.ResetGameUseCase
 import com.example.soundquest2.domain.usecase.SetGameModeUseCase
@@ -28,6 +31,8 @@ class GameViewModel(
     private val checkAnswer: CheckAnswerUseCase,
     private val nextRound: NextRoundUseCase,
     private val resetGame: ResetGameUseCase,
+    private val finishGame: FinishGameUseCase,
+    private val insertResult: InsertResultUseCase,
     private val languageFlow: StateFlow<AppLanguage>
 ) : ViewModel() {
 
@@ -81,8 +86,17 @@ class GameViewModel(
     }
 
     private fun nextRound() {
-        _state.update {
-            nextRound(it, viewModelScope)
+        val prevState = _state.value
+        val newState = nextRound(prevState)
+
+        _state.value = newState
+
+        if (newState.gamePhase == GamePhase.FINISHED) {
+            val result = finishGame(prevState)
+
+            viewModelScope.launch {
+                insertResult(result)
+            }
         }
     }
 

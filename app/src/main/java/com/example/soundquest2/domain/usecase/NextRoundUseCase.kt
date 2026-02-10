@@ -2,14 +2,10 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.enums.GamePhase
-import kotlinx.coroutines.CoroutineScope
 
-class NextRoundUseCase(
-    private val finishGame: FinishGameUseCase
-) {
+class NextRoundUseCase {
 
-    operator fun invoke(gameState: GameState, scope: CoroutineScope): GameState {
-
+    operator fun invoke(gameState: GameState): GameState {
         return if (!gameState.isLastRound) {
             gameState.copy(
                 gamePhase = GamePhase.ROUND,
@@ -18,7 +14,9 @@ class NextRoundUseCase(
                 isAnswerCorrect = null
             )
         } else {
-            finishGame(gameState, scope)
+            gameState.copy(
+                gamePhase = GamePhase.FINISHED
+            )
         }
     }
 }
