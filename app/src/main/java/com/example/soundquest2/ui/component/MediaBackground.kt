@@ -16,7 +16,6 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
-import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.ui.state.GameUiState
 
@@ -36,18 +35,18 @@ fun VideoBackground(
     Box(modifier = Modifier.fillMaxSize()) {
 
 
-        if (state.correct.localVideoPath.isNullOrEmpty()) { //для тестирования сделал выражение отрицательным
+        if (!state.correct.localVideoPath.isNullOrEmpty()) {
 
-//            AndroidView(
-//                modifier = Modifier.fillMaxSize(),
-//                factory = { context ->
-//                    PlayerView(context).apply {
-//                        useController = false
-//                        resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-//                        player = videoPlayer.exoPlayer
-//                    }
-//                }
-//            )
+            AndroidView(
+                modifier = Modifier.fillMaxSize(),
+                factory = { context ->
+                    PlayerView(context).apply {
+                        useController = false
+                        resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+                        player = videoPlayer.exoPlayer
+                    }
+                }
+            )
         }
 
         else {
