@@ -3,6 +3,8 @@ package com.example.soundquest2.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.soundquest2.core.language.AppLanguage
+import com.example.soundquest2.core.media.AudioPlayer
+import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.content.MediaContent
@@ -15,6 +17,9 @@ import com.example.soundquest2.domain.usecase.ResetGameUseCase
 import com.example.soundquest2.domain.usecase.SetGameModeUseCase
 import com.example.soundquest2.domain.usecase.StartGameUseCase
 import com.example.soundquest2.ui.intent.GameIntent
+import com.example.soundquest2.ui.intent.RoundResultIntent
+import com.example.soundquest2.ui.playback.GamePlaybackController
+import com.example.soundquest2.ui.playback.VideoPreparer
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.toUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,9 +38,13 @@ class GameViewModel(
     private val resetGame: ResetGameUseCase,
     private val finishGame: FinishGameUseCase,
     private val insertResult: InsertResultUseCase,
-    private val languageFlow: StateFlow<AppLanguage>
+    private val languageFlow: StateFlow<AppLanguage>,
+    private val audioPlayer: AudioPlayer,
+    private val videoPlayer: VideoPlayer,
+    private val videoPreparer: VideoPreparer,
 ) : ViewModel() {
 
+    private lateinit var playbackController: GamePlaybackController
 
     private val _state = MutableStateFlow(GameState())
     val uiState: StateFlow<GameUiState> =
@@ -58,9 +67,23 @@ class GameViewModel(
 
             GameIntent.NextRound -> nextRound()
 
-            GameIntent.RestartVerse -> {}
+            GameIntent.RestartVerse -> playbackController.restartAudio()
 
             GameIntent.Reset -> reset()
+        }
+    }
+
+    fun onResultIntent(intent: RoundResultIntent) {
+        when (intent) {
+            RoundResultIntent.ScreenShown -> {
+                playbackController.playVideoForRound(_state.value.currentRound!!)
+            }
+
+            RoundResultIntent.ContinueClicked -> {
+                onIntent(GameIntent.NextRound)
+            }
+
+            RoundResultIntent.FavouriteClicked -> {}
         }
     }
 
@@ -76,6 +99,13 @@ class GameViewModel(
             _state.update {
                 startGame(it, currentLanguage.code, count = 10)
             }
+            val resolver = videoPreparer.prepare(_state.value.rounds)
+            playbackController = GamePlaybackController(
+                audioPlayer,
+                videoPlayer,
+                resolver
+            )
+            playbackController.playRoundAudio(_state.value.currentRound!!)
         }
     }
 
@@ -83,6 +113,7 @@ class GameViewModel(
         _state.update {
             checkAnswer(it, selected)
         }
+        playbackController.playResultAudio(_state.value.currentRound!!)
     }
 
     private fun nextRound() {
@@ -98,9 +129,13 @@ class GameViewModel(
                 insertResult(result)
             }
         }
+        else {
+            playbackController.playRoundAudio(newState.currentRound!!)
+        }
     }
 
     private fun reset() {
+        playbackController.release()
         _state.update {
             resetGame(it)
         }
