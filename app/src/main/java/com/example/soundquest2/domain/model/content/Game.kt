@@ -6,6 +6,7 @@ import com.example.soundquest2.domain.model.game.GameMedia
 import com.example.soundquest2.domain.model.game.GameTranslation
 
 data class Game(
+    override val id: Long,
     val developer: String,
     val publisher: String,
     val releaseYear: Int,

@@ -4,6 +4,7 @@ import com.example.soundquest2.domain.model.enums.ContentType
 import com.example.soundquest2.domain.model.enums.FilmType
 
 data class UiFilm(
+    override val id: Long,
     val director: String,
     val stars: String,
     val imdbRating: Double,

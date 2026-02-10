@@ -70,6 +70,7 @@ fun SongTranslationEntity.toSongTranslationModel(): SongTranslation {
 
 fun SongWithDetails.toSongModel(): Song {
     return Song(
+        id = song.id,
         genre = song.genre,
         era = song.era,
         title = song.title,
@@ -103,6 +104,7 @@ fun FilmMediaEntity.toModel(): FilmMedia {
 
 fun FilmWithDetails.toModel(): Film {
     return Film(
+        id = film.id,
         director = film.director,
         stars = film.stars,
         imdbRating = film.imdbRating,
@@ -136,6 +138,7 @@ fun GameMediaEntity.toModel(): GameMedia {
 
 fun GameWithDetails.toModel(): Game {
     return Game(
+        id = game.id,
         developer = game.developer,
         publisher = game.publisher,
         releaseYear = game.releaseYear,

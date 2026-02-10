@@ -4,6 +4,7 @@ import com.example.soundquest2.domain.model.enums.ContentType
 import com.example.soundquest2.domain.model.enums.GameGenre
 
 data class UiGame(
+    override val id: Long,
     val developer: String,
     val publisher: String,
     val releaseYear: Int,

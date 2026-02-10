@@ -6,6 +6,7 @@ import com.example.soundquest2.domain.model.film.FilmMedia
 import com.example.soundquest2.domain.model.film.FilmTranslation
 
 data class Film(
+    override val id: Long,
     val director: String,
     val stars: String,
     val imdbRating: Double,

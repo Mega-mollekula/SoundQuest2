@@ -5,6 +5,7 @@ import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.Genre
 
 data class UiSong(
+    override val id: Long,
     val genre: Genre,
     val era: Era,
     override val title: String,

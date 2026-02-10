@@ -89,6 +89,7 @@ fun Song.toSongUi(languageCode: String): UiSong {
     val translation = songTranslations.find { it.language == languageCode } ?: songTranslations.first()
 
     return UiSong(
+        id = id,
         genre = genre,
         era = era,
         title = title,
@@ -103,6 +104,7 @@ fun Game.toGameUi(languageCode: String): UiGame {
     val translation = gameTranslations.find{ it.language == languageCode } ?: gameTranslations.first()
 
     return UiGame(
+        id = id,
         developer = developer,
         publisher = publisher,
         releaseYear = releaseYear,
@@ -118,6 +120,7 @@ fun Film.toFilmUi(languageCode: String): UiFilm {
     val translation = filmTranslations.find{ it.language == languageCode } ?: filmTranslations.first()
 
     return UiFilm(
+        id = id,
         director = director,
         stars = stars,
         imdbRating = imdbRating,
