@@ -17,7 +17,7 @@ data class Film(
     override val contentType: ContentType = ContentType.FILM
 ) : MediaContent {
 
-    override fun hasVideoPath(): Boolean {
-        return filmMedia.localVideoPath != null
+    override fun getVideoPath(): String? {
+        return filmMedia.localVideoPath
     }
 }

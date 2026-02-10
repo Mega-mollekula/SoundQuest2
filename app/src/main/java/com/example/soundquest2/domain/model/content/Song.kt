@@ -24,7 +24,7 @@ data class Song (
         return audioMedia.filter { it.segmentType == segmentType }.random()
     }
 
-    override fun hasVideoPath(): Boolean {
-        return visualMedia.localVideoPath != null
+    override fun getVideoPath(): String? {
+        return visualMedia.localVideoPath
     }
 }
