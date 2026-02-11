@@ -1,13 +1,13 @@
 package com.example.soundquest2.ui.intent
 
 import com.example.soundquest2.domain.model.GameMode
-import com.example.soundquest2.domain.model.content.MediaContent
+import com.example.soundquest2.ui.model.UiMedia
 
 sealed interface GameIntent {
 
     object Start : GameIntent
 
-    data class ChooseAnswer(val content: MediaContent) : GameIntent
+    data class ChooseAnswer(val content: UiMedia) : GameIntent
 
     object NextRound : GameIntent
 
