@@ -7,7 +7,6 @@ import com.example.soundquest2.core.media.AudioPlayer
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
-import com.example.soundquest2.domain.model.content.MediaContent
 import com.example.soundquest2.domain.model.enums.GamePhase
 import com.example.soundquest2.domain.usecase.CheckAnswerUseCase
 import com.example.soundquest2.domain.usecase.FinishGameUseCase
@@ -63,7 +62,7 @@ class GameViewModel(
 
             is GameIntent.SetMode -> setMode(intent.gameMode)
 
-            is GameIntent.ChooseAnswer -> checkAnswer(intent.content)
+            is GameIntent.ChooseAnswer -> checkAnswer(intent.content.id)
 
             GameIntent.NextRound -> nextRound()
 
@@ -109,9 +108,9 @@ class GameViewModel(
         }
     }
 
-    private fun checkAnswer(selected: MediaContent) {
+    private fun checkAnswer(selectedId: Long) {
         _state.update {
-            checkAnswer(it, selected)
+            checkAnswer(it, selectedId)
         }
         playbackController.playResultAudio(_state.value.currentRound!!)
     }
