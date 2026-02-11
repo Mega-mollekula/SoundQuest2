@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.MainButton
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
@@ -46,7 +47,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun MediaDownloadScreen(
     uiState: DownloadUiState,
-    onIntent: (MediaDownloadIntent) -> Unit
+    onGameIntent: (GameIntent) -> Unit,
+    onDownloadIntent: (MediaDownloadIntent) -> Unit,
+    onExit: () -> Unit
 ) {
     val facts = FactsCatalog.facts
     var currentFactIndex by remember { mutableIntStateOf(0) }
@@ -222,8 +225,8 @@ fun MediaDownloadScreen(
             when (uiState) {
                 is DownloadUiState.Completed -> {
                     MainButton(
-                        onClick = { onIntent(MediaDownloadIntent.CompletedClicked) },
-                        text = stringResource(R.string.continue_button)
+                        onClick = { onGameIntent(GameIntent.Start) },
+                        text = stringResource(R.string.start)
                     )
                 }
 
@@ -233,11 +236,11 @@ fun MediaDownloadScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         MainButton(
-                            onClick = { onIntent(MediaDownloadIntent.RetryClicked) },
+                            onClick = { onDownloadIntent(MediaDownloadIntent.Retry) },
                             text = stringResource(R.string.try_again_button)
                         )
                         MainButton(
-                            onClick = { onIntent(MediaDownloadIntent.ExitClicked) },
+                            onClick = { onExit() },
                             text = stringResource(R.string.exit)
                         )
                     }
@@ -266,8 +269,10 @@ fun MediaDownloadScreen(
 fun MediaDownloadScreenDownloadingPreview() {
     AppTheme(darkTheme = true) {
         MediaDownloadScreen(
-            onIntent = {},
-            uiState = DownloadUiState.Downloading(
+            onGameIntent = {},
+            onDownloadIntent = {},
+            onExit = {},
+            uiState = DownloadUiState.Completed(
                 3,
                 10,
                 3,
@@ -286,8 +291,10 @@ fun MediaDownloadScreenDownloadingPreview() {
 fun MediaDownloadScreenDownloadingPreviewRu() {
     AppTheme(darkTheme = true) {
         MediaDownloadScreen(
-            onIntent = {},
-            uiState = DownloadUiState.Downloading(
+            onGameIntent = {},
+            onDownloadIntent = {},
+            onExit = {},
+            uiState = DownloadUiState.Completed(
                 3,
                 10,
                 3,
