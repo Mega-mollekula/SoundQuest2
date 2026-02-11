@@ -113,4 +113,12 @@
     <string name="select_type">Выберите тип</string>
     <string name="films">Фильмы</string>
     <string name="games">Игры</string>
+
+    <string name="game_result_title">Результат игры</string>
+    <string name="guessed">Угадано</string>
+
+    <string name="rounds_count">Раундов</string>
+
+    <string name="to_main_menu">В главное меню</string>
+    <string name="time">Время</string>
 </resources>
