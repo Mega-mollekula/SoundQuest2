@@ -8,6 +8,7 @@ import com.example.soundquest2.domain.model.DownloadProgress
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.usecase.DownloadMediaUseCase
 import com.example.soundquest2.domain.usecase.LoadMediaUseCase
+import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.state.DownloadUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,6 +23,26 @@ class MediaDownloadViewModel(
 
     private val _uiState = MutableStateFlow<DownloadUiState>(DownloadUiState.Idle)
     val uiState: StateFlow<DownloadUiState> = _uiState.asStateFlow()
+
+    fun onIntent(intent: MediaDownloadIntent) {
+        when (intent) {
+            is MediaDownloadIntent.Retry -> {
+                startDownload(
+                    intent.gameMode,
+                    intent.language,
+                    intent.count
+                )
+            }
+
+            is MediaDownloadIntent.StartDownload -> {
+                startDownload(
+                    intent.gameMode,
+                    intent.language,
+                    intent.count
+                )
+            }
+        }
+    }
 
     fun startDownload(gameMode: GameMode, language: String, count: Int) {
 
