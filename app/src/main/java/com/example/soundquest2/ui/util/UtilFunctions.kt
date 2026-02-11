@@ -1,16 +1,16 @@
 package com.example.soundquest2.ui.util
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.example.soundquest2.R
-import com.example.soundquest2.domain.model.AppError
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.FilmType
 import com.example.soundquest2.domain.model.enums.GameGenre
 import com.example.soundquest2.domain.model.enums.Genre
-import com.example.soundquest2.ui.model.UiError
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun GameMode.localizedName(): String {
@@ -78,4 +78,9 @@ fun GameGenre.localizedName(): String {
         GameGenre.PUZZLE -> stringResource(R.string.game_genre_puzzle)
         GameGenre.RUNNER -> stringResource(R.string.game_genre_runner)
     }
+}
+
+fun formatTimestamp(timestamp: Long): String {
+    val sdf = SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.getDefault())
+    return sdf.format(Date(timestamp))
 }
