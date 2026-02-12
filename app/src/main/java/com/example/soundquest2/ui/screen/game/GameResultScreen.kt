@@ -24,7 +24,6 @@ import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameResult
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.intent.RoundResultIntent
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
@@ -38,7 +37,7 @@ import com.example.soundquest2.ui.util.formatTimestamp
 @Composable
 fun GameResultScreen(
     state: GameUiState.Finished,
-    onIntent: (RoundResultIntent) -> Unit,
+    toMainScreen: () -> Unit
 ) {
     val result = state.gameResult
 
@@ -117,7 +116,7 @@ fun GameResultScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     MainButton(stringResource(R.string.to_main_menu)) {
-                        onIntent(RoundResultIntent.ContinueClicked)
+                        toMainScreen()
                     }
                 }
             }
@@ -146,7 +145,7 @@ fun GameResultScreenPreview() {
 
         GameResultScreen(
             state = state,
-            onIntent = {}
+            toMainScreen = {}
         )
     }
 }
@@ -172,7 +171,7 @@ fun GameResultScreenPreview2() {
 
         GameResultScreen(
             state = state,
-            onIntent = {}
+            toMainScreen = {}
         )
     }
 }
