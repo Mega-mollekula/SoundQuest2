@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.model.FactsCatalog
@@ -47,6 +48,9 @@ import kotlinx.coroutines.delay
 fun MediaDownloadScreen(
     uiState: DownloadUiState,
     toGameScreen: () -> Unit,
+    count: Int,
+    language: String,
+    gameMode: GameMode,
     onDownloadIntent: (MediaDownloadIntent) -> Unit,
     onExit: () -> Unit
 ) {
@@ -73,6 +77,16 @@ fun MediaDownloadScreen(
                 animationSpec = tween(durationMillis = 800)
             )
         }
+    }
+
+    LaunchedEffect(Unit) {
+        onDownloadIntent(
+            MediaDownloadIntent.StartDownload(
+                language = language,
+                count = count,
+                gameMode = gameMode
+            )
+        )
     }
 
     val fact = facts[currentFactIndex]
@@ -284,7 +298,10 @@ fun MediaDownloadScreenDownloadingPreview() {
                 10,
                 3,
                 2
-            )
+            ),
+            count = 10,
+            language = "ru",
+            gameMode = GameMode.FastStart
         )
     }
 }
@@ -306,7 +323,10 @@ fun MediaDownloadScreenDownloadingPreviewRu() {
                 10,
                 3,
                 2
-            )
+            ),
+            count = 10,
+            language = "ru",
+            gameMode = GameMode.FastStart
         )
     }
 }
