@@ -18,17 +18,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.intent.LanguageSelectionIntent
+import com.example.soundquest2.ui.intent.SettingsIntent
 import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun LanguageSelectionScreen(
-    onIntent: (LanguageSelectionIntent) -> Unit
+    onExit: () -> Unit,
+    onIntent: (SettingsIntent) -> Unit
 ) {
 
     Box(
@@ -48,7 +50,9 @@ fun LanguageSelectionScreen(
             ActionButton(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
-                onAction = { onIntent(LanguageSelectionIntent.ExitClicked) }
+                onAction = {
+                    onExit()
+                }
             )
 
             Column(
@@ -64,12 +68,12 @@ fun LanguageSelectionScreen(
 
                 MainButton(
                     text = "Русский",
-                    onClick = { onIntent(LanguageSelectionIntent.RussianSelected) }
+                    onClick = { onIntent(SettingsIntent.SetLanguage(AppLanguage.RU)) }
                 )
 
                 MainButton(
                     text = "English",
-                    onClick = { onIntent(LanguageSelectionIntent.EnglishSelected) }
+                    onClick = { onIntent(SettingsIntent.SetLanguage(AppLanguage.EN)) }
                 )
             }
         }
@@ -84,7 +88,7 @@ fun LanguageSelectionScreen(
 fun LanguageSelectionScreenLight() {
     AppTheme(darkTheme = false) {
         LanguageSelectionScreen(
-            {}
+            {}, {}
         )
     }
 }
@@ -97,7 +101,7 @@ fun LanguageSelectionScreenLight() {
 fun LanguageSelectionScreenDark() {
     AppTheme(darkTheme = true) {
         LanguageSelectionScreen(
-            {}
+            {}, {}
         )
     }
 }
