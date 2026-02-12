@@ -11,6 +11,7 @@ import com.example.soundquest2.domain.model.song.ArtistTranslation
 import com.example.soundquest2.domain.model.song.SongAudioMedia
 import com.example.soundquest2.domain.model.song.SongTranslation
 import com.example.soundquest2.domain.model.song.SongVisualMedia
+import kotlin.random.Random
 
 fun generateRandomSong(): Song {
     val era = Era.entries.random()
@@ -55,7 +56,11 @@ fun generateRandomSong(): Song {
 
     val artist = generateArtist(genre, era)
 
+    val random = Random(12)
+    val id = random.nextLong()
+
     return Song(
+        id = id,
         genre = genre,
         era = era,
         title = title,
