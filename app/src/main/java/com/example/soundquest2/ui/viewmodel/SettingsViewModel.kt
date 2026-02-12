@@ -6,6 +6,7 @@ import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.data.local.storage.ThemeStorage
+import com.example.soundquest2.ui.intent.SettingsIntent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,6 +25,14 @@ class SettingsViewModel(
 
     private val _language = MutableStateFlow(initialLanguage)
     val language: StateFlow<AppLanguage> = _language.asStateFlow()
+
+    fun onIntent(intent: SettingsIntent) {
+        when (intent) {
+            is SettingsIntent.SetLanguage -> changeLanguage(intent.language)
+
+            is SettingsIntent.SetTheme -> changeTheme(intent.theme)
+        }
+    }
 
     fun changeTheme(newTheme: AppTheme) {
         viewModelScope.launch {
