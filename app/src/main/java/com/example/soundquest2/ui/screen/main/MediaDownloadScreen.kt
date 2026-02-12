@@ -236,7 +236,15 @@ fun MediaDownloadScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         MainButton(
-                            onClick = { onDownloadIntent(MediaDownloadIntent.Retry) },
+                            onClick = {
+                                onDownloadIntent(
+                                    MediaDownloadIntent.Retry(
+                                        uiState.gameMode,
+                                        uiState.language,
+                                        uiState.count
+                                    )
+                                )
+                            },
                             text = stringResource(R.string.try_again_button)
                         )
                         MainButton(

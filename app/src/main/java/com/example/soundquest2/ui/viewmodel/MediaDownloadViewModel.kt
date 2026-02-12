@@ -59,11 +59,16 @@ class MediaDownloadViewModel(
                         when (result) {
 
                             is Result.Success -> {
-                                handleProgress(result.data)
+                                handleProgress(result.data, gameMode, language, count)
                             }
 
                             is Result.Error -> {
-                                _uiState.value = DownloadUiState.Error(result.error)
+                                _uiState.value = DownloadUiState.Error(
+                                    result.error,
+                                    gameMode,
+                                    language,
+                                    count
+                                )
                             }
                         }
                     }
@@ -71,7 +76,10 @@ class MediaDownloadViewModel(
                 is Result.Error -> {
                     _uiState.update {
                         DownloadUiState.Error(
-                            error = result.error
+                            error = result.error,
+                            gameMode = gameMode,
+                            language = language,
+                            count = count
                         )
                     }
                 }
@@ -79,7 +87,12 @@ class MediaDownloadViewModel(
         }
     }
 
-    private fun handleProgress(progress: DownloadProgress) {
+    private fun handleProgress(
+        progress: DownloadProgress,
+        gameMode: GameMode,
+        language: String,
+        count: Int
+    ) {
         when (progress) {
 
             is DownloadProgress.InProgress -> {
@@ -94,7 +107,10 @@ class MediaDownloadViewModel(
             is DownloadProgress.Completed -> {
                 if (progress.total > 0 && progress.completed == 0) {
                     _uiState.value = DownloadUiState.Error(
-                        AppError.NoContent("Не удалось загрузить ни одного медиафайла")
+                        error = AppError.NoContent("Не удалось загрузить ни одного медиафайла"),
+                        gameMode,
+                        language,
+                        count
                     )
                 } else {
                     _uiState.value = DownloadUiState.Completed(

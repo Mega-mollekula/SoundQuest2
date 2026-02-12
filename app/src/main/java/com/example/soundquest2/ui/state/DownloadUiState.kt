@@ -1,6 +1,7 @@
 package com.example.soundquest2.ui.state
 
 import com.example.soundquest2.domain.model.AppError
+import com.example.soundquest2.domain.model.GameMode
 
 sealed interface DownloadUiState {
 
@@ -22,5 +23,10 @@ sealed interface DownloadUiState {
         val skipped: Int
     ) : DownloadUiState
 
-    data class Error(val error: AppError) : DownloadUiState
+    data class Error(
+        val error: AppError,
+        val gameMode: GameMode,
+        val language: String,
+        val count: Int
+    ) : DownloadUiState
 }
