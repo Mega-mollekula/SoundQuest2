@@ -35,7 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
@@ -47,7 +46,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun MediaDownloadScreen(
     uiState: DownloadUiState,
-    onGameIntent: (GameIntent) -> Unit,
+    toGameScreen: () -> Unit,
     onDownloadIntent: (MediaDownloadIntent) -> Unit,
     onExit: () -> Unit
 ) {
@@ -225,7 +224,7 @@ fun MediaDownloadScreen(
             when (uiState) {
                 is DownloadUiState.Completed -> {
                     MainButton(
-                        onClick = { onGameIntent(GameIntent.Start) },
+                        onClick = { toGameScreen() },
                         text = stringResource(R.string.start)
                     )
                 }
@@ -277,9 +276,9 @@ fun MediaDownloadScreen(
 fun MediaDownloadScreenDownloadingPreview() {
     AppTheme(darkTheme = true) {
         MediaDownloadScreen(
-            onGameIntent = {},
             onDownloadIntent = {},
             onExit = {},
+            toGameScreen = {},
             uiState = DownloadUiState.Completed(
                 3,
                 10,
@@ -299,7 +298,7 @@ fun MediaDownloadScreenDownloadingPreview() {
 fun MediaDownloadScreenDownloadingPreviewRu() {
     AppTheme(darkTheme = true) {
         MediaDownloadScreen(
-            onGameIntent = {},
+            toGameScreen = {},
             onDownloadIntent = {},
             onExit = {},
             uiState = DownloadUiState.Completed(
