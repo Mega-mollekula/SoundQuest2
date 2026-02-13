@@ -105,20 +105,34 @@ class MediaDownloadViewModel(
             }
 
             is DownloadProgress.Completed -> {
-                if (progress.total > 0 && progress.completed == 0) {
-                    _uiState.value = DownloadUiState.Error(
-                        error = AppError.NoContent("Не удалось загрузить ни одного медиафайла"),
-                        gameMode,
-                        language,
-                        count
-                    )
-                } else {
-                    _uiState.value = DownloadUiState.Completed(
-                        completed = progress.completed,
-                        total = progress.total,
-                        failed = progress.failed,
-                        skipped = progress.skipped
-                    )
+                when {
+                    progress.total == 0 -> {
+                        // ВСЁ УЖЕ СКАЧАНО
+                        _uiState.value = DownloadUiState.Completed(
+                            completed = 0,
+                            total = 0,
+                            failed = 0,
+                            skipped = 0
+                        )
+                    }
+
+                    progress.completed == 0 -> {
+                        _uiState.value = DownloadUiState.Completed(
+                            completed = progress.completed,
+                            total = progress.total,
+                            failed = progress.failed,
+                            skipped = progress.skipped
+                        )
+                    }
+
+                    else -> {
+                        _uiState.value = DownloadUiState.Completed(
+                            completed = progress.completed,
+                            total = progress.total,
+                            failed = progress.failed,
+                            skipped = progress.skipped
+                        )
+                    }
                 }
             }
         }
