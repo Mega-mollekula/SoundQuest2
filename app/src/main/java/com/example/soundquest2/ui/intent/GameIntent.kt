@@ -16,4 +16,6 @@ sealed interface GameIntent {
     data class SetMode(val gameMode: GameMode) : GameIntent
 
     object Reset : GameIntent
+
+    object ScreenShown : GameIntent
 }
