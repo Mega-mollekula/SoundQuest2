@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -26,12 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.soundquest2.domain.model.enums.Era
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
-import com.example.soundquest2.ui.util.localizedName
 
 @Composable
 fun <T> DropdownSelector(
@@ -122,30 +117,3 @@ fun <T> DropdownSelector(
         }
     }
 }
-
-@Preview(
-    name = "Era Dropdown Selector",
-    showBackground = true,
-    backgroundColor = 0xFF000000
-)
-@Composable
-fun EraDropdownSelectorPreview() {
-    AppTheme(false) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black),
-            contentAlignment = Alignment.Center
-        ) {
-            var selectedEra by remember { mutableStateOf<Era?>(null) }
-            DropdownSelector(
-                items = Era.entries,
-                selectedItem = selectedEra,
-                onItemSelected = {era -> selectedEra = era},
-                itemLocalization = { it.localizedName() },
-                placeholder = "Era",
-            )
-        }
-    }
-}
-
