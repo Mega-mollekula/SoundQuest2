@@ -9,7 +9,7 @@ import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
 @Dao
 interface SongAudioMediaDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAudioMedia(media: List<SongAudioMediaEntity>)
 
     @Query("UPDATE song_audio_media SET local_audio_path = :localAudioPath WHERE id = :audioId")
