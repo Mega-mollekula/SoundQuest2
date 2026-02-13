@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 
 @Composable
-fun AppTheme(
+fun SoundQuestTheme(
     darkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
