@@ -16,7 +16,6 @@ import com.example.soundquest2.domain.usecase.ResetGameUseCase
 import com.example.soundquest2.domain.usecase.SetGameModeUseCase
 import com.example.soundquest2.domain.usecase.StartGameUseCase
 import com.example.soundquest2.ui.intent.GameIntent
-import com.example.soundquest2.ui.intent.RoundResultIntent
 import com.example.soundquest2.ui.playback.GamePlaybackController
 import com.example.soundquest2.ui.playback.VideoPreparer
 import com.example.soundquest2.ui.state.GameUiState
@@ -25,6 +24,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -54,6 +54,12 @@ class GameViewModel(
             SharingStarted.WhileSubscribed(5_000),
             GameUiState.Idle
         )
+    val gameMode: StateFlow<GameMode> = _state.map { it.gameMode }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = GameMode.FastStart
+        )
 
     fun onIntent(intent: GameIntent) {
         when (intent) {
@@ -69,20 +75,10 @@ class GameViewModel(
             GameIntent.RestartVerse -> playbackController.restartAudio()
 
             GameIntent.Reset -> reset()
-        }
-    }
 
-    fun onResultIntent(intent: RoundResultIntent) {
-        when (intent) {
-            RoundResultIntent.ScreenShown -> {
+            GameIntent.ScreenShown -> {
                 playbackController.playVideoForRound(_state.value.currentRound!!)
             }
-
-            RoundResultIntent.ContinueClicked -> {
-                onIntent(GameIntent.NextRound)
-            }
-
-            RoundResultIntent.FavouriteClicked -> {}
         }
     }
 
@@ -122,6 +118,7 @@ class GameViewModel(
         _state.value = newState
 
         if (newState.gamePhase == GamePhase.FINISHED) {
+            playbackController.stopAudio()
             val result = finishGame(prevState)
 
             viewModelScope.launch {
@@ -134,9 +131,13 @@ class GameViewModel(
     }
 
     private fun reset() {
-        playbackController.release()
         _state.update {
             resetGame(it)
         }
+        playbackController.stopAudio()
+    }
+
+    override fun onCleared() {
+        playbackController.release()
     }
 }
