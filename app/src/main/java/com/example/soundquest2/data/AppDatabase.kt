@@ -10,6 +10,7 @@ import com.example.soundquest2.data.local.dao.film.FilmTranslationDao
 import com.example.soundquest2.data.local.dao.game.GameDao
 import com.example.soundquest2.data.local.dao.game.GameMediaDao
 import com.example.soundquest2.data.local.dao.game.GameTranslationsDao
+import com.example.soundquest2.data.local.dao.result.GameResultDao
 import com.example.soundquest2.data.local.dao.song.ArtistDao
 import com.example.soundquest2.data.local.dao.song.ArtistTranslationsDao
 import com.example.soundquest2.data.local.dao.song.SongAudioMediaDao
@@ -22,6 +23,7 @@ import com.example.soundquest2.data.local.entity.film.FilmTranslationEntity
 import com.example.soundquest2.data.local.entity.game.GameEntity
 import com.example.soundquest2.data.local.entity.game.GameMediaEntity
 import com.example.soundquest2.data.local.entity.game.GameTranslationEntity
+import com.example.soundquest2.data.local.entity.result.GameResultEntity
 import com.example.soundquest2.data.local.entity.song.ArtistEntity
 import com.example.soundquest2.data.local.entity.song.ArtistTranslationEntity
 import com.example.soundquest2.data.local.entity.song.SongAudioMediaEntity
@@ -42,7 +44,8 @@ import com.example.soundquest2.data.local.entity.song.SongVisualMediaEntity
         GameMediaEntity::class,
         FilmEntity::class,
         FilmTranslationEntity::class,
-        FilmMediaEntity::class
+        FilmMediaEntity::class,
+        GameResultEntity::class
     ],
     version = 3
 )
@@ -62,7 +65,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun filmDao(): FilmDao
     abstract fun filmTranslationDao(): FilmTranslationDao
     abstract fun filmMediaDao(): FilmMediaDao
-
+    abstract fun gameResultDao(): GameResultDao
 
     companion object {
         @Volatile
