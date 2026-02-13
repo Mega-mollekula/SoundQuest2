@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.core.language.AppLanguage
@@ -23,7 +22,6 @@ import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.intent.SettingsIntent
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
@@ -68,40 +66,20 @@ fun LanguageSelectionScreen(
 
                 MainButton(
                     text = "Русский",
-                    onClick = { onIntent(SettingsIntent.SetLanguage(AppLanguage.RU)) }
+                    onClick = {
+                        onIntent(SettingsIntent.SetLanguage(AppLanguage.RU))
+                        onExit()
+                    }
                 )
 
                 MainButton(
                     text = "English",
-                    onClick = { onIntent(SettingsIntent.SetLanguage(AppLanguage.EN)) }
+                    onClick = {
+                        onIntent(SettingsIntent.SetLanguage(AppLanguage.EN))
+                        onExit()
+                    }
                 )
             }
         }
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "ru"
-)
-@Composable
-fun LanguageSelectionScreenLight() {
-    AppTheme(darkTheme = false) {
-        LanguageSelectionScreen(
-            {}, {}
-        )
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "en"
-)
-@Composable
-fun LanguageSelectionScreenDark() {
-    AppTheme(darkTheme = true) {
-        LanguageSelectionScreen(
-            {}, {}
-        )
     }
 }

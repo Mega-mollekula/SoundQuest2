@@ -14,18 +14,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainIcon
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun MainScreen(
+    onGameIntent: (GameIntent) -> Unit,
     toSoundtrackScreen: () -> Unit,
     toSongScreen: () -> Unit,
     toAchievementsScreen: () -> Unit,
@@ -65,6 +66,7 @@ fun MainScreen(
                 }
 
                 MainButton(stringResource(R.string.game_mode_fast_start)) {
+                    onGameIntent(GameIntent.SetMode(GameMode.FastStart))
                     toDownloadScreen()
                 }
 
@@ -88,42 +90,5 @@ fun MainScreen(
                 }
             }
         }
-    }
-}
-
-@Preview(
-    name = "Light",
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun HomeScreenLightPreviewLight() {
-    AppTheme(darkTheme = false) {
-        MainScreen(
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-        )
-    }
-}
-@Preview(
-    name = "Dark",
-    showBackground = true,
-    locale = "en"
-)
-@Composable
-fun HomeScreenLightPreviewDark() {
-    AppTheme(darkTheme = true) {
-        MainScreen(
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-        )
     }
 }

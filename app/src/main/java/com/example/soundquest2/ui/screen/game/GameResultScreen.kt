@@ -17,26 +17,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.domain.model.GameMode
-import com.example.soundquest2.domain.model.GameResult
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.state.GameUiState
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
-import com.example.soundquest2.ui.util.generateRandomSong
 import com.example.soundquest2.ui.util.localizedName
 import com.example.soundquest2.ui.component.ResultRow
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.util.formatTimestamp
-
 
 @Composable
 fun GameResultScreen(
     state: GameUiState.Finished,
+    onIntent: (GameIntent) -> Unit,
     toMainScreen: () -> Unit
 ) {
     val result = state.gameResult
@@ -116,62 +112,11 @@ fun GameResultScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     MainButton(stringResource(R.string.to_main_menu)) {
+                        onIntent(GameIntent.Reset)
                         toMainScreen()
                     }
                 }
             }
         }
-    }
-}
-
-@Preview(
-    name = "Dark",
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun GameResultScreenPreview() {
-    AppTheme(darkTheme = true) {
-
-        val song = generateRandomSong()
-
-        val state = GameUiState.Finished(
-            GameResult(
-                roundsCount = 5,
-                guessedSongsCount = 3,
-                gameMode = GameMode.GuessSong()
-            )
-        )
-
-        GameResultScreen(
-            state = state,
-            toMainScreen = {}
-        )
-    }
-}
-
-@Preview(
-    name = "Light",
-    showBackground = true,
-    locale = "en"
-)
-@Composable
-fun GameResultScreenPreview2() {
-    AppTheme(darkTheme = false) {
-
-        val song = generateRandomSong()
-
-        val state = GameUiState.Finished(
-            GameResult(
-                roundsCount = 5,
-                guessedSongsCount = 3,
-                gameMode = GameMode.GuessSong()
-            )
-        )
-
-        GameResultScreen(
-            state = state,
-            toMainScreen = {}
-        )
     }
 }

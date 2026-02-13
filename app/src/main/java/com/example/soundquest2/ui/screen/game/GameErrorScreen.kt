@@ -15,14 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.domain.model.AppError
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.state.GameUiState
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
@@ -65,33 +62,5 @@ fun GameErrorScreen(
                 )
             }
         }
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "ru"
-)
-@Composable
-fun GameErrorScreenLight() {
-    AppTheme(darkTheme = false) {
-        GameErrorScreen(
-            GameUiState.Error(AppError.Unknown(Exception())),
-            {}
-        )
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "en"
-)
-@Composable
-fun GameErrorScreenDark() {
-    AppTheme(darkTheme = true) {
-        GameErrorScreen(
-            GameUiState.Error(AppError.Unknown(Exception())),
-            {}
-        )
     }
 }

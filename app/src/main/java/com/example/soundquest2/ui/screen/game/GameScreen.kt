@@ -1,19 +1,22 @@
 package com.example.soundquest2.ui.screen.game
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import com.example.soundquest2.core.media.VideoPlayer
-import com.example.soundquest2.ui.intent.RoundIntent
-import com.example.soundquest2.ui.intent.RoundResultIntent
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.state.GameUiState
 
 @Composable
 fun GameScreen(
     state: GameUiState,
     videoPlayer: VideoPlayer,
-    onRoundIntent: (RoundIntent) -> Unit,
-    onRoundResultIntent: (RoundResultIntent) -> Unit,
+    onIntent: (GameIntent) -> Unit,
     onExitGame: () -> Unit
 ) {
+    LaunchedEffect(Unit) {
+        onIntent(GameIntent.Start)
+    }
+
     when (state) {
 
         GameUiState.Idle -> {
@@ -22,7 +25,7 @@ fun GameScreen(
         is GameUiState.Round -> {
             RoundScreen(
                 state = state,
-                onIntent = onRoundIntent
+                onIntent = onIntent
             )
         }
 
@@ -30,14 +33,15 @@ fun GameScreen(
             RoundResultScreen(
                 state = state,
                 videoPlayer = videoPlayer,
-                onIntent = onRoundResultIntent
+                onIntent = onIntent
             )
         }
 
         is GameUiState.Finished -> {
             GameResultScreen(
                 state = state,
-                toMainScreen = onExitGame
+                toMainScreen = onExitGame,
+                onIntent = onIntent
             )
         }
 

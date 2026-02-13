@@ -31,7 +31,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.domain.model.GameMode
@@ -39,7 +38,6 @@ import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.model.FactsCatalog
 import com.example.soundquest2.ui.state.DownloadUiState
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.toUiError
 import kotlinx.coroutines.delay
@@ -280,54 +278,3 @@ fun MediaDownloadScreen(
         }
     }
 }
-
-@Preview(
-    name = "Downloading",
-    showBackground = true,
-    locale = "en"
-)
-@Composable
-fun MediaDownloadScreenDownloadingPreview() {
-    AppTheme(darkTheme = true) {
-        MediaDownloadScreen(
-            onDownloadIntent = {},
-            onExit = {},
-            toGameScreen = {},
-            uiState = DownloadUiState.Completed(
-                3,
-                10,
-                3,
-                2
-            ),
-            count = 10,
-            language = "ru",
-            gameMode = GameMode.FastStart
-        )
-    }
-}
-
-@Preview(
-    name = "Downloading",
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun MediaDownloadScreenDownloadingPreviewRu() {
-    AppTheme(darkTheme = true) {
-        MediaDownloadScreen(
-            toGameScreen = {},
-            onDownloadIntent = {},
-            onExit = {},
-            uiState = DownloadUiState.Completed(
-                3,
-                10,
-                3,
-                2
-            ),
-            count = 10,
-            language = "ru",
-            gameMode = GameMode.FastStart
-        )
-    }
-}
-

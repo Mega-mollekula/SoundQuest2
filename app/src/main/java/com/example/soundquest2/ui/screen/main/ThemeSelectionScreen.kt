@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.core.theme.AppTheme
@@ -23,7 +22,6 @@ import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
 import com.example.soundquest2.ui.intent.SettingsIntent
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
@@ -68,40 +66,20 @@ fun ThemeSelectionScreen(
 
                 MainButton(
                     text = stringResource(R.string.light),
-                    onClick = { onIntent(SettingsIntent.SetTheme(AppTheme.LIGHT)) }
+                    onClick = {
+                        onIntent(SettingsIntent.SetTheme(AppTheme.LIGHT))
+                        onExit()
+                    }
                 )
 
                 MainButton(
                     text = stringResource(R.string.dark),
-                    onClick = { onIntent(SettingsIntent.SetTheme(AppTheme.DARK)) }
+                    onClick = {
+                        onIntent(SettingsIntent.SetTheme(AppTheme.DARK))
+                        onExit()
+                    }
                 )
             }
         }
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "ru"
-)
-@Composable
-fun ThemeSelectionScreenLight() {
-    AppTheme(darkTheme = false) {
-        ThemeSelectionScreen(
-            {}, {}
-        )
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "en"
-)
-@Composable
-fun ThemeSelectionScreenDark() {
-    AppTheme(darkTheme = true) {
-        ThemeSelectionScreen(
-            {}, {}
-        )
     }
 }

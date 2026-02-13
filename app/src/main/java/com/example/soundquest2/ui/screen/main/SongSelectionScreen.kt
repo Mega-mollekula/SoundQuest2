@@ -19,23 +19,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.enums.Era
 import com.example.soundquest2.domain.model.enums.Genre
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.DropdownSelector
 import com.example.soundquest2.ui.component.MainBackground
-import com.example.soundquest2.ui.intent.SongSelectionIntent
-import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 import com.example.soundquest2.ui.util.localizedName
 
 @Composable
 fun SongSelectionScreen(
-    onIntent: (SongSelectionIntent) -> Unit
+    onExit: () -> Unit,
+    onIntent: (GameIntent) -> Unit,
+    toDownloadScreen: () -> Unit
 ) {
 
     var selectedEra by remember { mutableStateOf<Era?>(null) }
@@ -59,7 +60,7 @@ fun SongSelectionScreen(
                 modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                 text = stringResource(R.string.back),
                 onAction = {
-                    onIntent(SongSelectionIntent.ExitClicked)
+                    onExit()
                 }
             )
 
@@ -94,42 +95,17 @@ fun SongSelectionScreen(
                     text = stringResource(R.string.start),
                     onAction = {
                         onIntent(
-                            SongSelectionIntent.StartClicked(
-                                era = selectedEra,
-                                genre = selectedGenre
+                            GameIntent.SetMode(
+                                GameMode.GuessSong(
+                                    era = selectedEra,
+                                    genre = selectedGenre
+                                )
                             )
                         )
+                        toDownloadScreen()
                     }
                 )
             }
         }
-    }
-}
-
-@Preview(
-    name = "Light",
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun SongSelectionScreenLight() {
-    AppTheme(darkTheme = false) {
-        SongSelectionScreen(
-            {}
-        )
-    }
-}
-
-@Preview(
-    name = "Dark",
-    showBackground = true,
-    locale = "en"
-)
-@Composable
-fun SongSelectionScreenDark() {
-    AppTheme(darkTheme = true) {
-        SongSelectionScreen(
-            {}
-        )
     }
 }

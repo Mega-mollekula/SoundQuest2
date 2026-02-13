@@ -15,13 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.theme.AppTheme
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
@@ -81,31 +79,5 @@ fun SettingsScreen(
                 )
             }
         }
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "ru"
-)
-@Composable
-fun SettingsScreenPreview() {
-    AppTheme(darkTheme = false) {
-        SettingsScreen(
-            {}, {}, {}
-        )
-    }
-}
-
-@Preview(
-    name = "Dark",
-    locale = "en"
-)
-@Composable
-fun SettingsScreenPreviewDark() {
-    AppTheme(darkTheme = true) {
-        SettingsScreen(
-            {}, {}, {}
-        )
     }
 }

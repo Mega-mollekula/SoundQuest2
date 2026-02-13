@@ -22,9 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.media3.exoplayer.ExoPlayer
 import com.example.soundquest2.R
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.ui.component.ActionButton
@@ -33,24 +31,21 @@ import com.example.soundquest2.ui.component.VideoBackground
 import com.example.soundquest2.ui.component.details.FilmDetailsMenu
 import com.example.soundquest2.ui.component.details.GameDetailsMenu
 import com.example.soundquest2.ui.component.details.SongDetailsMenu
-import com.example.soundquest2.ui.intent.RoundResultIntent
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.model.UiFilm
 import com.example.soundquest2.ui.model.UiGame
 import com.example.soundquest2.ui.model.UiSong
 import com.example.soundquest2.ui.state.GameUiState
-import com.example.soundquest2.ui.theme.AppTheme
-import com.example.soundquest2.ui.toSongUi
-import com.example.soundquest2.ui.util.generateRandomSong
 
 @Composable
 fun RoundResultScreen(
     videoPlayer: VideoPlayer,
     state: GameUiState.Result,
-    onIntent: (RoundResultIntent) -> Unit,
+    onIntent: (GameIntent) -> Unit,
 ) {
 
     LaunchedEffect(state.correct) {
-        onIntent(RoundResultIntent.ScreenShown)
+        onIntent(GameIntent.ScreenShown)
     }
 
     var isDetailsExpanded by remember { mutableStateOf(false) }
@@ -68,7 +63,7 @@ fun RoundResultScreen(
             ActionButton(
                 stringResource(R.string.continue_button),
                 onAction = {
-                    onIntent(RoundResultIntent.ContinueClicked)
+                    onIntent(GameIntent.NextRound)
                 }
             )
         }
@@ -81,7 +76,7 @@ fun RoundResultScreen(
             ResultInfoCard(
                 title = state.correct.title,
                 onFavouriteClick = {
-                    onIntent(RoundResultIntent.FavouriteClicked)
+
                 },
                 onExpandClick = { isDetailsExpanded = true },
                 isCorrect = state.isCorrect
@@ -122,41 +117,3 @@ fun RoundResultScreen(
         }
     }
 }
-
-@Preview(
-    name = "Dark",
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun ResultScreenPreviewDark() {
-    AppTheme(darkTheme = true) {
-
-        val song = generateRandomSong()
-
-        val state = GameUiState.Result(
-            isCorrect = true,
-            selected = song.toSongUi("ru"),
-            correct = song.toSongUi("ru")
-        )
-
-        RoundResultScreen(
-            videoPlayer = PreviewVideoPlayer(),
-            state = state,
-            {},
-        )
-    }
-}
-
-class PreviewVideoPlayer : VideoPlayer {
-
-    override val exoPlayer: ExoPlayer
-        get() = error("ExoPlayer is not available in Preview")
-
-    override fun prepare(items: List<String>) = Unit
-    override fun play(index: Int) = Unit
-    override fun stop() = Unit
-    override fun release() = Unit
-}
-
-

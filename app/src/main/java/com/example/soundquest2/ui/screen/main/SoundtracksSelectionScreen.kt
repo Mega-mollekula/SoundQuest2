@@ -15,20 +15,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
+import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.MainBackground
 import com.example.soundquest2.ui.component.MainButton
-import com.example.soundquest2.ui.intent.SoundtracksSelectionIntent
-import com.example.soundquest2.ui.theme.AppTheme
+import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.theme.AppTypography
 import com.example.soundquest2.ui.theme.LocalAppImages
 
 @Composable
 fun SoundtracksSelectionScreen(
-    onIntent: (SoundtracksSelectionIntent) -> Unit
+    onExit: () -> Unit,
+    onIntent: (GameIntent) -> Unit,
+    toDownloadScreen: () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -50,7 +51,7 @@ fun SoundtracksSelectionScreen(
                     .padding(16.dp),
                 text = stringResource(R.string.back),
                 onAction = {
-                    onIntent(SoundtracksSelectionIntent.BackClicked)
+                    onExit()
                 }
             )
 
@@ -70,48 +71,19 @@ fun SoundtracksSelectionScreen(
                 MainButton(
                     text = stringResource(R.string.films),
                     onClick = {
-                        onIntent(SoundtracksSelectionIntent.FilmsSelected)
+                        onIntent(GameIntent.SetMode(GameMode.GuessFilm))
+                        toDownloadScreen()
                     }
                 )
 
                 MainButton(
                     text = stringResource(R.string.games),
                     onClick = {
-                        onIntent(SoundtracksSelectionIntent.GamesSelected)
+                        onIntent(GameIntent.SetMode(GameMode.GuessGame))
+                        toDownloadScreen()
                     }
                 )
             }
-        }
-    }
-}
-
-@Preview(
-    locale = "ru"
-)
-@Composable
-fun PreviewSoundtracksSelectionScreenLight() {
-    AppTheme(false) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)) {
-            SoundtracksSelectionScreen(
-                {}
-            )
-        }
-    }
-}
-@Preview(
-    locale = "en"
-)
-@Composable
-fun PreviewSoundtracksSelectionScreenDark() {
-    AppTheme(true) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)) {
-            SoundtracksSelectionScreen(
-                {}
-            )
         }
     }
 }
