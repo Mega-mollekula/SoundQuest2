@@ -9,6 +9,7 @@ class CheckAnswerUseCase {
         val isCorrect = id == gameState.currentRound!!.correct.id
         return gameState.copy(
             gamePhase = GamePhase.RESULT,
+            isAnswerCorrect = isCorrect,
             score = if (isCorrect) gameState.score + 1 else gameState.score
         )
     }
