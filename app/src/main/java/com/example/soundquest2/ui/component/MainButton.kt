@@ -11,15 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.soundquest2.ui.theme.AppTheme
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.ui.res.stringResource
-import com.example.soundquest2.R
 
 @Composable
 fun MainButton(
@@ -48,24 +41,5 @@ fun MainButton(
             color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.labelMedium
         )
-    }
-}
-
-
-@Preview(
-    showBackground = true,
-    locale = "ru"
-)
-@Composable
-fun MainButtonPreview() {
-    AppTheme(true) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black)
-                .padding(16.dp)
-        ) {
-            MainButton(text = stringResource(R.string.game_mode_fast_start)) {}
-        }
     }
 }
