@@ -2,8 +2,9 @@ package com.example.soundquest2.ui.playback
 
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.Round
+import javax.inject.Inject
 
-class VideoPreparer(
+class VideoPreparer @Inject constructor(
     private val videoPlayer: VideoPlayer
 ) {
 
