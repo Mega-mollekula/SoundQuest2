@@ -7,7 +7,6 @@ import com.example.soundquest2.core.media.ExoVideoPlayer
 import com.example.soundquest2.core.media.MediaPlayer
 import com.example.soundquest2.core.media.MenuExoPlayer
 import com.example.soundquest2.core.media.VideoPlayer
-import com.example.soundquest2.data.local.storage.AndroidFileProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,17 +42,15 @@ object PlayerModule {
     @Singleton
     fun provideExoVideoPlayer(
         @ApplicationContext context: Context,
-        fileProvider: AndroidFileProvider
     ): ExoVideoPlayer {
-        return ExoVideoPlayer(context, fileProvider.getVideoBaseDir())
+        return ExoVideoPlayer(context)
     }
 
     @Provides
     @Singleton
     fun provideExoAudioPlayer(
         @ApplicationContext context: Context,
-        fileProvider: AndroidFileProvider
     ): ExoAudioPlayer {
-        return ExoAudioPlayer(context, fileProvider.getAudioBaseDir())
+        return ExoAudioPlayer(context)
     }
 }

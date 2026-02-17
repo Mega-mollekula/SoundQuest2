@@ -2,17 +2,14 @@ package com.example.soundquest2.core.media
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.net.toUri
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import java.io.File
 
 class ExoVideoPlayer(
     context: Context,
-    private val videoBaseDir: File
 ) : VideoPlayer {
 
     override val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
@@ -28,11 +25,11 @@ class ExoVideoPlayer(
             repeatMode = Player.REPEAT_MODE_ONE
         }
 
-    override fun prepare(items: List<String>) {
+    override fun prepare(items: List<Uri>) {
         exoPlayer.clearMediaItems()
-        items.forEach {
+        items.forEach { uri ->
             exoPlayer.addMediaItem(
-                MediaItem.fromUri(resolve(it))
+                MediaItem.fromUri(uri)
             )
         }
         exoPlayer.prepare()
@@ -49,15 +46,6 @@ class ExoVideoPlayer(
 
     override fun release() {
         exoPlayer.release()
-    }
-
-    private fun resolve(path: String): Uri {
-        val file = File(path)
-        return if (file.isAbsolute) {
-            file.toUri()
-        } else {
-            File(videoBaseDir, path).toUri()
-        }
     }
 }
 

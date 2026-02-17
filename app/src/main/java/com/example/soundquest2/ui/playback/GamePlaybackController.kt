@@ -1,5 +1,6 @@
 package com.example.soundquest2.ui.playback
 
+import android.net.Uri
 import com.example.soundquest2.core.media.AudioPlayer
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.Round
@@ -20,15 +21,15 @@ class GamePlaybackController(
         when (round.correct) {
             is Song -> {
                 val audio = round.correct.getAudioByType(SegmentType.VERSE)
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
             is Game -> {
                 val audio = round.correct.gameMedia
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
             is Film -> {
                 val audio = round.correct.filmMedia
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
         }
     }
@@ -37,15 +38,15 @@ class GamePlaybackController(
         when (round.correct) {
             is Song -> {
                 val audio = round.correct.getAudioByType(SegmentType.CHORUS)
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
             is Game -> {
                 val audio = round.correct.gameMedia
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
             is Film -> {
                 val audio = round.correct.filmMedia
-                audioPlayer.playSingle(audio.localAudioPath!!)
+                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
             }
         }
     }
@@ -61,8 +62,6 @@ class GamePlaybackController(
         videoPlayer.exoPlayer.seekTo(index, 0)
         videoPlayer.exoPlayer.playWhenReady = true
     }
-
-    fun stopVideo() = videoPlayer.exoPlayer.stop()
 
     fun release() {
         audioPlayer.release()

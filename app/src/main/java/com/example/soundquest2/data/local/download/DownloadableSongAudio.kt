@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.local.download
 
-import android.util.Log
+import androidx.core.net.toUri
 import com.example.soundquest2.data.remote.api.ApiService
 import com.example.soundquest2.domain.model.enums.SegmentType
 import java.io.File
@@ -28,15 +28,17 @@ class DownloadableSongAudio(
             if (!destination.exists()) {
                 val ok = apiService.downloadAudioMedia(audioPath, destination)
                 if (!ok) {
-                    Log.d("DownloadError", "Error to download $audioPath")
                     return DownloadResult.Failed(null)
                 }
             }
 
-            daos.songAudioMediaDao.updateLocalAudioPath(
-                id, destination.absolutePath
+            val localUri = destination.toUri().toString()
+
+            daos.songAudioMediaDao.updateLocalAudioUri(
+                audioId = id,
+                localAudioUri = localUri
             )
-            Log.d("DownloadTest", "Скачано по пути ${destination.absolutePath} ")
+
             DownloadResult.Success
         } catch (e: CancellationException) {
             throw e

@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.local.download
 
-import android.util.Log
+import androidx.core.net.toUri
 import com.example.soundquest2.data.remote.api.ApiService
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
@@ -25,15 +25,17 @@ class DownloadableFilmVideo(
             if (!destination.exists()) {
                 val ok = apiService.downloadVideoMedia(videoPath, destination)
                 if (!ok) {
-                    Log.d("DownloadError", "Error to download $videoPath")
                     return DownloadResult.Failed(null)
                 }
             }
 
-            daos.filmMediaDao.updateLocalVideoPath(
-                filmId, destination.absolutePath
+            val localUri = destination.toUri().toString()
+
+            daos.filmMediaDao.updateLocalVideoUri(
+                filmId = filmId,
+                localVideoUri = localUri
             )
-            Log.d("DownloadTest", "Скачано по пути ${destination.absolutePath} ")
+
             DownloadResult.Success
         } catch (e: CancellationException) {
             throw e

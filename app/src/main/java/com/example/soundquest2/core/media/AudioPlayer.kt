@@ -1,6 +1,8 @@
 package com.example.soundquest2.core.media
 
-interface AudioPlayer : MediaPlayer<String> {
-    fun playSingle(path: String)
+import android.net.Uri
+
+interface AudioPlayer : MediaPlayer<Uri> {
+    fun playSingle(uri: Uri)
     fun restart()
 }

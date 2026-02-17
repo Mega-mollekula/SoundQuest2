@@ -12,11 +12,11 @@ interface FilmMediaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertFilmMedia(media: List<FilmMediaEntity>)
 
-    @Query("UPDATE film_media SET local_video_path = :localVideoPath WHERE film_id = :mediaId")
-    suspend fun updateLocalVideoPath(mediaId: Long, localVideoPath: String)
+    @Query("UPDATE film_media SET local_video_path = :localVideoUri WHERE film_id = :filmId")
+    suspend fun updateLocalVideoUri(filmId: Long, localVideoUri: String)
 
-    @Query("UPDATE film_media SET local_audio_path = :localAudioPath WHERE film_id = :filmId")
-    suspend fun updateLocalAudioPath(filmId: Long, localAudioPath: String)
+    @Query("UPDATE film_media SET local_audio_path = :localAudioUri WHERE film_id = :filmId")
+    suspend fun updateLocalAudioUri(filmId: Long, localAudioUri: String)
 
     @Query("SELECT * FROM film_media WHERE local_audio_path IS NULL")
     suspend fun getFilmMediaWithoutLocalAudioPath(): List<FilmMediaEntity>

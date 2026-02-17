@@ -1,6 +1,6 @@
 package com.example.soundquest2.data.local.download
 
-import android.util.Log
+import androidx.core.net.toUri
 import com.example.soundquest2.data.remote.api.ApiService
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
@@ -25,13 +25,15 @@ class DownloadableGameAudio(
             if (!destination.exists()) {
                 val ok = apiService.downloadAudioMedia(audioPath, destination)
                 if (!ok) {
-                    Log.d("DownloadError", "Error to download $audioPath")
                     return DownloadResult.Failed(null)
                 }
             }
 
-            daos.gameMediaDao.updateLocalAudioPath(
-                gameId, destination.absolutePath
+            val localUri = destination.toUri().toString()
+
+            daos.gameMediaDao.updateLocalAudioUri(
+                gameId = gameId,
+                localAudioUri = localUri
             )
 
             DownloadResult.Success

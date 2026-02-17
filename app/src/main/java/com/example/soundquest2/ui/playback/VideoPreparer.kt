@@ -1,5 +1,6 @@
 package com.example.soundquest2.ui.playback
 
+import android.net.Uri
 import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.Round
 import javax.inject.Inject
@@ -9,7 +10,7 @@ class VideoPreparer @Inject constructor(
 ) {
 
     fun prepare(rounds: List<Round>): VideoIndexResolver {
-        val paths = rounds.mapNotNull { it.correct.getVideoPath() }
+        val paths = rounds.mapNotNull { it.correct.getVideoPath() }.map { Uri.parse(it) }
         videoPlayer.prepare(paths)
         return VideoIndexResolver(rounds)
     }

@@ -12,8 +12,8 @@ interface SongAudioMediaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAudioMedia(media: List<SongAudioMediaEntity>)
 
-    @Query("UPDATE song_audio_media SET local_audio_path = :localAudioPath WHERE id = :audioId")
-    suspend fun updateLocalAudioPath(audioId: Long, localAudioPath: String) // for songs downloading
+    @Query("UPDATE song_audio_media SET local_audio_path = :localAudioUri WHERE id = :audioId")
+    suspend fun updateLocalAudioUri(audioId: Long, localAudioUri: String) // for songs downloading
 
     @Query("SELECT * FROM song_audio_media WHERE local_audio_path IS NULL")
     suspend fun getAudioMediaWithoutLocalAudioPath(): List<SongAudioMediaEntity>

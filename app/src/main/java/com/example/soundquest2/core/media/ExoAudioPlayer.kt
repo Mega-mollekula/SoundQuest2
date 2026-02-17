@@ -2,16 +2,13 @@ package com.example.soundquest2.core.media
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.net.toUri
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
-import java.io.File
 
 class ExoAudioPlayer(
     context: Context,
-    private val audioBaseDir: File
 ) : AudioPlayer {
 
     private val player = ExoPlayer.Builder(context)
@@ -24,11 +21,11 @@ class ExoAudioPlayer(
         )
         .build()
 
-    private var currentPath: String? = null
+    private var currentPath: Uri? = null
 
-    override fun playSingle(path: String) {
-        currentPath = path
-        player.setMediaItem(MediaItem.fromUri(resolve(path)))
+    override fun playSingle(uri: Uri) {
+        currentPath = uri
+        player.setMediaItem(MediaItem.fromUri(uri))
         player.prepare()
         player.play()
     }
@@ -39,7 +36,7 @@ class ExoAudioPlayer(
         player.play()
     }
 
-    override fun prepare(items: List<String>) {
+    override fun prepare(items: List<Uri>) {
         // не используется для аудио
     }
 
@@ -51,14 +48,5 @@ class ExoAudioPlayer(
 
     override fun release() {
         player.release()
-    }
-
-    private fun resolve(path: String): Uri {
-        val file = File(path)
-        return if (file.isAbsolute) {
-            file.toUri()
-        } else {
-            File(audioBaseDir, path).toUri()
-        }
     }
 }
