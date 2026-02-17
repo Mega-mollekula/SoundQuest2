@@ -34,7 +34,6 @@ fun AppNavHost(
 ) {
     val safeNav = remember { SafeNavController(navController) }
 
-    val language by settingsViewModel.language.collectAsState()
     val currentGameMode by gameViewModel.gameMode.collectAsState()
     val gameUiState by gameViewModel.uiState.collectAsState()
 
@@ -88,7 +87,6 @@ fun AppNavHost(
                 uiState = mediaDownloadViewModel.uiState.collectAsState().value,
                 toGameScreen = { safeNav.navigate("game") },
                 count = 10,
-                language = language.code,
                 gameMode = currentGameMode,
                 onDownloadIntent = { intent -> mediaDownloadViewModel.onIntent(intent) },
                 onExit = { safeNav.safePop() }
