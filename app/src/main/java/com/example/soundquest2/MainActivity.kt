@@ -15,10 +15,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.example.soundquest2.core.language.languageDataStore
 import com.example.soundquest2.core.media.ExoVideoPlayer
 import com.example.soundquest2.core.media.MediaPlayer
 import com.example.soundquest2.core.theme.AppTheme
+import com.example.soundquest2.data.local.datastore.languageDataStore
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.ui.navigator.AppNavHost
 import com.example.soundquest2.ui.playback.MenuMusicController
