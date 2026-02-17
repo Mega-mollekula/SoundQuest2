@@ -2,10 +2,9 @@ package com.example.soundquest2.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.soundquest2.core.language.languageDataStore
+import com.example.soundquest2.data.local.datastore.languageDataStore
+import com.example.soundquest2.data.local.datastore.themeDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +21,7 @@ object DataStoreModule {
     @Singleton
     @Named("theme")
     fun provideThemeDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
-        return PreferenceDataStoreFactory.create {
-            context.preferencesDataStoreFile("theme_store")
-        }
+        return context.themeDataStore
     }
 
     @Provides
