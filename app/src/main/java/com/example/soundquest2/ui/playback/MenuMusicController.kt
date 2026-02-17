@@ -1,7 +1,7 @@
 package com.example.soundquest2.ui.playback
 
-import com.example.soundquest2.core.media.MediaPlayer
 import com.example.soundquest2.core.theme.AppTheme
+import com.example.soundquest2.ui.playback.player.MediaPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

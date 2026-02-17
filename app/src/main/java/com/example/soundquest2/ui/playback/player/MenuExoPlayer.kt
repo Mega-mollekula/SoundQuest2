@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.media
+package com.example.soundquest2.ui.playback.player
 
 import android.content.Context
 import androidx.media3.common.AudioAttributes

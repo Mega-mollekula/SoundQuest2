@@ -15,8 +15,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.example.soundquest2.core.media.ExoVideoPlayer
-import com.example.soundquest2.core.media.MediaPlayer
+import com.example.soundquest2.ui.playback.player.ExoVideoPlayer
+import com.example.soundquest2.ui.playback.player.MediaPlayer
 import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.datastore.languageDataStore
 import com.example.soundquest2.data.local.storage.LanguageStorage

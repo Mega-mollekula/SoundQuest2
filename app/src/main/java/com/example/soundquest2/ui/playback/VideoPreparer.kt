@@ -1,8 +1,8 @@
 package com.example.soundquest2.ui.playback
 
 import android.net.Uri
-import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.Round
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import javax.inject.Inject
 
 class VideoPreparer @Inject constructor(

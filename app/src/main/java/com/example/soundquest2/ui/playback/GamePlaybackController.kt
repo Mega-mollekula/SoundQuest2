@@ -1,13 +1,13 @@
 package com.example.soundquest2.ui.playback
 
 import android.net.Uri
-import com.example.soundquest2.core.media.AudioPlayer
-import com.example.soundquest2.core.media.VideoPlayer
 import com.example.soundquest2.domain.model.Round
 import com.example.soundquest2.domain.model.content.Film
 import com.example.soundquest2.domain.model.content.Game
 import com.example.soundquest2.domain.model.content.Song
 import com.example.soundquest2.domain.model.enums.SegmentType
+import com.example.soundquest2.ui.playback.player.AudioPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 
 class GamePlaybackController(
     private val audioPlayer: AudioPlayer,

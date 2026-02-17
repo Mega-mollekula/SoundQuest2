@@ -16,7 +16,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.ui.state.GameUiState
 
 @OptIn(UnstableApi::class)

@@ -3,8 +3,8 @@ package com.example.soundquest2.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.soundquest2.core.language.AppLanguage
-import com.example.soundquest2.core.media.AudioPlayer
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.AudioPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState

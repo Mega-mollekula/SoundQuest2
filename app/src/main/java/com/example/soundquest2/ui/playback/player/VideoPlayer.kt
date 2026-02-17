@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.media
+package com.example.soundquest2.ui.playback.player
 
 import android.net.Uri
 import androidx.media3.exoplayer.ExoPlayer

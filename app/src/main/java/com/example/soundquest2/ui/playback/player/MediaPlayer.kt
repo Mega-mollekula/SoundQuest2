@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.media
+package com.example.soundquest2.ui.playback.player
 
 interface MediaPlayer<Uri> {
     fun prepare(items: List<Uri>)

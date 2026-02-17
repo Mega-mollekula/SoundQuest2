@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.ui.playback.MenuMusicController
 import com.example.soundquest2.ui.screen.game.GameScreen
 import com.example.soundquest2.ui.screen.main.LanguageSelectionScreen

@@ -2,7 +2,7 @@ package com.example.soundquest2.ui.screen.game
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.ui.intent.GameIntent
 import com.example.soundquest2.ui.state.GameUiState
 

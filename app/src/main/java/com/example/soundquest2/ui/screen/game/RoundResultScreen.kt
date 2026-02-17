@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.soundquest2.R
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.ui.component.ActionButton
 import com.example.soundquest2.ui.component.ResultInfoCard
 import com.example.soundquest2.ui.component.VideoBackground

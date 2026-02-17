@@ -1,12 +1,12 @@
 package com.example.soundquest2.di
 
 import android.content.Context
-import com.example.soundquest2.core.media.AudioPlayer
-import com.example.soundquest2.core.media.ExoAudioPlayer
-import com.example.soundquest2.core.media.ExoVideoPlayer
-import com.example.soundquest2.core.media.MediaPlayer
-import com.example.soundquest2.core.media.MenuExoPlayer
-import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.ui.playback.player.AudioPlayer
+import com.example.soundquest2.ui.playback.player.ExoAudioPlayer
+import com.example.soundquest2.ui.playback.player.ExoVideoPlayer
+import com.example.soundquest2.ui.playback.player.MediaPlayer
+import com.example.soundquest2.ui.playback.player.MenuExoPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
