@@ -1,4 +1,4 @@
-package com.example.soundquest2.ui.playback
+package com.example.soundquest2.ui.playback.controller
 
 import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.ui.playback.player.MediaPlayer

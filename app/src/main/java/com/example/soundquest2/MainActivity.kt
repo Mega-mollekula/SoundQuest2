@@ -21,7 +21,7 @@ import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.datastore.languageDataStore
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.ui.navigator.AppNavHost
-import com.example.soundquest2.ui.playback.MenuMusicController
+import com.example.soundquest2.ui.playback.controller.MenuMusicController
 import com.example.soundquest2.ui.theme.SoundQuestTheme
 import com.example.soundquest2.ui.viewmodel.GameViewModel
 import com.example.soundquest2.ui.viewmodel.MediaDownloadViewModel

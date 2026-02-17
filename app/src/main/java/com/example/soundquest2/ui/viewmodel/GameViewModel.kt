@@ -17,7 +17,7 @@ import com.example.soundquest2.domain.usecase.ResetGameUseCase
 import com.example.soundquest2.domain.usecase.SetGameModeUseCase
 import com.example.soundquest2.domain.usecase.StartGameUseCase
 import com.example.soundquest2.ui.intent.GameIntent
-import com.example.soundquest2.ui.playback.GamePlaybackController
+import com.example.soundquest2.ui.playback.controller.GamePlaybackController
 import com.example.soundquest2.ui.playback.VideoPreparer
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.toUiState
