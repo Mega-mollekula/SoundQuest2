@@ -2,7 +2,7 @@ package com.example.soundquest2.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.soundquest2.domain.model.AppError
+import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.domain.model.DownloadProgress
 import com.example.soundquest2.domain.model.GameMode
@@ -10,15 +10,19 @@ import com.example.soundquest2.domain.usecase.DownloadMediaUseCase
 import com.example.soundquest2.domain.usecase.LoadMediaUseCase
 import com.example.soundquest2.ui.intent.MediaDownloadIntent
 import com.example.soundquest2.ui.state.DownloadUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MediaDownloadViewModel(
+@HiltViewModel
+class MediaDownloadViewModel @Inject constructor(
     private val loadAudio: LoadMediaUseCase,
     private val downloadMedia: DownloadMediaUseCase,
+    private val languageStorage: LanguageStorage
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<DownloadUiState>(DownloadUiState.Idle)
@@ -29,7 +33,6 @@ class MediaDownloadViewModel(
             is MediaDownloadIntent.Retry -> {
                 startDownload(
                     intent.gameMode,
-                    intent.language,
                     intent.count
                 )
             }
@@ -37,14 +40,13 @@ class MediaDownloadViewModel(
             is MediaDownloadIntent.StartDownload -> {
                 startDownload(
                     intent.gameMode,
-                    intent.language,
                     intent.count
                 )
             }
         }
     }
 
-    fun startDownload(gameMode: GameMode, language: String, count: Int) {
+    fun startDownload(gameMode: GameMode, count: Int) {
 
         if (_uiState.value is DownloadUiState.Downloading) return
 
@@ -52,21 +54,21 @@ class MediaDownloadViewModel(
 
         viewModelScope.launch {
             //getting metadata before downloading
-            when(val result = loadAudio(forceRefresh = true, gameMode, language, count)) {
+            when(val result = loadAudio(forceRefresh = true, gameMode, languageStorage.getLanguage().code, count)) {
 
                 is Result.Success -> {
                     downloadMedia().collect { result ->
                         when (result) {
 
                             is Result.Success -> {
-                                handleProgress(result.data, gameMode, language, count)
+                                handleProgress(result.data)
                             }
 
                             is Result.Error -> {
                                 _uiState.value = DownloadUiState.Error(
                                     result.error,
                                     gameMode,
-                                    language,
+                                    languageStorage.getLanguage().code,
                                     count
                                 )
                             }
@@ -78,7 +80,7 @@ class MediaDownloadViewModel(
                         DownloadUiState.Error(
                             error = result.error,
                             gameMode = gameMode,
-                            language = language,
+                            language = languageStorage.getLanguage().code,
                             count = count
                         )
                     }
@@ -89,9 +91,6 @@ class MediaDownloadViewModel(
 
     private fun handleProgress(
         progress: DownloadProgress,
-        gameMode: GameMode,
-        language: String,
-        count: Int
     ) {
         when (progress) {
 
