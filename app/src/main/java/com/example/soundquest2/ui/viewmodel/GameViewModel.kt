@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.soundquest2.core.language.AppLanguage
 import com.example.soundquest2.core.media.AudioPlayer
 import com.example.soundquest2.core.media.VideoPlayer
+import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.enums.GamePhase
@@ -20,16 +21,20 @@ import com.example.soundquest2.ui.playback.GamePlaybackController
 import com.example.soundquest2.ui.playback.VideoPreparer
 import com.example.soundquest2.ui.state.GameUiState
 import com.example.soundquest2.ui.toUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GameViewModel(
+@HiltViewModel
+class GameViewModel @Inject constructor(
     private val setGameMode: SetGameModeUseCase,
     private val startGame: StartGameUseCase,
     private val checkAnswer: CheckAnswerUseCase,
@@ -37,13 +42,19 @@ class GameViewModel(
     private val resetGame: ResetGameUseCase,
     private val finishGame: FinishGameUseCase,
     private val insertResult: InsertResultUseCase,
-    private val languageFlow: StateFlow<AppLanguage>,
+    languageStorage: LanguageStorage,
     private val audioPlayer: AudioPlayer,
     private val videoPlayer: VideoPlayer,
     private val videoPreparer: VideoPreparer,
 ) : ViewModel() {
 
     private lateinit var playbackController: GamePlaybackController
+
+    private val languageFlow: StateFlow<AppLanguage> = languageStorage.languageFlow.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = AppLanguage.EN
+    )
 
     private val _state = MutableStateFlow(GameState())
     val uiState: StateFlow<GameUiState> =
@@ -89,11 +100,13 @@ class GameViewModel(
     }
 
     private fun startGame() {
-        val currentLanguage = languageFlow.value
         viewModelScope.launch {
+            val currentLanguage = languageFlow.first()
+
             _state.update {
                 startGame(it, currentLanguage.code, count = 10)
             }
+
             val resolver = videoPreparer.prepare(_state.value.rounds)
             playbackController = GamePlaybackController(
                 audioPlayer,
