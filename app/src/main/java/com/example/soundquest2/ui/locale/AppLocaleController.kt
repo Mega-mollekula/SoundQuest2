@@ -1,4 +1,4 @@
-package com.example.soundquest2.core.language
+package com.example.soundquest2.ui.locale
 
 import android.content.Context
 import android.content.res.Configuration
