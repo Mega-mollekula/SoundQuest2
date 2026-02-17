@@ -7,48 +7,50 @@ import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.data.local.storage.ThemeStorage
 import com.example.soundquest2.ui.intent.SettingsIntent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SettingsViewModel(
+@HiltViewModel
+class SettingsViewModel @Inject constructor(
     private val themeStorage: ThemeStorage,
-    private val languageStorage: LanguageStorage,
-    initialTheme: AppTheme,
-    initialLanguage: AppLanguage
+    private val languageStorage: LanguageStorage
 ) : ViewModel() {
 
-    private val _theme = MutableStateFlow(initialTheme)
+    private val _theme = MutableStateFlow(AppTheme.LIGHT)
     val theme: StateFlow<AppTheme> = _theme.asStateFlow()
 
-    private val _language = MutableStateFlow(initialLanguage)
+    private val _language = MutableStateFlow(AppLanguage.EN)
     val language: StateFlow<AppLanguage> = _language.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            _theme.value = themeStorage.getTheme()
+            _language.value = languageStorage.getLanguage()
+        }
+    }
 
     fun onIntent(intent: SettingsIntent) {
         when (intent) {
             is SettingsIntent.SetLanguage -> changeLanguage(intent.language)
-
             is SettingsIntent.SetTheme -> changeTheme(intent.theme)
         }
     }
 
-    fun changeTheme(newTheme: AppTheme) {
+    private fun changeTheme(newTheme: AppTheme) {
         viewModelScope.launch {
             themeStorage.setTheme(newTheme)
-            _theme.update {
-                newTheme
-            }
+            _theme.value = newTheme
         }
     }
 
-    fun changeLanguage(newLanguage: AppLanguage) {
+    private fun changeLanguage(newLanguage: AppLanguage) {
         viewModelScope.launch {
             languageStorage.setLanguage(newLanguage)
-            _language.update {
-                newLanguage
-            }
+            _language.value = newLanguage
         }
     }
 }
