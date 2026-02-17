@@ -47,7 +47,6 @@ fun MediaDownloadScreen(
     uiState: DownloadUiState,
     toGameScreen: () -> Unit,
     count: Int,
-    language: String,
     gameMode: GameMode,
     onDownloadIntent: (MediaDownloadIntent) -> Unit,
     onExit: () -> Unit
@@ -79,8 +78,7 @@ fun MediaDownloadScreen(
 
     LaunchedEffect(Unit) {
         onDownloadIntent(
-            MediaDownloadIntent.StartDownload(
-                language = language,
+            MediaDownloadIntent. StartDownload(
                 count = count,
                 gameMode = gameMode
             )
@@ -251,7 +249,6 @@ fun MediaDownloadScreen(
                                 onDownloadIntent(
                                     MediaDownloadIntent.Retry(
                                         uiState.gameMode,
-                                        uiState.language,
                                         uiState.count
                                     )
                                 )
