@@ -2,6 +2,7 @@ package com.example.soundquest2.core.language
 
 import android.content.Context
 import android.content.res.Configuration
+import com.example.soundquest2.domain.model.enums.AppLanguage
 import java.util.Locale
 
 class AppLocaleController(

@@ -2,7 +2,7 @@ package com.example.soundquest2.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.soundquest2.core.language.AppLanguage
+import com.example.soundquest2.domain.model.enums.AppLanguage
 import com.example.soundquest2.core.theme.AppTheme
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.data.local.storage.ThemeStorage
