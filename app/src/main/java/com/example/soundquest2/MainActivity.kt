@@ -8,9 +8,9 @@ import androidx.core.view.WindowCompat
 import com.example.soundquest2.ui.locale.AppLocaleController
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
@@ -73,22 +73,21 @@ class MainActivity : ComponentActivity() {
                 val theme by settingsViewModel.theme.collectAsState()
                 val language by settingsViewModel.language.collectAsState()
 
-                LaunchedEffect(language) {
-                    AppLocaleController(this@MainActivity).apply(language)
-                }
+                key(language) {
 
-                SoundQuestTheme(
-                    darkTheme = theme == AppTheme.DARK
-                ) {
-                    val navController = rememberNavController()
-                    AppNavHost(
-                        settingsViewModel = settingsViewModel,
-                        navController = navController,
-                        mediaDownloadViewModel = mediaDownloadViewModel,
-                        gameViewModel = gameViewModel,
-                        videoPlayer = videoPlayer,
-                        menuMusicController = menuMusicController
-                    )
+                    AppLocaleController(this@MainActivity).apply(language)
+
+                    SoundQuestTheme(darkTheme = theme == AppTheme.DARK) {
+                        val navController = rememberNavController()
+                        AppNavHost(
+                            settingsViewModel = settingsViewModel,
+                            navController = navController,
+                            mediaDownloadViewModel = mediaDownloadViewModel,
+                            gameViewModel = gameViewModel,
+                            videoPlayer = videoPlayer,
+                            menuMusicController = menuMusicController
+                        )
+                    }
                 }
             }
         }
