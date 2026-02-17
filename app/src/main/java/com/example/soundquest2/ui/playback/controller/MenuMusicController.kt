@@ -1,6 +1,6 @@
 package com.example.soundquest2.ui.playback.controller
 
-import com.example.soundquest2.core.theme.AppTheme
+import com.example.soundquest2.domain.model.enums.AppTheme
 import com.example.soundquest2.ui.playback.player.MediaPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow

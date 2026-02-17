@@ -4,7 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.example.soundquest2.core.theme.AppTheme
+import com.example.soundquest2.domain.model.enums.AppTheme
 import kotlinx.coroutines.flow.first
 
 class ThemeStorage(
