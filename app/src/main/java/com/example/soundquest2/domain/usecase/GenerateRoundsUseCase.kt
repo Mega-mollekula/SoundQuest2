@@ -2,8 +2,9 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.Round
 import com.example.soundquest2.domain.model.content.MediaContent
+import javax.inject.Inject
 
-class GenerateRoundsUseCase {
+class GenerateRoundsUseCase @Inject constructor() {
 
     operator fun invoke(
         items: List<MediaContent>,

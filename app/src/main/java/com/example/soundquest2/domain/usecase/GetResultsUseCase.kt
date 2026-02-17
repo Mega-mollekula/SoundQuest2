@@ -2,8 +2,9 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameResult
 import com.example.soundquest2.domain.repository.GameResultRepository
+import javax.inject.Inject
 
-class GetResultsUseCase(private val repository: GameResultRepository) {
+class GetResultsUseCase @Inject constructor (private val repository: GameResultRepository) {
     suspend operator fun invoke(): List<GameResult> {
         return repository.getResults()
     }

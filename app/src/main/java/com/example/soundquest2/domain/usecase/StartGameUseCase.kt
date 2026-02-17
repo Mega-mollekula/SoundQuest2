@@ -3,8 +3,9 @@ package com.example.soundquest2.domain.usecase
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.domain.model.enums.GamePhase
+import javax.inject.Inject
 
-class StartGameUseCase(
+class StartGameUseCase @Inject constructor(
     private val loadMedia: LoadMediaUseCase,
     private val generateRoundsUseCase: GenerateRoundsUseCase
 ) {

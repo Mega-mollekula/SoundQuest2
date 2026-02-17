@@ -3,8 +3,9 @@ package com.example.soundquest2.domain.usecase
 import com.example.soundquest2.domain.model.GameMode
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.enums.GamePhase
+import javax.inject.Inject
 
-class ResetGameUseCase {
+class ResetGameUseCase @Inject constructor() {
 
     operator fun invoke(gameState: GameState): GameState {
         return gameState.copy(

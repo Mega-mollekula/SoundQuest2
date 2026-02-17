@@ -7,8 +7,9 @@ import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.domain.repository.MediaDownloader
 import com.example.soundquest2.domain.toAppError
 import kotlinx.coroutines.flow.catch
+import javax.inject.Inject
 
-class DownloadMediaUseCase(
+class DownloadMediaUseCase @Inject constructor(
     private val downloader: MediaDownloader
 ) {
     operator fun invoke(

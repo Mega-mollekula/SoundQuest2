@@ -2,8 +2,9 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.enums.GamePhase
+import javax.inject.Inject
 
-class NextRoundUseCase {
+class NextRoundUseCase @Inject constructor() {
 
     operator fun invoke(gameState: GameState): GameState {
         return if (!gameState.isLastRound) {

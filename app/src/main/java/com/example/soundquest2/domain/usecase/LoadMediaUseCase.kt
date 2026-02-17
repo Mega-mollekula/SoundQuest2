@@ -7,8 +7,9 @@ import com.example.soundquest2.domain.repository.GameRepository
 import com.example.soundquest2.domain.repository.SongRepository
 import com.example.soundquest2.domain.model.Result
 import com.example.soundquest2.domain.util.MediaContentBalancer
+import javax.inject.Inject
 
-class LoadMediaUseCase(
+class LoadMediaUseCase @Inject constructor (
     private val songRepository: SongRepository,
     private val gameRepository: GameRepository,
     private val filmRepository: FilmRepository

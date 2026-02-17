@@ -2,8 +2,9 @@ package com.example.soundquest2.domain.usecase
 
 import com.example.soundquest2.domain.model.GameState
 import com.example.soundquest2.domain.model.enums.GamePhase
+import javax.inject.Inject
 
-class CheckAnswerUseCase {
+class CheckAnswerUseCase @Inject constructor() {
     operator fun invoke(gameState: GameState, id: Long): GameState {
 
         val isCorrect = id == gameState.currentRound!!.correct.id
