@@ -1,7 +1,7 @@
 package com.example.soundquest2.ui.playback.controller
 
 import com.example.soundquest2.domain.model.enums.AppTheme
-import com.example.soundquest2.ui.playback.player.MediaPlayer
+import com.example.soundquest2.ui.playback.player.MenuPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class MenuMusicController(
     private val scope: CoroutineScope,
     private val themeFlow: StateFlow<AppTheme>,
-    private val player: MediaPlayer<String>
+    private val player: MenuPlayer
 ) {
 
     private var currentTheme: AppTheme? = null
@@ -41,13 +41,13 @@ class MenuMusicController(
     fun pause() {
         if (!isPrepared) return
         isPaused = true
-        player.stop()
+        player.pause()
     }
 
     fun resume() {
         if (!isPrepared || !isPaused) return
         isPaused = false
-        player.play()
+        player.resume()
     }
 
     fun release() {
