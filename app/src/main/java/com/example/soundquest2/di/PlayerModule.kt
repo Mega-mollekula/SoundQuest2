@@ -4,8 +4,8 @@ import android.content.Context
 import com.example.soundquest2.ui.playback.player.AudioPlayer
 import com.example.soundquest2.ui.playback.player.ExoAudioPlayer
 import com.example.soundquest2.ui.playback.player.ExoVideoPlayer
-import com.example.soundquest2.ui.playback.player.MediaPlayer
 import com.example.soundquest2.ui.playback.player.MenuExoPlayer
+import com.example.soundquest2.ui.playback.player.MenuPlayer
 import com.example.soundquest2.ui.playback.player.VideoPlayer
 import dagger.Module
 import dagger.Provides
@@ -22,7 +22,7 @@ object PlayerModule {
     @Singleton
     fun provideMenuMediaPlayer(
         @ApplicationContext context: Context
-    ): MediaPlayer<String> {
+    ): MenuPlayer {
         return MenuExoPlayer(context)
     }
 
