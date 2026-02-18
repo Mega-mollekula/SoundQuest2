@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,7 +56,7 @@ fun GameDetailsMenu(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Divider(
+        HorizontalDivider(
             color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.2f),
             thickness = 1.dp
         )
