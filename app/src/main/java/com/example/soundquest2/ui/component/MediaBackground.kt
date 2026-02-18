@@ -43,7 +43,7 @@ fun VideoBackground(
                     PlayerView(context).apply {
                         useController = false
                         resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-                        player = videoPlayer.exoPlayer
+                        player = videoPlayer.player
                     }
                 }
             )
