@@ -15,13 +15,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.example.soundquest2.ui.playback.player.ExoVideoPlayer
-import com.example.soundquest2.ui.playback.player.MediaPlayer
 import com.example.soundquest2.domain.model.enums.AppTheme
 import com.example.soundquest2.data.local.datastore.languageDataStore
 import com.example.soundquest2.data.local.storage.LanguageStorage
 import com.example.soundquest2.ui.navigator.AppNavHost
 import com.example.soundquest2.ui.playback.controller.MenuMusicController
+import com.example.soundquest2.ui.playback.player.MenuPlayer
+import com.example.soundquest2.ui.playback.player.VideoPlayer
 import com.example.soundquest2.ui.theme.SoundQuestTheme
 import com.example.soundquest2.ui.viewmodel.GameViewModel
 import com.example.soundquest2.ui.viewmodel.MediaDownloadViewModel
@@ -39,12 +39,12 @@ class MainActivity : ComponentActivity() {
     private val gameViewModel: GameViewModel by viewModels()
 
     @Inject
-    lateinit var menuPlayer: MediaPlayer<String>
+    lateinit var menuPlayer: MenuPlayer
 
     private lateinit var menuMusicController: MenuMusicController
 
     @Inject
-    lateinit var videoPlayer: ExoVideoPlayer
+    lateinit var videoPlayer: VideoPlayer
 
     override fun attachBaseContext(newBase: Context) {
         val language = runBlocking {
@@ -91,6 +91,16 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        menuMusicController.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        menuMusicController.resume()
     }
 
     override fun onDestroy() {
