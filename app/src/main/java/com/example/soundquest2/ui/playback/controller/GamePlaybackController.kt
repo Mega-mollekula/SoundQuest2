@@ -17,20 +17,19 @@ class GamePlaybackController(
 ) {
 
     // audio
-
     fun playRoundAudio(round: Round) {
         when (round.correct) {
             is Song -> {
                 val audio = round.correct.getAudioByType(SegmentType.VERSE)
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
             is Game -> {
                 val audio = round.correct.gameMedia
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
             is Film -> {
                 val audio = round.correct.filmMedia
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
         }
     }
@@ -39,15 +38,15 @@ class GamePlaybackController(
         when (round.correct) {
             is Song -> {
                 val audio = round.correct.getAudioByType(SegmentType.CHORUS)
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
             is Game -> {
                 val audio = round.correct.gameMedia
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
             is Film -> {
                 val audio = round.correct.filmMedia
-                audioPlayer.playSingle(Uri.parse(audio.localAudioPath!!))
+                audioPlayer.play(Uri.parse(audio.localAudioPath!!))
             }
         }
     }
@@ -57,11 +56,10 @@ class GamePlaybackController(
     fun stopAudio() = audioPlayer.stop()
 
     // video
-
     fun playVideoForRound(round: Round) {
         val index = videoIndexResolver.indexOf(round.correct) ?: return
-        videoPlayer.exoPlayer.seekTo(index, 0)
-        videoPlayer.exoPlayer.playWhenReady = true
+        videoPlayer.player.seekTo(index, 0)
+        videoPlayer.player.playWhenReady = true
     }
 
     fun release() {
