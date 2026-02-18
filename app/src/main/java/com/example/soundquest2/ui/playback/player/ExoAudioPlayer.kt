@@ -23,7 +23,7 @@ class ExoAudioPlayer(
 
     private var currentPath: Uri? = null
 
-    override fun playSingle(uri: Uri) {
+    override fun play(uri: Uri) {
         currentPath = uri
         player.setMediaItem(MediaItem.fromUri(uri))
         player.prepare()
@@ -36,14 +36,16 @@ class ExoAudioPlayer(
         player.play()
     }
 
-    override fun prepare(items: List<Uri>) {
-        // не используется для аудио
-    }
-
-    override fun play(index: Int) = Unit
-
     override fun stop() {
         player.stop()
+    }
+
+    override fun pause() {
+        player.pause()
+    }
+
+    override fun resume() {
+        player.play()
     }
 
     override fun release() {

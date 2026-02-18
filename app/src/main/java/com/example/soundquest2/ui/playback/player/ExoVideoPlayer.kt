@@ -12,7 +12,7 @@ class ExoVideoPlayer(
     context: Context,
 ) : VideoPlayer {
 
-    override val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
+    override val player: ExoPlayer = ExoPlayer.Builder(context)
         .setAudioAttributes(
             AudioAttributes.Builder()
                 .setUsage(C.USAGE_MEDIA)
@@ -26,26 +26,26 @@ class ExoVideoPlayer(
         }
 
     override fun prepare(items: List<Uri>) {
-        exoPlayer.clearMediaItems()
+        player.clearMediaItems()
         items.forEach { uri ->
-            exoPlayer.addMediaItem(
+            player.addMediaItem(
                 MediaItem.fromUri(uri)
             )
         }
-        exoPlayer.prepare()
+        player.prepare()
     }
 
     override fun play(index: Int) {
-        exoPlayer.seekTo(index, 0)
-        exoPlayer.playWhenReady = true
+        player.seekTo(index, 0)
+        player.playWhenReady = true
     }
 
     override fun stop() {
-        exoPlayer.stop()
+        player.stop()
     }
 
     override fun release() {
-        exoPlayer.release()
+        player.release()
     }
 }
 

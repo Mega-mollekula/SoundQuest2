@@ -8,7 +8,7 @@ import androidx.media3.exoplayer.ExoPlayer
 
 class MenuExoPlayer(
     context: Context
-) : MediaPlayer<String> {
+) : MenuPlayer {
 
     private val player = ExoPlayer.Builder(context)
         .setAudioAttributes(
@@ -43,6 +43,14 @@ class MenuExoPlayer(
     override fun stop() {
         player.stop()
         player.clearMediaItems()
+    }
+
+    override fun pause() {
+        player.pause()
+    }
+
+    override fun resume() {
+        player.play()
     }
 
     override fun release() {
