@@ -20,18 +20,6 @@ object PlayerModule {
 
     @Provides
     @Singleton
-    fun provideAudioPlayer(
-        impl: ExoAudioPlayer
-    ): AudioPlayer = impl
-
-    @Provides
-    @Singleton
-    fun provideVideoPlayer(
-        impl: ExoVideoPlayer
-    ): VideoPlayer = impl
-
-    @Provides
-    @Singleton
     fun provideMenuMediaPlayer(
         @ApplicationContext context: Context
     ): MediaPlayer<String> {
@@ -42,7 +30,7 @@ object PlayerModule {
     @Singleton
     fun provideExoVideoPlayer(
         @ApplicationContext context: Context,
-    ): ExoVideoPlayer {
+    ): VideoPlayer {
         return ExoVideoPlayer(context)
     }
 
@@ -50,7 +38,7 @@ object PlayerModule {
     @Singleton
     fun provideExoAudioPlayer(
         @ApplicationContext context: Context,
-    ): ExoAudioPlayer {
+    ): AudioPlayer {
         return ExoAudioPlayer(context)
     }
 }
