@@ -1,0 +1,27 @@
+package com.megamollekula.soundquest2.data.mapper
+
+import com.megamollekula.soundquest2.data.local.entity.result.GameModeType
+import com.megamollekula.soundquest2.data.local.entity.result.GameResultEntity
+import com.megamollekula.soundquest2.domain.model.GameMode
+import com.megamollekula.soundquest2.domain.model.GameResult
+
+fun GameResult.toResultEntity(): GameResultEntity {
+    return GameResultEntity(
+        createdAt = createdAt,
+        roundsCount = roundsCount,
+        gameMode = gameMode.toEnum(),
+        guessedSongsCount = guessedSongsCount
+    )
+}
+
+fun GameMode.toEnum(): GameModeType {
+    return when (this) {
+        is GameMode.GuessSong -> GameModeType.GUESS_SONG
+
+        GameMode.GuessFilm -> GameModeType.GUESS_FILM
+
+        GameMode.GuessGame -> GameModeType.GUESS_GAME
+
+        GameMode.FastStart -> GameModeType.FAST_START
+    }
+}

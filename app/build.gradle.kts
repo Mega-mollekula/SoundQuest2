@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.soundquest2"
+    namespace = "com.megamollekula.soundquest2"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.soundquest2"
+        applicationId = "com.megamollekula.soundquest2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
